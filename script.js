@@ -1,39 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const genderButtons = document.querySelectorAll('.btn-gender');
-    const form = document.getElementById('registrationForm');
+  const navToggleBtn = document.getElementById('navToggleBtn');
+  const signUpSection = document.getElementById('signUpSection');
+  const loginSection = document.getElementById('loginSection');
 
-    // Handle Gender Button Toggles
-    genderButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active status from all sibling buttons
-            genderButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active status to clicked button
-            button.classList.add('active');
-        });
+  // Toggle View Between Sign Up and Login
+  navToggleBtn.addEventListener('click', () => {
+    const isLoginVisible = !loginSection.classList.contains('hidden');
+
+    if (isLoginVisible) {
+      // Switch to Sign Up UI
+      loginSection.classList.add('hidden');
+      signUpSection.classList.remove('hidden');
+      navToggleBtn.textContent = 'Log In';
+    } else {
+      // Switch to Login UI
+      signUpSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+      navToggleBtn.textContent = 'Sign Up';
+    }
+  });
+
+  // Toggle Password Visibility (Eye Icon functionality)
+  const toggleIcons = document.querySelectorAll('.toggle-password');
+  
+  toggleIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      const passwordInput = document.getElementById(targetId);
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye'); // Changes slash icon to an open eye
+      } else {
+        passwordInput.type = 'password';
+        this.classList.remove('fa-eye');
+        this.classList.add('fa-eye-slash');
+      }
     });
+  });
 
-    // Form submission interceptor                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+  // Handle Sign-Up Form Submit
+  document.getElementById('signUpForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pass = document.getElementById('regPassword').value;
+    const confirmPass = document.getElementById('confirmPassword').value;
 
-        // Gather active gender value
-        const activeGender = document.querySelector('.btn-gender.active').textContent;
-        // Gather selected phone type
-        const selectedPhoneType = document.querySelector('input[name="phoneType"]:checked')?.value;
+    if (pass !== confirmPass) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+    console.log("Sign-up form submitted successfully.");
+    // Hook up your authentication API endpoint logic here
+  });
 
-        // Construct Data payload
-        const formData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-            preferredName: document.getElementById('preferredName').value,
-            dob: document.getElementById('dob').value,
-            referredBy: document.getElementById('referredBy').value,
-            gender: activeGender,
-            phoneNumber: document.getElementById('phoneNumber').value,
-            phoneType: selectedPhoneType
-        };
-
-        console.log('Proceeding to Next Step with Data:', formData);
-        });
+  // Handle Login Form Submit
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log("Login form submitted successfully.");
+    // Hook up your login authentication logic here
+  });
 });

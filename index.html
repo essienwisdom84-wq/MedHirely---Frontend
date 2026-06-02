@@ -1,85 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Registration</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedHire - Facility Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="registration-container">
-        <h2>Quick Registration</h2>
+  <header class="navbar">
+    <div class="logo">MedHire</div>
+    <div class="nav-links">
+      <a href="#" class="support-link">Support</a>
+      <button id="navToggleBtn" class="nav-btn">Log In</button>
+    </div>
+  </header>
 
-        <div class="stepper">
-            <div class="step active">
-              <div class="phone-types">       
-                    <label class="radio-label"><input type="radio" name="phoneType" value="Basic"  id="ra"> Basic Information</label>
-                    <label class="radio-label"><input type="radio" name="phoneType" value="Insurance"  id="ra1" checked> Insurance Details</label>
-                    <label class="radio-label"><input type="radio" name="phoneType" value="Payment" id="ra2"> Payment</label>
-                </div>
-            </div>
+  <main class="container">
+    
+    <section id="signUpSection" class="form-card">
+      <h2>Facility Sign up</h2>
+      
+      <div class="sso-container">
+        <button class="btn-sso ms-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" width="16">
+          Continue with Microsoft
+        </button>
+        <button class="btn-sso google-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="16">
+          Continue with Google
+        </button>
+      </div>
+
+      <div class="divider">or</div>
+
+      <form id="signUpForm">
+        <div class="form-group">
+          <label for="regFacilityName">Facility Name</label>
+          <input type="text" id="regFacilityName" required>
         </div>
 
-        <form id="registrationForm" class="form-grid">
-            
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" value="" placeholder="firstName">
-            </div>
+        <div class="form-group">
+          <label for="regEmail">Business Email Address</label>
+          <input type="email" id="regEmail" required>
+        </div>
 
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" value="" placeholder="lastName">
-            </div>
+        <div class="form-group">
+          <label for="regContact">Facility Contact</label>
+          <div class="phone-input-container">
+            <select id="countryCode">
+              <option value="+234">+234</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+              <option value="+351">+351</option>
+            </select>
+            <input type="tel" id="regContact" required>
+          </div>
+        </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter email address">
-            </div>
+        <div class="form-group password-wrapper">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" required>
+          <i class="fa-regular fa-eye-slash toggle-password" data-target="regPassword"></i>
+        </div>
 
-            <div class="form-group">
-                <label for="preferredName">Preferred Name</label>
-                <input type="text" id="preferredName" value="" placeholder="Name">
-            </div>
+        <div class="form-group password-wrapper">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" required>
+          <i class="fa-regular fa-eye-slash toggle-password" data-target="confirmPassword"></i>
+        </div>
 
-            <div class="form-group">
-                <label for="dob">Date of Birth</label>
-                <input type="text" id="dob" value="" placeholder="MM/DD/YYYY">
-            </div>
+        <div class="form-group">
+          <label for="countryOperation">Country of Operation</label>
+          <div class="select-wrapper">
+            <select id="countryOperation">
+              <option value="Nigeria">Nigeria</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Ireland">Ireland</option>
+            </select>
+          </div>
+        </div>
 
-            <div class="form-group">
-                <label for="referredBy">Referred by</label>
-                <input type="text" id="referredBy">
-            </div>
+        <div class="terms-container">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">
+            Yes, I understand and agree to <a href="#">MedHire Terms of service</a>, including the <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
 
-            <div class="form-group gender-section">
-                <label>Gender</label>
-                <div class="gender-options">
-                    <button type="button" class="btn-gender active">Female</button>
-                    <button type="button" class="btn-gender">Male</button>
-                    <button type="button" class="btn-gender">Other</button>
-                </div>
-            </div>
+        <button type="submit" class="btn-submit">Create an Account</button>
+      </form>
+    </section>
 
-            <div class="form-group phone-section">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" placeholder="Enter phone number">
-                <div class="phone-types">
-                    <label class="radio-label"><input type="radio" name="phoneType" value="home"> Home</label>
-                    <label class="radio-label"><input type="radio" name="phoneType" value="mobile" checked> Mobile</label>
-                    <label class="radio-label"><input type="radio" name="phoneType" value="work"> Work</label>
-                </div>
-            </div>
 
-            <div class="form-footer">
-                <button type="button" class="btn-cancel">Cancel</button>
-                <button type="submit" class="btn-submit">Save & Next</button>
-            </div>
+    <section id="loginSection" class="form-card hidden">
+      <h2>Facility Login</h2>
+      
+      <div class="sso-container">
+        <button class="btn-sso ms-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" width="16">
+          Continue with Microsoft
+        </button>
+        <button class="btn-sso google-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="16">
+          Continue with Google
+        </button>
+      </div>
 
-        </form>
-    </div>
+      <div class="divider">or</div>
 
-    <script src="script.js"></script>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginIdentity">Business Email Address or Contact</label>
+          <input type="text" id="loginIdentity" required>
+        </div>
+
+        <div class="form-group password-wrapper">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+          <i class="fa-regular fa-eye-slash toggle-password" data-target="loginPassword"></i>
+        </div>
+
+        <div class="forgot-password-container">
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-submit">Login</button>git remote add origin https://github.com/essienwisdom84-wq/MedHirely---Frontend.git
+
+  <script src="script.js"></script>
 </body>
 </html>
