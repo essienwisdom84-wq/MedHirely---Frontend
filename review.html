@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedHirely Dashboard - Review Workspace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="review.js" defer></script>
+  </head>
+  <body
+    class="bg-[#d5e5fc] min-h-screen font-sans antialiased text-gray-900 flex overflow-hidden select-none"
+  >
+    <aside
+      class="w-64 bg-white border-r border-gray-200/80 flex flex-col justify-between flex-shrink-0 z-20"
+    >
+      <div class="pt-8 px-4">
+        <div
+          class="text-2xl font-bold text-[#2563eb] tracking-tight px-3 mb-10"
+        >
+          MedHirely
+        </div>
+
+        <nav class="space-y-3" id="sidebarMenu">
+          <a
+            href="#"
+            data-tab="dashboard"
+            class="menu-item flex items-center gap-3.5 bg-[#e8f0fe] text-[#2f74fa] border-t-2 border-r-2 border-blue-200 px-4 py-2.5 font-bold text-sm transition shadow-sm"
+          >
+            <svg
+              width="20"
+              height="22"
+              viewBox="0 0 25 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_d_1213_1335)">
+                <path
+                  d="M10.5 5C10.5 7.76142 8.1495 10 5.25 10C2.35051 10 0 7.76142 0 5C0 2.23858 2.35051 0 5.25 0C8.1495 0 10.5 2.23858 10.5 5ZM1.59171 5C1.59171 6.92421 3.22958 8.48408 5.25 8.48408C7.27042 8.48408 8.90829 6.92421 8.90829 5C8.90829 3.07579 7.27042 1.51592 5.25 1.51592C3.22958 1.51592 1.59171 3.07579 1.59171 5Z"
+                  fill="#2F7AF0"
+                />
+              </g>
+              <g filter="url(#filter1_d_1213_1335)">
+                <path
+                  d="M24 5C24 7.76142 21.6495 10 18.75 10C15.8505 10 13.5 7.76142 13.5 5C13.5 2.23858 15.8505 0 18.75 0C21.6495 0 24 2.23858 24 5ZM15.0917 5C15.0917 6.92421 16.7296 8.48408 18.75 8.48408C20.7704 8.48408 22.4083 6.92421 22.4083 5C22.4083 3.07579 20.7704 1.51592 18.75 1.51592C16.7296 1.51592 15.0917 3.07579 15.0917 5Z"
+                  fill="#2F7AF0"
+                />
+              </g>
+              <g filter="url(#filter2_d_1213_1335)">
+                <path
+                  d="M10.5 17C10.5 19.7614 8.1495 22 5.25 22C2.35051 22 0 19.7614 0 17C0 14.2386 2.35051 12 5.25 12C8.1495 12 10.5 14.2386 10.5 17ZM1.59171 17C1.59171 18.9242 3.22958 20.4841 5.25 20.4841C7.27042 20.4841 8.90829 18.9242 8.90829 17C8.90829 15.0758 7.27042 13.5159 5.25 13.5159C3.22958 13.5159 1.59171 15.0758 1.59171 17Z"
+                  fill="#2F7AF0"
+                />
+              </g>
+              <g filter="url(#filter3_d_1213_1335)">
+                <path
+                  d="M24 17C24 19.7614 21.6495 22 18.75 22C15.8505 22 13.5 19.7614 13.5 17C13.5 14.2386 15.8505 12 18.75 12C21.6495 12 24 14.2386 24 17ZM15.0917 17C15.0917 18.9242 16.7296 20.4841 18.75 20.4841C20.7704 20.4841 22.4083 18.9242 22.4083 17C22.4083 15.0758 20.7704 13.5159 18.75 13.5159C16.7296 13.5159 15.0917 15.0758 15.0917 17Z"
+                  fill="#2F7AF0"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="filter0_d_1213_1335"
+                  x="0"
+                  y="0"
+                  width="11.5"
+                  height="10"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dx="1" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.184314 0 0 0 0 0.478431 0 0 0 0 0.941176 0 0 0 0.43 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_1213_1335"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_1213_1335"
+                    result="shape"
+                  />
+                </filter>
+                <filter
+                  id="filter1_d_1213_1335"
+                  x="13.5"
+                  y="0"
+                  width="11.5"
+                  height="10"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dx="1" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.184314 0 0 0 0 0.478431 0 0 0 0 0.941176 0 0 0 0.43 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_1213_1335"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_1213_1335"
+                    result="shape"
+                  />
+                </filter>
+                <filter
+                  id="filter2_d_1213_1335"
+                  x="0"
+                  y="12"
+                  width="11.5"
+                  height="10"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dx="1" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.184314 0 0 0 0 0.478431 0 0 0 0 0.941176 0 0 0 0.43 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_1213_1335"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_1213_1335"
+                    result="shape"
+                  />
+                </filter>
+                <filter
+                  id="filter3_d_1213_1335"
+                  x="13.5"
+                  y="12"
+                  width="11.5"
+                  height="10"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dx="1" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.184314 0 0 0 0 0.478431 0 0 0 0 0.941176 0 0 0 0.43 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_1213_1335"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_1213_1335"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+
+            <span>Dashboard</span>
+          </a>
+
+          <a
+            href="#"
+            data-tab="post-shifts"
+            class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+          >
+            Post Shifts
+          </a>
+
+          <a
+            href="#"
+            data-tab="active-shifts"
+            class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+          >
+            Active Shifts
+          </a>
+
+          <a
+            href="#"
+            data-tab="payment"
+            class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+          >
+            Payment
+          </a>
+
+          <a
+            href="#"
+            data-tab="shifts-history"
+            class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+          >
+            Shifts History
+          </a>
+
+          <a
+            href="#"
+            data-tab="staff-ratings"
+            class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+          >
+            Staff Ratings
+          </a>
+        </nav>
+      </div>
+
+      <div class="pb-6 px-4 space-y-14">
+        <a
+          href="#"
+          data-tab="admin"
+          class="menu-item flex items-center px-4 py-2 text-sm font-bold text-black rounded-md hover:bg-gray-100/80 transition-all pl-[38px]"
+        >
+          Admin
+        </a>
+        <a
+          href="#"
+          data-tab="logout"
+          class="menu-item flex items-center px-4 py-2 text-sm font-bold text-gray-900 rounded-md hover:bg-red-50 hover:text-red-600 transition-all pl-[38px]"
+        >
+          Log out
+        </a>
+      </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+      <header
+        class="h-16 bg-white border-b border-gray-900 border-1-4 px-8 flex items-center justify-between flex-shrink-0 z-10"
+      >
+        <div class="relative w-64">
+          <input
+            type="text"
+            placeholder="Search.."
+            class="w-full focus:placeholder-transparent bg-white border border-black rounded-full pl-4 pr-10 py-1 text-sm text-gray-800 placeholder-black focus:outline-none focus:border-[#2f74fa] focus:ring-1 focus:ring-[#2f74fa]"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4 text-gray-500 absolute right-3.5 top-2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-8">
+            <div class="relative cursor-pointer">
+              <svg
+                class="w-7 h-7 text-gray-700"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                />
+              </svg>
+              <span
+                class="absolute -top-1 -right-1 bg-[#2f74fa] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border border-white"
+                >4</span
+              >
+            </div>
+
+            
+            <div class="flex items-center gap-3 cursor-pointer">
+              <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+              <div class="flex flex-col">
+                <span class="text-[13px] font-bold text-black leading-tight"
+                  >St Luke's Hospital</span
+                >
+                <span class="text-[11px] font-medium text-gray-500"
+                  >Facility Profile</span
+                >
+              </div>
+              <svg
+                class="w-4 h-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1 overflow-y-auto p-12">
+        <div class="max-w-xl">
+          <div class="mb-8">
+            <h2 class="text-base font-black text-gray-900 tracking-wide mb-4">
+              Worker
+            </h2>
+
+            <div class="flex items-center gap-4">
+              <img
+                src="https://res.cloudinary.com/deug7yxlv/image/upload/v1780442039/Ellipse_22_aeepig.png"
+                alt="Eseyin Felicia Profile"
+                class="w-16 h-16 rounded-full object-cover border border-gray-300 shadow-xs select-none pointer-events-none"
+              />
+
+              <span class="text-base font-black text-gray-900 tracking-wide"
+                >Eseyin Felicia, RN</span
+              >
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-base font-black text-gray-900 tracking-wide mb-5">
+              Rate your worker
+            </h3>
+
+            <div class="flex items-center gap-4" id="starRatingRow">
+              <button
+                data-index="1"
+                class="star-btn text-[#2f74fa] hover:scale-110 transition focus:outline-none"
+              >
+                <svg class="w-10 h-10 fill-currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                data-index="2"
+                class="star-btn text-[#2f74fa] hover:scale-110 transition focus:outline-none"
+              >
+                <svg class="w-10 h-10 fill-currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                data-index="3"
+                class="star-btn text-[#2f74fa] hover:scale-110 transition focus:outline-none"
+              >
+                <svg class="w-10 h-10 fill-currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </button>
+              <button
+                data-index="4"
+                class="star-btn text-[#2f74fa] hover:scale-110 transition focus:outline-none"
+              >
+                <svg class="w-10 h-10 fill-currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </button>
+              <button
+                data-index="5"
+                class="star-btn text-[#2f74fa] hover:scale-110 transition focus:outline-none"
+              >
+                <svg class="w-10 h-10 fill-currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="mb-8">
+            <label
+              for="reviewInput"
+              class="block text-sm font-black text-gray-900 tracking-wide mb-3"
+              >Write a review (optional)</label
+            >
+
+            <div
+              class="bg-white rounded-lg border border-gray-400 p-4 shadow-xs relative"
+            >
+              <textarea
+                id="reviewInput"
+                rows="5"
+                maxlength="500"
+                class="w-full focus:placeholder-transparent bg-transparent border-none outline-none resize-none text-sm font-bold text-black leading-relaxed focus:ring-0"
+                placeholder="write your review..."
+              ></textarea>
+
+              <div
+                class="absolute bottom-2 right-3 text-xs font-bold text-gray-500 tracking-wide"
+                id="charCounter"
+              ></div>
+            </div>
+          </div>
+
+          <button
+            id="submitReviewBtn"
+            class="w-full bg-[#2563eb] text-white font-bold text-sm py-2.5 rounded-lg border border-transparent shadow-md hover:bg-blue-600 transition active:scale-[0.99] focus:outline-none"
+          >
+            Submit Review
+          </button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
