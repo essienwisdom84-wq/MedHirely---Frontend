@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedHirely Dashboard</title>
+    <link rel="stylesheet" href="Dashboard-completion.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div>
+          <h1 class="logo">MedHirely</h1>
+
+          <nav>
+            <ul>
+              <li class="active">
+                <img
+                  class="dashboard-icon"
+                  src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/dashboard-icon_h9gavq.png"
+                />
+                Dashboard
+              </li>
+
+              <li>
+                <a href="#"> Post Shifts </a>
+              </li>
+              <li>
+                <a href="#"> Active Shifts </a>
+              </li>
+              <li>
+                <a href="#">Payment</a>
+              </li>
+              <li>
+                <a href="#">Shifts History</a>
+              </li>
+              <li>
+                <a href="#">Staff Ratings</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+          <p>Admin</p>
+          <p>Log out</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="search-box">
+            <input type="text" placeholder="Search..." />
+            <img
+              src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583955/Search_alt_rnow6m.png"
+              alt="search-icon"
+            />
+          </div>
+
+          <div class="header-right">
+            <div class="Notification">
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/Notification.png_oecjuu.png"
+                alt="Notification"
+              />
+
+              <span class="randomNumber">4</span>
+            </div>
+
+            <div class="profile">
+              <div class="avatar"></div>
+
+              <div>
+                <h4>St Luke's Hospital</h4>
+                <p>Facility Profile</p>
+              </div>
+
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/Dropdown-menu.png_ymj100.png"
+                alt="Dropdown-menu"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!--Shift card Section-->
+
+        <div class="completion-wrapper">
+          <section class="completion-card">
+            <h2 class="card-title">Confirm Completion</h2>
+
+            <!-- Worker -->
+            <div class="worker-section">
+              <h3>Worker</h3>
+
+              <div class="worker-info">
+                <img
+                  src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583955/Worker.png_kox34p.png"
+                  alt="worker"
+                />
+
+                <div class="worker-details">
+                  <h4>Eseyin Felicia, RN</h4>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <!-- Scheduled Hours -->
+            <div class="hours-section">
+              <h3>Scheduled Hours</h3>
+              <p>12.00 hrs</p>
+            </div>
+
+            <hr />
+
+            <!-- Reported Hours -->
+            <div class="hours-section">
+              <h3>Reported Hours</h3>
+              <p>11.58 hrs</p>
+            </div>
+
+            <!-- Alert Box -->
+            <div class="review-alert">
+              <p>Please review the reported hours before approving payment.</p>
+            </div>
+
+            <!-- Button -->
+            <button class="review-btn">Review Hours</button>
+          </section>
+
+          <div class="calender-container">
+            <img
+              class="calender-front"
+              src="Images-icon/Calender-img.png"
+              alt="Calender-Front"
+            />
+            <img
+              class="calender-back"
+              src="Images-icon/Calender-img2.png"
+              alt="Calender-background"
+            />
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
