@@ -221,8 +221,8 @@ hr {
 
 .progress-bar {
   width: 419px;
-  height: 14px;
-  background: #fafcff;
+  height: 16px;
+  background: #e8f2ff;
   border-radius: 20px;
 }
 
@@ -230,7 +230,40 @@ hr {
   width: 80%;
   height: 100%;
   background: #2f7af0;
-  border-radius: 20px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  animation: loadProgress 2s ease forwards;
+}
+
+@keyframes loadProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+@keyframes shine {
+  from {
+    left: -120px;
+  }
+  to {
+    left: calc(100% + 120px);
+  }
+}
+
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 20px;
+  height: 100%;
+  background: rgba(182, 222, 255, 0.5);
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
 }
 
 .progress-percentage {
