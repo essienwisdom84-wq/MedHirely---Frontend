@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-weight: 600;
-  font-family: "Archivo", sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px 20px;
+  padding: 0 24px 20px;
 }
 
 .sidebar div {
@@ -35,10 +35,8 @@ body {
 }
 
 .logo {
-  color: #2563eb;
-  font-family: "inter";
-  font-weight: bold;
-  font-size: 36px;
+  margin-left: -20px;
+  width: 250px;
 }
 
 .sidebar ul {
@@ -60,6 +58,11 @@ body {
   align-items: center;
 }
 
+.sidebar li:hover {
+  background-color: #f6f6f7;
+  border-radius: 5px;
+}
+
 .dashboard-icon {
   margin-right: 10px;
 }
@@ -74,6 +77,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.sidebar-bottom a {
+  text-decoration: none;
+  color: #0a0a0a;
 }
 
 .main-content {
@@ -103,6 +111,12 @@ body {
   border: 1px solid #ccc;
   border-radius: 30px;
   padding-left: 20px;
+  outline: none;
+}
+
+.search-box input:hover {
+  background-color: #f6f6f7;
+  transition: 0.5s;
 }
 
 .search-box img {
@@ -118,7 +132,6 @@ body {
   display: flex;
   align-items: center;
   gap: 80px;
-  font-family: "inter";
 }
 
 .Notification {
@@ -140,7 +153,6 @@ body {
   height: 20px;
   width: 20px;
   font-size: 14px;
-  font-family: "inter";
 }
 
 .profile {
@@ -183,7 +195,7 @@ body {
 
 .worker-section h3,
 .hours-section h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -195,14 +207,14 @@ body {
 }
 
 .worker-info img {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .worker-details h4 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -213,14 +225,14 @@ hr {
 }
 
 .hours-section p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #333;
 }
 
 .review-alert {
   background: #e4f0ff;
-  padding: 35px;
+  padding: 25px;
   margin-top: 35px;
   border-radius: 6px;
 }
@@ -247,6 +259,11 @@ hr {
 
 .review-btn:hover {
   opacity: 0.9;
+}
+
+.review-btn a {
+  text-decoration: none;
+  color: #ebe7e7;
 }
 
 .completion-wrapper {
