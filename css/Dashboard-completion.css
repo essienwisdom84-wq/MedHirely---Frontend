@@ -1,0 +1,293 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif;
+}
+
+body {
+  background: #d8e8ff;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+  width: 350px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 24px 20px;
+}
+
+.sidebar div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+.logo {
+  margin-left: -20px;
+  width: 250px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 18px 30px;
+  cursor: pointer;
+}
+
+.sidebar li.active {
+  background: #e6effd;
+  color: #2f7af0;
+  box-shadow: 3px -1px 5px 0 #2f7af0;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li:hover {
+  background-color: #f6f6f7;
+  border-radius: 5px;
+}
+
+.dashboard-icon {
+  margin-right: 10px;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  color: #0c0c0c;
+}
+
+.sidebar-bottom {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sidebar-bottom a {
+  text-decoration: none;
+  color: #0a0a0a;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+}
+
+/*Header*/
+
+.header {
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 250px;
+  height: 42px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding-left: 20px;
+  outline: none;
+}
+
+.search-box input:hover {
+  background-color: #f6f6f7;
+  transition: 0.5s;
+}
+
+.search-box img {
+  height: 27px;
+  width: 27px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.Notification {
+  width: 30px;
+  height: 35px;
+  position: relative;
+}
+
+.randomNumber {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2f7af0;
+  border-radius: 50%;
+  top: -6px;
+  right: -8px;
+  color: white;
+  height: 20px;
+  width: 20px;
+  font-size: 14px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile h4 {
+  font-size: 18px;
+}
+
+.profile p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+/*Shift card*/
+.completion-card {
+  width: 673px;
+  background: #fff;
+  margin: 60px 80px;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0 rgb(211, 210, 210);
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.worker-section h3,
+.hours-section h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.worker-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.worker-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.worker-details h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #2b2a2a;
+  margin: 20px 0;
+}
+
+.hours-section p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.review-alert {
+  background: #e4f0ff;
+  padding: 25px;
+  margin-top: 35px;
+  border-radius: 6px;
+}
+
+.review-alert p {
+  font-size: 20px;
+  line-height: 1, 5;
+  color: #0a0a0a;
+}
+
+.review-btn {
+  width: 100%;
+  height: 53px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 6px;
+  background: #2f7af0;
+  color: #ebe7e7;
+  font-size: 22px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-btn:hover {
+  opacity: 0.9;
+}
+
+.review-btn a {
+  text-decoration: none;
+  color: #ebe7e7;
+}
+
+.completion-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calender-container {
+  position: relative;
+  width: 163px;
+  height: 220px;
+}
+
+.calender-back {
+  position: relative;
+  top: -25px;
+  right: -70px;
+  width: 180px;
+  z-index: 0;
+}
+
+.calender-front {
+  position: absolute;
+  width: 164px;
+  z-index: 1;
+}

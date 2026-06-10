@@ -1,0 +1,341 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #f4f8ff;
+  color: #111827;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 60px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.support-link {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-btn {
+  border: 1px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #eff6ff;
+}
+
+/* MAIN */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* FORM CARD */
+.form-card {
+  width: 100%;
+  max-width: 560px;
+
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+
+  animation: fadeIn 0.4s ease;
+}
+
+.form-card h2 {
+  text-align: center;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  margin-bottom: 30px;
+}
+
+/* SSO */
+.sso-container {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.btn-sso {
+  flex: 1;
+
+  height: 52px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.ms-btn {
+  background: white;
+  border: 1px solid #d1d5db;
+}
+
+.google-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+.btn-sso:hover {
+  transform: translateY(-1px);
+}
+
+/* DIVIDER */
+.divider {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+
+  margin: 24px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+
+  width: 42%;
+  height: 1px;
+
+  background: #e5e7eb;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* FORM */
+form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* INPUTS */
+input,
+select {
+  width: 100%;
+  height: 52px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+
+  padding: 0 16px;
+
+  font-size: 15px;
+  color: #111827;
+
+  background: white;
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* PHONE */
+.phone-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-input-container select {
+  width: 100px;
+}
+
+/* PASSWORD */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 18px;
+  top: 44px;
+
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+/* TERMS */
+.terms-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin: 24px 0;
+}
+
+.terms-container input {
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+}
+
+.terms-container label {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.terms-container a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+/* FORGOT PASSWORD */
+.forgot-password-container {
+  text-align: right;
+  margin-bottom: 24px;
+}
+
+.forgot-password {
+  text-decoration: none;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* BUTTON */
+.btn-submit {
+  width: 100%;
+  height: 54px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* HIDDEN */
+.hidden {
+  display: none !important;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .form-card {
+    padding: 28px;
+    border-radius: 18px;
+  }
+
+  .sso-container {
+    flex-direction: column;
+  }
+
+  .form-card h2 {
+    font-size: 28px;
+  }
+}

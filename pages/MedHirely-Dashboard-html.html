@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedHirely Dashboard</title>
+    <link rel="stylesheet" href="MedHirely-Dashboard-css.css" />
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link
+      href="https://googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div>
+          <img
+            class="logo"
+            src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780793329/Med_11_xbp28q.png"
+            alt="logo"
+          />
+
+          <nav>
+            <ul>
+              <li class="active">
+                <img
+                  class="dashboard-icon"
+                  src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/dashboard-icon_h9gavq.png"
+                />
+                Dashboard
+              </li>
+
+              <li>
+                <a href="#"> Post Shifts </a>
+              </li>
+              <li>
+                <a href="#"> Active Shifts </a>
+              </li>
+              <li>
+                <a href="#">Payment</a>
+              </li>
+              <li>
+                <a href="#">Shifts History</a>
+              </li>
+              <li>
+                <a href="#">Staff Ratings</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+          <p><a href="#">Admin</a></p>
+          <p><a href="#">Log out</a></p>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="search-box">
+            <input type="text" placeholder="Search..." />
+            <img
+              src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583955/Search_alt_rnow6m.png"
+              alt="search-icon"
+            />
+          </div>
+
+          <div class="header-right">
+            <div class="Notification">
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/Notification.png_oecjuu.png"
+                alt="Notification"
+              />
+
+              <span class="randomNumber">4</span>
+            </div>
+
+            <div class="profile">
+              <div class="avatar"></div>
+
+              <div>
+                <h4>St Luke's Hospital</h4>
+                <p>Facility Profile</p>
+              </div>
+
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583954/Dropdown-menu.png_ymj100.png"
+                alt="Dropdown-menu"
+              />
+            </div>
+          </div>
+        </header>
+
+        <section class="shift-card">
+          <h2>ICU Nurse</h2>
+          <h4>St Luke's Hospital</h4>
+
+          <div class="shift-info">
+            <span>
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583956/calender-icon_lmcg6j.png"
+                alt="date"
+              />
+            </span>
+            <div class="shift-date-time">
+              <span>May 26, 2026</span>
+              <span>6:00AM - 6:00PM</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="progress-section">
+            <div class="title-row">
+              <h3>Shift Progress</h3>
+            </div>
+
+            <div class="progress-info">
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+
+              <div class="progress-percentage">
+                <span>80%</span>
+                <span>(9.5/12hrs)</span>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="check-status">
+            <h3>Check-in-Status</h3>
+
+            <div class="status">
+              <span class="dot"></span>
+
+              <div>
+                <strong class="checked-in">Worker Checked In</strong>
+                <p>Checked in at 5:58AM</p>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="worker-section">
+            <h3>Worker</h3>
+
+            <div class="worker">
+              <img
+                src="https://res.cloudinary.com/dlkgdhflb/image/upload/v1780583955/Worker.png_kox34p.png"
+                alt="worker"
+              />
+
+              <div>
+                <h4>Eseyin Felicia, RN</h4>
+                <a href="#">View Worker Profile</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button class="flag-btn">Flag Issue</button>
+
+            <button class="complete-btn">Complete Shift</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

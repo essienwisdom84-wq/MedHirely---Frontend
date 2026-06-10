@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Payment Success</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#EAF2FF] min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-md hidden md:flex flex-col justify-between">
+    
+    <div class="logo">
+  <img src="../assets/images/logo.png" alt="MedHire Logo" width="140">
+</div>
+
+      <nav class="mt-8">
+        <ul class="space-y-4 px-6">
+          <li class="bg-blue-100 text-blue-600 p-3 rounded-lg font-semibold">
+            Dashboard
+          </li>
+
+          <li class="text-gray-700">Post Shifts</li>
+          <li class="text-gray-700">Active Shifts</li>
+          <li class="text-gray-700">Payment</li>
+          <li class="text-gray-700">Shifts History</li>
+          <li class="text-gray-700">Staff Ratings</li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="p-6">
+      <button class="text-red-500 font-semibold">
+        Log out
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1">
+
+    <!-- Header -->
+    <header class="bg-white h-20 shadow-sm flex items-center justify-between px-8">
+
+      <input
+        type="text"
+        placeholder="Search..."
+        class="border rounded-full px-4 py-2 w-64 outline-none"
+      />
+
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+
+        <div>
+          <h3 class="font-semibold text-sm">
+            St Luke's Hospital
+          </h3>
+
+          <p class="text-xs text-gray-500">
+            Facility Profile
+          </p>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Success Content -->
+    <section class="p-10 flex flex-col lg:flex-row items-center justify-center gap-20">
+
+      <!-- Card -->
+      <div class="bg-white p-10 rounded-xl shadow-md w-full max-w-md text-center">
+
+        <div class="w-24 h-24 rounded-full bg-green-100 mx-auto flex items-center justify-center text-5xl text-green-600">
+          ✓
+        </div>
+
+        <h2 class="text-2xl font-bold mt-6">
+          Payment Released!
+        </h2>
+
+        <p class="text-gray-600 mt-3">
+          ₦173,700 sent to <br />
+          <span class="font-semibold">
+            Eseyin Felicia
+          </span>
+        </p>
+
+        <!-- Transaction -->
+        <div class="bg-gray-100 rounded-lg p-5 mt-8 text-left">
+
+          <p class="text-sm text-gray-500">
+            Transaction ID
+          </p>
+
+          <div class="flex items-center justify-between mt-2">
+
+            <h3 class="font-bold">
+              #MED876523
+            </h3>
+
+            <button onclick="copyId()">
+              📋
+            </button>
+
+          </div>
+
+        </div>
+
+        <button
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mt-8 font-semibold transition"
+        >
+          Continue
+        </button>
+
+      </div>
+
+      <!-- Wallet Image -->
+      <div class="hidden lg:block">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+          alt="wallet"
+          class="w-72"
+        />
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    function copyId() {
+      navigator.clipboard.writeText("#MED876523");
+      alert("Transaction ID copied!");
+    }
+  </script>
+
+</body>
+</html>
