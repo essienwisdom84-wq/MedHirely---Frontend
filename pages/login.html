@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Login - MedHirely</title>
+</head>
+
+<body class="bg-[#f5f9ff] min-h-screen flex items-center justify-center p-6">
+
+  <div class="bg-white w-full max-w-md rounded-3xl shadow-xl p-8">
+
+    <div class="text-center mb-8">
+      <img
+        src="../assets/images/logo.png"
+        alt="Logo"
+        class="w-20 mx-auto mb-4"
+      />
+      <h1 class="text-3xl font-bold text-[#2F74FA]">Welcome Back</h1>
+      <p class="text-gray-500 mt-2">Login to continue</p>
+    </div>
+
+    <!-- SSO Buttons -->
+    <div class="flex flex-col gap-3 mb-6">
+      <button class="flex items-center justify-center gap-3 border border-gray-300 rounded-xl px-4 py-3 hover:bg-gray-50 transition font-medium text-gray-700">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="w-4 h-4" />
+        Continue with Microsoft
+      </button>
+      <button class="flex items-center justify-center gap-3 border border-gray-300 rounded-xl px-4 py-3 hover:bg-gray-50 transition font-medium text-gray-700">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-4 h-4" />
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="flex items-center gap-3 mb-6">
+      <hr class="flex-1 border-gray-300" />
+      <span class="text-sm text-gray-400">or</span>
+      <hr class="flex-1 border-gray-300" />
+    </div>
+
+    <form class="space-y-5">
+
+      <div>
+        <label class="block text-sm font-semibold mb-2">Email Address</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-[#2F74FA]"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold mb-2">Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-[#2F74FA]"
+        />
+      </div>
+
+      <div class="text-right">
+        <a href="#" class="text-sm text-[#2F74FA] font-medium hover:underline">Forgot Password?</a>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-[#2F74FA] text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition"
+      >
+        Login
+      </button>
+
+    </form>
+
+    <p class="text-center text-sm text-gray-500 mt-6">
+      Don't have an account?
+      <a href="signup.html" class="text-[#2F74FA] font-bold">Sign up</a>
+    </p>
+
+  </div>
+
+</body>
+</html>
