@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedHirely Dashboard</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Manrope', 'sans-serif'] },
                     colors: {
                         brand: {
                             blue: '#3B82F6',
@@ -29,21 +26,37 @@
         }
     </script>
     <style>
-        /* Modern scrollbar configuration */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 4px; }
+
+        #sidebar-overlay { display: none; }
+
+        @media (max-width: 767px) {
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                position: fixed;
+                top: 0; left: 0;
+                height: 100%;
+                z-index: 40;
+            }
+            #sidebar.open { transform: translateX(0); }
+            #sidebar-overlay.show { display: block; }
+        }
     </style>
 </head>
-<body class="bg-brand-bg text-brand-dark font-sans h-screen flex overflow-hidden antialiased">
+<body class="bg-brand-bg text-brand-dark font-sans min-h-screen flex overflow-hidden antialiased">
 
-    <aside class="w-[240px] bg-white border-r border-slate-200 flex flex-col justify-between py-6 shrink-0">
+    <!-- Mobile overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-30" onclick="toggleSidebar()"></div>
+
+    <aside id="sidebar" class="w-[240px] bg-white border-r border-slate-200 flex flex-col justify-between py-6 shrink-0 md:relative md:translate-x-0 h-screen">
         <div>
-            <div class="px-6 text-xl font-extrabold text-blue-600 flex items-center gap-1.5 mb-10 tracking-tight">
-                <svg class="w-6 h-6 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                Med<span class="text-brand-dark font-medium">Hirely</span>
+            <div class="px-6 mb-10">
+                <img src="../assets/images/logo.png" alt="MedHirely" class="h-8 w-auto">
             </div>
-            
+
             <ul class="flex flex-col gap-1">
                 <li id="nav-dashboard" class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-blue-600 bg-blue-50 rounded-r-lg mr-4">
                     Dashboard
@@ -51,44 +64,47 @@
                 <li id="nav-post-shifts" class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">
                     Post Shifts
                 </li>
-                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">
-                    Active Shifts
-                </li>
-                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">
-                    Payment
-                </li>
-                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">
-                    Shifts History
-                </li>
-                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">
-                    Staff Ratings
-                </li>
+                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">Active Shifts</li>
+                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">Payment</li>
+                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">Shifts History</li>
+                <li class="px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50">Staff Ratings</li>
             </ul>
         </div>
-        
+
         <div class="border-t border-slate-200 pt-4">
             <div class="px-6 py-3 font-semibold text-sm cursor-pointer text-brand-dark hover:bg-slate-50">Admin</div>
             <div class="px-6 py-3 font-semibold text-sm cursor-pointer text-red-600 hover:bg-red-50">Log out</div>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col relative">
-        
-        <header class="h-[70px] bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0">
-            <div class="relative">
-                <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 fill-slate-400" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" placeholder="Search..." class="w-[320px] pl-9 pr-4 py-2 border border-slate-300 rounded-full text-sm outline-none focus:border-brand-blue transition-colors">
+    <main class="flex-1 flex flex-col relative min-w-0">
+
+        <header class="h-[70px] bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-10 shrink-0">
+            <!-- Hamburger (mobile only) -->
+            <button class="md:hidden p-2 text-slate-600 hover:text-slate-800" onclick="toggleSidebar()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <div class="relative hidden sm:block">
+                <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 fill-slate-400" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input type="text" placeholder="Search..." class="w-[220px] lg:w-[320px] pl-9 pr-4 py-2 border border-slate-300 rounded-full text-sm outline-none focus:border-brand-blue transition-colors">
             </div>
-            
-            <div class="flex items-center gap-6">
+
+            <div class="flex items-center gap-4 md:gap-6 ml-auto">
                 <div class="relative cursor-pointer">
-                    <svg class="w-5.5 h-5.5 stroke-2 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <svg class="w-5.5 h-5.5 stroke-2 text-brand-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <svg class="w-5 h-5 stroke-2 text-brand-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
                     <span class="absolute -top-1 -right-1 bg-brand-blue text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">4</span>
                 </div>
                 <div class="flex items-center gap-3 cursor-pointer">
-                    <div class="w-10 h-10 bg-slate-200 rounded-full"></div>
-                    <div class="text-xs font-bold">
+                    <div class="w-9 h-9 bg-slate-200 rounded-full shrink-0"></div>
+                    <div class="text-xs font-bold hidden sm:block">
                         <div class="text-brand-dark text-[13px]">St Luke's Hospital</div>
                         <div class="text-slate-500 font-medium mt-0.5">Facility Profile ▾</div>
                     </div>
@@ -96,69 +112,68 @@
             </div>
         </header>
 
-        <div id="dashboard-content" class="p-10 overflow-y-auto flex-1">
-            <div class="mb-8">
-                <h1 class="text-2xl font-bold tracking-tight text-brand-dark">Good Morning, St. Luke's Hospital</h1>
+        <div id="dashboard-content" class="p-4 md:p-6 lg:p-10 overflow-y-auto flex-1">
+
+            <div class="mb-6 md:mb-8">
+                <h1 class="text-xl md:text-2xl font-bold tracking-tight text-brand-dark">Good Morning, St. Luke's Hospital</h1>
                 <p class="text-slate-500 text-sm mt-1">Here's what's happening with your shifts today</p>
             </div>
 
-            <div class="grid grid-cols-4 gap-5 mb-8">
-                <div class="bg-white p-5 rounded-xl flex items-center gap-4 shadow-sm">
-                    <span class="text-2xl">⚡</span>
+            <!-- Stats cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-6 md:mb-8">
+                <div class="bg-white p-4 md:p-5 rounded-xl flex items-center gap-3 md:gap-4 shadow-sm">
+                    <span class="text-xl md:text-2xl">⚡</span>
                     <div>
-                        <div class="text-2xl font-extrabold tracking-tight">3</div>
-                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Active Shifts</div>
+                        <div class="text-xl md:text-2xl font-extrabold tracking-tight">3</div>
+                        <div class="text-[10px] md:text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Active Shifts</div>
                     </div>
                 </div>
-                <div class="bg-white p-5 rounded-xl flex items-center gap-4 shadow-sm">
-                    <span class="text-2xl"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 2.5C11.375 2.5 12.5 3.625 12.5 5C12.5 6.375 11.375 7.5 10 7.5C8.625 7.5 7.5 6.375 7.5 5C7.5 3.625 8.625 2.5 10 2.5ZM10 15C13.375 15 17.25 16.6125 17.5 17.5H2.5C2.7875 16.6 6.6375 15 10 15ZM10 0C7.2375 0 5 2.2375 5 5C5 7.7625 7.2375 10 10 10C12.7625 10 15 7.7625 15 5C15 2.2375 12.7625 0 10 0ZM10 12.5C6.6625 12.5 0 14.175 0 17.5V20H20V17.5C20 14.175 13.3375 12.5 10 12.5Z" fill="#3B82F6"/>
-</svg>
-</span>
+                <div class="bg-white p-4 md:p-5 rounded-xl flex items-center gap-3 md:gap-4 shadow-sm">
+                    <span class="text-xl md:text-2xl">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C11.375 2.5 12.5 3.625 12.5 5C12.5 6.375 11.375 7.5 10 7.5C8.625 7.5 7.5 6.375 7.5 5C7.5 3.625 8.625 2.5 10 2.5ZM10 15C13.375 15 17.25 16.6125 17.5 17.5H2.5C2.7875 16.6 6.6375 15 10 15ZM10 0C7.2375 0 5 2.2375 5 5C5 7.7625 7.2375 10 10 10C12.7625 10 15 7.7625 15 5C15 2.2375 12.7625 0 10 0ZM10 12.5C6.6625 12.5 0 14.175 0 17.5V20H20V17.5C20 14.175 13.3375 12.5 10 12.5Z" fill="#3B82F6"/></svg>
+                    </span>
                     <div>
-                        <div class="text-2xl font-extrabold tracking-tight">12</div>
-                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Pending Applications</div>
+                        <div class="text-xl md:text-2xl font-extrabold tracking-tight">12</div>
+                        <div class="text-[10px] md:text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Pending Applications</div>
                     </div>
                 </div>
-                <div class="bg-white p-5 rounded-xl flex items-center gap-4 shadow-sm">
-                    <span class="text-2xl"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="20" height="20" fill="white"/>
-<path d="M5.83333 1.6665H6.66667C6.88768 1.6665 7.09964 1.7543 7.25592 1.91058C7.4122 2.06686 7.5 2.27882 7.5 2.49984V3.33317H11.6667V2.49984C11.6667 2.27882 11.7545 2.06686 11.9107 1.91058C12.067 1.7543 12.279 1.6665 12.5 1.6665H13.3333C13.5543 1.6665 13.7663 1.7543 13.9226 1.91058C14.0789 2.06686 14.1667 2.27882 14.1667 2.49984V3.33317C14.8297 3.33317 15.4656 3.59656 15.9344 4.0654C16.4033 4.53424 16.6667 5.17013 16.6667 5.83317V14.9998C16.6667 15.6629 16.4033 16.2988 15.9344 16.7676C15.4656 17.2364 14.8297 17.4998 14.1667 17.4998H5C4.33696 17.4998 3.70107 17.2364 3.23223 16.7676C2.76339 16.2988 2.5 15.6629 2.5 14.9998V5.83317C2.5 5.17013 2.76339 4.53424 3.23223 4.0654C3.70107 3.59656 4.33696 3.33317 5 3.33317V2.49984C5 2.27882 5.0878 2.06686 5.24408 1.91058C5.40036 1.7543 5.61232 1.6665 5.83333 1.6665ZM12.5 3.33317H13.3333V2.49984H12.5V3.33317ZM6.66667 3.33317V2.49984H5.83333V3.33317H6.66667ZM5 4.1665C4.55797 4.1665 4.13405 4.3421 3.82149 4.65466C3.50893 4.96722 3.33333 5.39114 3.33333 5.83317V6.6665H15.8333V5.83317C15.8333 5.39114 15.6577 4.96722 15.3452 4.65466C15.0326 4.3421 14.6087 4.1665 14.1667 4.1665H5ZM3.33333 14.9998C3.33333 15.4419 3.50893 15.8658 3.82149 16.1783C4.13405 16.4909 4.55797 16.6665 5 16.6665H14.1667C14.6087 16.6665 15.0326 16.4909 15.3452 16.1783C15.6577 15.8658 15.8333 15.4419 15.8333 14.9998V7.49984H3.33333V14.9998ZM10 10.8332H14.1667V14.9998H10V10.8332ZM10.8333 11.6665V14.1665H13.3333V11.6665H10.8333Z" fill="#3B82F6"/>
-</svg>
-</span>
+                <div class="bg-white p-4 md:p-5 rounded-xl flex items-center gap-3 md:gap-4 shadow-sm">
+                    <span class="text-xl md:text-2xl">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.83333 1.6665H6.66667C6.88768 1.6665 7.09964 1.7543 7.25592 1.91058C7.4122 2.06686 7.5 2.27882 7.5 2.49984V3.33317H11.6667V2.49984C11.6667 2.27882 11.7545 2.06686 11.9107 1.91058C12.067 1.7543 12.279 1.6665 12.5 1.6665H13.3333C13.5543 1.6665 13.7663 1.7543 13.9226 1.91058C14.0789 2.06686 14.1667 2.27882 14.1667 2.49984V3.33317C14.8297 3.33317 15.4656 3.59656 15.9344 4.0654C16.4033 4.53424 16.6667 5.17013 16.6667 5.83317V14.9998C16.6667 15.6629 16.4033 16.2988 15.9344 16.7676C15.4656 17.2364 14.8297 17.4998 14.1667 17.4998H5C4.33696 17.4998 3.70107 17.2364 3.23223 16.7676C2.76339 16.2988 2.5 15.6629 2.5 14.9998V5.83317C2.5 5.17013 2.76339 4.53424 3.23223 4.0654C3.70107 3.59656 4.33696 3.33317 5 3.33317V2.49984C5 2.27882 5.0878 2.06686 5.24408 1.91058C5.40036 1.7543 5.61232 1.6665 5.83333 1.6665ZM12.5 3.33317H13.3333V2.49984H12.5V3.33317ZM6.66667 3.33317V2.49984H5.83333V3.33317H6.66667ZM5 4.1665C4.55797 4.1665 4.13405 4.3421 3.82149 4.65466C3.50893 4.96722 3.33333 5.39114 3.33333 5.83317V6.6665H15.8333V5.83317C15.8333 5.39114 15.6577 4.96722 15.3452 4.65466C15.0326 4.3421 14.6087 4.1665 14.1667 4.1665H5ZM3.33333 14.9998C3.33333 15.4419 3.50893 15.8658 3.82149 16.1783C4.13405 16.4909 4.55797 16.6665 5 16.6665H14.1667C14.6087 16.6665 15.0326 16.4909 15.3452 16.1783C15.6577 15.8658 15.8333 15.4419 15.8333 14.9998V7.49984H3.33333V14.9998ZM10 10.8332H14.1667V14.9998H10V10.8332ZM10.8333 11.6665V14.1665H13.3333V11.6665H10.8333Z" fill="#3B82F6"/></svg>
+                    </span>
                     <div>
-                        <div class="text-2xl font-extrabold tracking-tight">8</div>
-                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Shifts This Month</div>
+                        <div class="text-xl md:text-2xl font-extrabold tracking-tight">8</div>
+                        <div class="text-[10px] md:text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Shifts This Month</div>
                     </div>
                 </div>
-                <div class="bg-white p-5 rounded-xl flex items-center gap-4 shadow-sm">
-                    <span class="text-2xl"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 2.5C11.375 2.5 12.5 3.625 12.5 5C12.5 6.375 11.375 7.5 10 7.5C8.625 7.5 7.5 6.375 7.5 5C7.5 3.625 8.625 2.5 10 2.5ZM10 15C13.375 15 17.25 16.6125 17.5 17.5H2.5C2.7875 16.6 6.6375 15 10 15ZM10 0C7.2375 0 5 2.2375 5 5C5 7.7625 7.2375 10 10 10C12.7625 10 15 7.7625 15 5C15 2.2375 12.7625 0 10 0ZM10 12.5C6.6625 12.5 0 14.175 0 17.5V20H20V17.5C20 14.175 13.3375 12.5 10 12.5Z" fill="#3B82F6"/>
-</svg>
-</span>
+                <div class="bg-white p-4 md:p-5 rounded-xl flex items-center gap-3 md:gap-4 shadow-sm">
+                    <span class="text-xl md:text-2xl">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C11.375 2.5 12.5 3.625 12.5 5C12.5 6.375 11.375 7.5 10 7.5C8.625 7.5 7.5 6.375 7.5 5C7.5 3.625 8.625 2.5 10 2.5ZM10 15C13.375 15 17.25 16.6125 17.5 17.5H2.5C2.7875 16.6 6.6375 15 10 15ZM10 0C7.2375 0 5 2.2375 5 5C5 7.7625 7.2375 10 10 10C12.7625 10 15 7.7625 15 5C15 2.2375 12.7625 0 10 0ZM10 12.5C6.6625 12.5 0 14.175 0 17.5V20H20V17.5C20 14.175 13.3375 12.5 10 12.5Z" fill="#3B82F6"/></svg>
+                    </span>
                     <div>
-                        <div class="text-2xl font-extrabold tracking-tight">24</div>
-                        <div class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Total Staff Hired</div>
+                        <div class="text-xl md:text-2xl font-extrabold tracking-tight">24</div>
+                        <div class="text-[10px] md:text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Total Staff Hired</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Main content grid -->
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-10">
-                
-                <div class="lg:col-span-3 bg-white rounded-xl p-6 shadow-sm">
+
+                <div class="lg:col-span-3 bg-white rounded-xl p-5 md:p-6 shadow-sm">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-base font-bold text-brand-dark">Upcoming Shifts</h3>
                         <a href="#" class="text-xs text-brand-blue font-semibold hover:underline">View All ➔</a>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse min-w-[400px]">
                             <thead>
                                 <tr class="text-[11px] tracking-wider text-slate-400 uppercase font-bold">
-                                    <th class="pb-3 font-bold">Shift</th>
-                                    <th class="pb-3 font-bold">Date</th>
-                                    <th class="pb-3 font-bold">Role</th>
-                                    <th class="pb-3 font-bold">Status</th>
-                                    <th class="pb-3 font-bold">Action</th>
+                                    <th class="pb-3">Shift</th>
+                                    <th class="pb-3">Date</th>
+                                    <th class="pb-3">Role</th>
+                                    <th class="pb-3">Status</th>
+                                    <th class="pb-3">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 text-[13px] font-semibold text-brand-dark">
@@ -188,53 +203,52 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm">
+                <div class="lg:col-span-2 bg-white rounded-xl p-5 md:p-6 shadow-sm">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-base font-bold text-brand-dark">Recent Applications</h3>
                         <a href="#" class="text-xs text-brand-blue font-semibold hover:underline">View All</a>
                     </div>
-                    
                     <div class="flex flex-col divide-y divide-slate-100">
                         <div class="flex items-center justify-between py-3.5 first:pt-0 last:pb-0">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white">JD</div>
+                                <div class="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white shrink-0">AG</div>
                                 <div>
                                     <div class="text-[13px] font-bold text-brand-dark">Ayo Gbenga</div>
                                     <div class="text-[11px] text-slate-400 font-medium">ICU Registered Nurse</div>
-                                    <div class="text-[10px] text-blue-500 mt-0.5 tracking-tighter">★★★★★</div>
+                                    <div class="text-[10px] text-blue-500 mt-0.5">★★★★★</div>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-1.5">
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 transition-colors hover:bg-emerald-100">Accept</button>
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 transition-colors hover:bg-red-100">Decline</button>
+                            <div class="flex flex-col gap-1.5 shrink-0">
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Accept</button>
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 hover:bg-red-100 transition-colors">Decline</button>
                             </div>
                         </div>
                         <div class="flex items-center justify-between py-3.5 first:pt-0 last:pb-0">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-full bg-slate-400 flex items-center justify-center text-xs font-bold text-white">SA</div>
+                                <div class="w-9 h-9 rounded-full bg-slate-400 flex items-center justify-center text-xs font-bold text-white shrink-0">SA</div>
                                 <div>
                                     <div class="text-[13px] font-bold text-brand-dark">Sandra Akpan</div>
                                     <div class="text-[11px] text-slate-400 font-medium">ICU Registered Nurse</div>
-                                    <div class="text-[10px] text-blue-500 mt-0.5 tracking-tighter">★★★★★</div>
+                                    <div class="text-[10px] text-blue-500 mt-0.5">★★★★★</div>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-1.5">
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 transition-colors hover:bg-emerald-100">Accept</button>
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 transition-colors hover:bg-red-100">Decline</button>
+                            <div class="flex flex-col gap-1.5 shrink-0">
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Accept</button>
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 hover:bg-red-100 transition-colors">Decline</button>
                             </div>
                         </div>
                         <div class="flex items-center justify-between py-3.5 first:pt-0 last:pb-0">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white">IJ</div>
+                                <div class="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white shrink-0">IJ</div>
                                 <div>
                                     <div class="text-[13px] font-bold text-brand-dark">Israel Jacobs</div>
                                     <div class="text-[11px] text-slate-400 font-medium">ICU Registered Nurse</div>
-                                    <div class="text-[10px] text-blue-500 mt-0.5 tracking-tighter">★★★★★</div>
+                                    <div class="text-[10px] text-blue-500 mt-0.5">★★★★★</div>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-1.5">
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 transition-colors hover:bg-emerald-100">Accept</button>
-                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 transition-colors hover:bg-red-100">Decline</button>
+                            <div class="flex flex-col gap-1.5 shrink-0">
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors">Accept</button>
+                                <button class="px-4 py-1 text-[11px] font-bold rounded bg-red-50 text-red-700 hover:bg-red-100 transition-colors">Decline</button>
                             </div>
                         </div>
                     </div>
@@ -243,22 +257,25 @@
             </div>
 
             <div class="flex justify-center mt-4">
-                <button id="btn-post-shift" class="bg-brand-blue text-white font-bold px-7 py-3.5 rounded-lg text-sm shadow-md shadow-blue-500/20 transition-all hover:bg-brand-hover">Post a New Shift</button>
+                <button id="btn-post-shift" class="bg-brand-blue text-white font-bold px-7 py-3.5 rounded-lg text-sm shadow-md shadow-blue-500/20 hover:bg-brand-hover transition-colors">
+                    Post a New Shift
+                </button>
             </div>
         </div>
 
-        <div id="success-modal" class="absolute inset-0 bg-brand-bg/85 backdrop-blur-[1px] flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
-            <div class="bg-white w-[420px] rounded-2xl p-10 text-center shadow-xl shadow-slate-200/50">
+        <!-- Success modal overlay -->
+        <div id="success-modal" class="absolute inset-0 bg-brand-bg/85 backdrop-blur-[1px] flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+            <div class="bg-white w-full max-w-[420px] rounded-2xl p-8 md:p-10 text-center shadow-xl shadow-slate-200/50">
                 <div class="w-14 h-14 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 font-bold">✓</div>
-                
                 <h2 class="text-xl font-bold text-brand-dark mb-4">Shift Posted Successfully!</h2>
                 <p class="text-slate-500 text-[13px] font-medium leading-relaxed mb-8">Your shift is now live and visible to healthcare professionals in your area.</p>
-                
-                <div class="flex gap-4">
-                    <button id="btn-modal-post-another" class="flex-1 bg-transparent border border-brand-blue text-brand-blue font-bold py-3 px-4 rounded-lg text-[13px] transition-colors hover:bg-blue-50">Post Another Shift</button>
-                    <button id="btn-modal-view-active" class="flex-1 bg-brand-blue text-white font-bold py-3 px-4 rounded-lg text-[13px] flex items-center justify-center gap-2 transition-colors hover:bg-brand-hover">
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                    <button id="btn-modal-post-another" class="flex-1 bg-transparent border border-brand-blue text-brand-blue font-bold py-3 px-4 rounded-lg text-[13px] hover:bg-blue-50 transition-colors">
+                        Post Another Shift
+                    </button>
+                    <button id="btn-modal-view-active" class="flex-1 bg-brand-blue text-white font-bold py-3 px-4 rounded-lg text-[13px] flex items-center justify-center gap-2 hover:bg-brand-hover transition-colors">
                         View Active Shifts
-                        <svg class="w-3.5 h-3.5 stroke-[3]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        <svg class="w-3.5 h-3.5 stroke-[3]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
                 </div>
             </div>
@@ -274,30 +291,29 @@
         const btnPostAnother = document.getElementById('btn-modal-post-another');
         const btnViewActive = document.getElementById('btn-modal-view-active');
 
-        // Toggle Function: Display Success overlay screen view layout
         function showSuccessState() {
             successModal.classList.remove('opacity-0', 'pointer-events-none');
             successModal.classList.add('opacity-100', 'pointer-events-auto');
-            
-           
             navDashboard.className = "px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50";
             navPostShifts.className = "px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-slate-700 bg-[#DCE6FF] rounded-r-lg mr-4";
         }
 
-        // Toggle Function: Remove Overlay view back to normal Dashboard view state 
         function resetToDashboard() {
             successModal.classList.remove('opacity-100', 'pointer-events-auto');
             successModal.classList.add('opacity-0', 'pointer-events-none');
-            
-            // Return navigation highlights back to standard dashboard configuration
             navDashboard.className = "px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-blue-600 bg-blue-50 rounded-r-lg mr-4";
             navPostShifts.className = "px-6 py-3 font-semibold text-sm cursor-pointer flex items-center gap-3 transition-all text-brand-dark hover:bg-slate-50";
         }
 
-        // Action Click Triggers listeners
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
         btnPostShift.addEventListener('click', showSuccessState);
         navPostShifts.addEventListener('click', showSuccessState);
-        
         btnPostAnother.addEventListener('click', resetToDashboard);
         btnViewActive.addEventListener('click', resetToDashboard);
         navDashboard.addEventListener('click', resetToDashboard);
