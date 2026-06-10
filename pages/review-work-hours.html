@@ -10,47 +10,88 @@
 
 <body class="bg-[#EAF2FF] min-h-screen flex">
 
-  <!-- Sidebar -->
-  <aside class="w-64 bg-white shadow-md hidden md:flex flex-col justify-between">
-    
-    <div class="logo">
-  <img src="../assets/images/logo.png" alt="MedHire Logo" width="140">
-</div>
+  <!-- Mobile Overlay -->
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"
+  ></div>
 
-      <nav class="mt-8">
-        <ul class="space-y-4 px-6">
-          <li class="bg-blue-100 text-blue-600 p-3 rounded-lg font-semibold">
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed md:relative top-0 left-0 h-full w-64 bg-white shadow-md z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col justify-between"
+  >
+    <div>
+      <!-- Logo -->
+      <div class="p-6">
+        <img
+          src="../assets/images/logo.png"
+          alt="MedHire Logo"
+          class="w-36"
+        />
+      </div>
+
+      <!-- Navigation -->
+      <nav class="mt-4">
+        <ul class="space-y-2 px-6">
+          <li class="bg-blue-100 text-blue-600 p-3 rounded-lg font-semibold cursor-pointer">
             Dashboard
           </li>
 
-          <li class="text-gray-700">Post Shifts</li>
-          <li class="text-gray-700">Active Shifts</li>
-          <li class="text-gray-700">Payment</li>
-          <li class="text-gray-700">Shifts History</li>
-          <li class="text-gray-700">Staff Ratings</li>
+          <li class="text-gray-700 p-3 cursor-pointer hover:bg-gray-100 rounded-lg">
+            Post Shifts
+          </li>
+
+          <li class="text-gray-700 p-3 cursor-pointer hover:bg-gray-100 rounded-lg">
+            Active Shifts
+          </li>
+
+          <li class="text-gray-700 p-3 cursor-pointer hover:bg-gray-100 rounded-lg">
+            Payment
+          </li>
+
+          <li class="text-gray-700 p-3 cursor-pointer hover:bg-gray-100 rounded-lg">
+            Shifts History
+          </li>
+
+          <li class="text-gray-700 p-3 cursor-pointer hover:bg-gray-100 rounded-lg">
+            Staff Ratings
+          </li>
         </ul>
       </nav>
     </div>
 
     <div class="p-6">
       <button class="text-red-500 font-semibold">
-        Log out
+        Log Out
       </button>
     </div>
-
   </aside>
 
   <!-- Main Content -->
-  <main class="flex-1">
+  <main class="flex-1 min-w-0">
 
-    <!-- Topbar -->
-    <header class="bg-white h-20 shadow-sm flex items-center justify-between px-8">
-      
-      <input
-        type="text"
-        placeholder="Search..."
-        class="border rounded-full px-4 py-2 w-64 outline-none"
-      />
+    <!-- Header -->
+    <header
+      class="bg-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:px-8"
+    >
+
+      <div class="flex items-center gap-4 w-full sm:w-auto">
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuBtn"
+          class="md:hidden text-2xl font-bold"
+        >
+          ☰
+        </button>
+
+        <input
+          type="text"
+          placeholder="Search..."
+          class="border rounded-full px-4 py-2 w-full sm:w-64 outline-none"
+        />
+      </div>
 
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 rounded-full bg-gray-300"></div>
@@ -65,14 +106,17 @@
           </p>
         </div>
       </div>
-
     </header>
 
-    <!-- Body -->
-    <section class="p-10 flex flex-col lg:flex-row items-center justify-center gap-16">
+    <!-- Page Content -->
+    <section
+      class="p-4 sm:p-6 lg:p-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16"
+    >
 
-      <!-- Card -->
-      <div class="bg-white p-10 rounded-xl shadow-md w-full max-w-lg">
+      <!-- Review Card -->
+      <div
+        class="bg-white p-5 sm:p-8 lg:p-10 rounded-xl shadow-md w-full max-w-lg"
+      >
 
         <h2 class="font-bold text-2xl mb-8">
           Review Hours
@@ -81,39 +125,53 @@
         <div class="space-y-6">
 
           <div class="border-b pb-4">
-            <p class="text-gray-500 text-sm">Shift Hours</p>
-            <h3 class="font-semibold text-lg">11.58hrs</h3>
+            <p class="text-gray-500 text-sm">
+              Shift Hours
+            </p>
+
+            <h3 class="font-semibold text-lg">
+              11.58hrs
+            </h3>
           </div>
 
           <div class="border-b pb-4">
-            <p class="text-gray-500 text-sm">Hourly Rate</p>
-            <h3 class="font-semibold text-lg">₦15,000</h3>
+            <p class="text-gray-500 text-sm">
+              Hourly Rate
+            </p>
+
+            <h3 class="font-semibold text-lg">
+              ₦15,000
+            </h3>
           </div>
 
           <div>
-            <p class="text-gray-500 text-sm">Total Due</p>
+            <p class="text-gray-500 text-sm">
+              Total Due
+            </p>
 
             <h1 class="text-4xl font-bold text-green-600 mt-2">
               ₦173,700
             </h1>
           </div>
-
         </div>
 
         <!-- Notice -->
-        <div class="bg-blue-50 rounded-lg p-4 mt-8 flex items-center justify-between">
-
-          <p class="text-sm text-gray-700 font-medium">
+        <div
+          class="bg-blue-50 rounded-lg p-4 mt-8 flex flex-col sm:flex-row items-center gap-4 sm:justify-between"
+        >
+          <p class="text-sm text-gray-700 font-medium text-center sm:text-left">
             Please review the reported hours before approving payments.
           </p>
 
-          <span class="text-3xl">⏰</span>
-
+          <span class="text-3xl">
+            ⏰
+          </span>
         </div>
 
         <!-- Button -->
-        <a href="paymentRealesed.html"
-          class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mt-10 font-semibold transition"
+        <a
+          href="paymentReleased.html"
+          class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mt-10 font-semibold transition"
         >
           Approve Payment
         </a>
@@ -124,7 +182,7 @@
       <div class="hidden lg:block">
         <img
           src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
-          alt="clock illustration"
+          alt="Clock Illustration"
           class="w-72"
         />
       </div>
