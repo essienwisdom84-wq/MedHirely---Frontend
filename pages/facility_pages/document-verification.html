@@ -80,7 +80,7 @@
 
   <div class="flex min-h-screen overflow-hidden">
      
-     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 shrink-0 h-full">
+     <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 shrink-0 min-h-screen">
       
       <div class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden no-scrollbar">
         <div class="flex items-center -mt-5 mb-6 bg-white">
@@ -294,108 +294,871 @@ View Facility Profile
           </div>
         </header>
 
-         <div class="flex-1 bg-white m-3 rounded-lg shadow-md overflow-y-auto p-4">
-        <h1 class="font-bold text-2xl flex justify-start">Create Facility Profile</h1>
-        <form action="">
-          <div class="grid md:grid-cols-4 gap-4">
-          <div class="md:col-span-1 mt-10">
-            <h2 class="text-xl font-bold text-black">Facility Logo</h2>
-            <div class="drop-shadow-lg mt-2">
-              <div id="previewContainer" class="bg-[#d8e8ff] py-2 border border-[#757575]  rounded-lg flex items-center justify-center relative">
-              <img 
-              id="facilityLogo" 
-              src="https://res.cloudinary.com/dej529fhw/image/upload/v1781009710/mdi_farm-house-outline_kcc4q0.png" 
-              alt="Facility Logo"
-              class="max-w-full max-h-full object-contain">
-              <label for="image_input" class="absolute bg-white rounded-full p-2 border border-[#757575] -bottom-2.5 -right-1.5 cursor-pointer">
-                <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781011032/Vector_yef7bt.png"
-                 alt="camara_icon" 
-                 class="p-2">
-              </label>
-            </div>
-            <input type="file" id="image_input" name="image_input" class="hidden" accept=".png,.jpg">
-            </div>
-            <div class="flex flex-col justify-center items-center m-1">
-              <p class="text-black text-lg font-bold">Click to upload logo</p>
-              <p class="text-[#CCC4C4] font-normal">PNG, JPG up to 2MB</p>
-            </div>
-          </div>
-          <div  class="md:col-span-3 m-2 p-2 gap-2">
-           <div class="" >
-             <div class=" grid grid-cols-2 gap-4">
-             
-              <div class="">
-                <label for="facility_name" class="block text-lg font-bold text-black">Facility Name<span class="text-red-600">*</span></label>
-                <input type="text" id="facility_name" name="facility_name" placeholder="Enter facility name" class="w-full border-2 border-[#d9d9d9] rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-             
-             <div>
-              <label for="facilityType" class="block text-lg font-bold text-black">Facility Type<span class="text-red-600">*</span></label>
-              <select id="facilityType" name="facilityType" class="w-full border border-[#757575] rounded-lg px-3 py-2 focus:outline-none focus:border-[#d9d9d9] transition">
-                <option value="" disabled selected>Select facility type</option>
-                <option value="hospital">Hospital</option>
-                <option value="clinic">Clinic</option>
-                 <option value="pharmacy">Pharmacy</option>
-                <option value="laboratory">Laboratory</option>
-             </select>
-             </div>
-             <div>
-                <label for="registration_number" class="block text-lg font-bold text-black">Registration Number<span class="text-red-600">*</span></label>
-                <input type="text" id="registration_number" name="registration_number" placeholder="Enter registration number" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-                           <div>
-                <label for="tax_id" class="block text-lg font-bold text-black">Tax ID (Optional)</label>
-                <input type="text" id="tax_id" name="tax_id" placeholder="Enter tax ID" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-             <div>
-                <label for="email" class="block text-lg font-bold text-black">Email Address<span class="text-red-600">*</span></label>
-                <input type="email" id="email" name="email" placeholder="Enter email address" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-4 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-              <div>
-                <label for="phone" class="block text-lg font-bold text-black">Phone Number<span class="text-red-600">*</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter phone number" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-4 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-              <div>
-                <label for="country" class="block text-lg font-bold text-black">Country<span class="text-red-600">*</span></label>
-                <input type="text" id="country" name="country" placeholder="Enter country" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-              <div>
-                <label for="secondary_phone" class="block text-lg font-bold text-black">Secondary Phone Number(Optional)</label>
-                <input type="tel" id="secondary_phone" name="secondary_phone" placeholder="Enter secondary phone number" class="w-full border-2 border-[#d9d9d9]drop-shadow rounded-lg px-4 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-               <div>
-                <label for="postal_code" class="block text-lg font-bold text-black">Postal Code<span class="text-red-600">*</span></label>
-                <input type="text" id="postal_code" name="postal_code" placeholder="Enter postal code" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-              <div>
-                <label for="city" class="block text-lg font-bold text-black">City<span class="text-red-600">*</span></label>
-                <input type="text" id="city" name="city" placeholder="Enter city" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
-          </div>
+        <main class="flex-1 p-8 bg-blue-100 overflow-y-auto flex gap-6">
+        <section class="flex-1 max-w-4xl space-y-5">
           <div>
-           </div>
-            <div>
-                <label for="address" class="block text-lg font-bold text-black">Address<span class="text-red-600">*</span></label>
-                <input type="text" id="address" name="address" placeholder="Enter address" class="w-full border-2 border-[#d9d9d9] drop-shadow rounded-lg px-3 py-2 focus:outline-none focus:border-[#757575] transition">
-              </div>
+            <h1 class="text-xl font-bold text-[#0F172A]">
+              Document Verification
+            </h1>
+            <p class="text-xs text-black mt-0.5">
+              Verify your facility to build trust and start posting shifts
+            </p>
           </div>
-         
-        </div>
+
+          <div
+            class="bg-[#EFF6FF] border border-[#BFDBFE] rounded-xl flex items-center gap-3"
+          >
+            <div class="text-white p-1 rounded-full shrink-0">
+              <svg
+                width="34"
+                height="30"
+                viewBox="0 0 34 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.6667 0L10 5H3.33333L5 11.6667L0 15L5 18.3333L3.33333 25H10L11.6667 30L16.6667 26.6667L21.6667 30L23.3333 25H30L28.3333 18.3333L33.3333 15L28.3333 11.6667L30 5H23.3333L21.6667 0L16.6667 3.33333L11.6667 0ZM23.3333 8.33333L25 10L13.3333 21.6667L8.33333 16.6667L10 15L13.3333 18.3333L23.3333 8.33333Z"
+                  fill="#8BC34A"
+                />
+              </svg>
+            </div>
+            <p class="text-xs font-medium text-[#1E40AF]">
+              We verify all facilities to ensure safety, reliability and
+              compliance with healthcare standards
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-bold text-[#0F172A] mb-3">
+              Required Documents
+            </h2>
+
+            <form
+              id="verificationForm"
+              class="space-y-3"
+              enctype="multipart/form-data"
+            >
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-[#CBD5E1] transition"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 text-[#64748B]">
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.5995 27.2189C17.7362 28.5294 14.5035 28.792 11.4663 27.9607C8.42913 27.1295 5.78069 25.2572 3.98395 22.6712C2.1872 20.0853 1.35643 16.9501 1.63687 13.8137C1.91731 10.6773 3.29111 7.73927 5.51813 5.51308C7.74516 3.2869 10.6837 1.91421 13.8202 1.63496C16.9567 1.3557 20.0916 2.18765 22.6769 3.98538C25.2622 5.7831 27.1334 8.43224 27.9635 11.4697C28.7936 14.5073 28.5298 17.7399 27.2182 20.6026"
+                        stroke="black"
+                        stroke-width="0.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M23.75 28.4375C26.3388 28.4375 28.4375 26.3388 28.4375 23.75C28.4375 21.1612 26.3388 19.0625 23.75 19.0625C21.1612 19.0625 19.0625 21.1612 19.0625 23.75C19.0625 26.3388 21.1612 28.4375 23.75 28.4375Z"
+                        stroke="black"
+                        stroke-width="0.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M19.5135 21.7575C17.8361 22.8776 15.8019 23.3336 13.8069 23.0367C11.8118 22.7398 9.99858 21.7113 8.71999 20.1513C7.44139 18.5913 6.78891 16.6114 6.88951 14.5969C6.99011 12.5824 7.83659 10.6774 9.26424 9.2525C10.6919 7.82765 12.5986 6.9849 14.6133 6.88824C16.628 6.79159 18.6066 7.44795 20.1641 8.7296C21.7216 10.0112 22.7465 11.8265 23.0395 13.8221C23.3325 15.8178 22.8725 17.851 21.7491 19.5262M23.3948 21.34L22.5441 26.1612H24.9554"
+                        stroke="black"
+                        stroke-width="0.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Facility Licence
+                      </h3>
+                      <span
+                        class="bg-[#15803D] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Required</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Upload your valid facility licence
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex items-center gap-8">
+                  <label
+                    class="cursor-pointer group flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#3B82F6] px-3 py-2 rounded-lg transition"
+                  >
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6665 15.0007H30.8332L21.6665 5.83398V15.0007ZM9.99984 3.33398H23.3332L33.3332 13.334V33.334C33.3332 34.218 32.982 35.0659 32.3569 35.691C31.7317 36.3161 30.8839 36.6673 29.9998 36.6673H9.99984C9.11578 36.6673 8.26794 36.3161 7.64281 35.691C7.01769 35.0659 6.6665 34.218 6.6665 33.334V6.66732C6.6665 5.78326 7.01769 4.93542 7.64281 4.31029C8.26794 3.68517 9.11578 3.33398 9.99984 3.33398ZM18.2165 20.734C18.8998 22.234 19.7665 23.4673 20.7665 24.3173L21.4498 24.8507C19.9998 25.1173 17.9998 25.584 15.8832 26.4007L15.6998 26.4673L16.5332 24.734C17.2832 23.284 17.8332 21.9673 18.2165 20.734ZM29.0165 27.084C29.3165 26.784 29.4665 26.4007 29.4832 25.984C29.5332 25.6507 29.4498 25.334 29.2832 25.0673C28.7998 24.284 27.5498 23.9173 25.4832 23.9173L23.3332 24.034L21.8832 23.0673C20.8332 22.2007 19.8832 20.684 19.2165 18.8007L19.2832 18.5673C19.8332 16.3507 20.3498 13.6673 19.2498 12.5673C19.1153 12.4367 18.9561 12.334 18.7816 12.2654C18.6071 12.1967 18.4207 12.1634 18.2332 12.1673H17.8332C17.2165 12.1673 16.6665 12.8173 16.5165 13.4507C15.8998 15.6673 16.2665 16.884 16.8832 18.9007V18.9173C16.4665 20.384 15.9332 22.084 15.0832 23.8006L13.4832 26.8006L11.9998 27.6173C9.99984 28.8673 9.04984 30.2673 8.8665 31.1507C8.79984 31.4673 8.83317 31.7507 8.94984 32.0506L8.99984 32.134L9.79984 32.6507L10.5332 32.834C11.8832 32.834 13.4165 31.2506 15.4832 27.7173L15.7832 27.6006C17.4998 27.0506 19.6332 26.6673 22.4998 26.3507C24.2165 27.2007 26.2332 27.584 27.4998 27.584C28.2332 27.584 28.7332 27.4007 29.0165 27.084ZM28.3332 25.9007L28.4832 26.084C28.4665 26.2507 28.4165 26.2673 28.3332 26.3006H28.2665L27.9498 26.334C27.1832 26.334 25.9998 26.0173 24.7832 25.484C24.9332 25.3173 24.9998 25.3173 25.1665 25.3173C27.4998 25.3173 28.1665 25.734 28.3332 25.9007ZM13.0498 28.334C11.9665 30.3173 10.9832 31.4173 10.2332 31.6673C10.3165 31.034 11.0665 29.934 12.2498 28.8506L13.0498 28.334ZM18.0832 16.8173C17.6998 15.3173 17.6832 14.1007 17.9665 13.4007L18.0832 13.2007L18.3332 13.284C18.6165 13.684 18.6498 14.2173 18.4832 15.1173L18.4332 15.384L18.1665 16.7507L18.0832 16.8173Z" fill="#EF5350"/>
+</svg>
+
+                    <div>
+                      <p
+                        class="text-xs font-semibold text-[#1D4ED8] group-hover:underline max-w-[140px] truncate file-name-display"
+                      >
+                        Facility_licence.Pdf
+                      </p>
+                      <p class="text-[10px] text-[#94A3B8] mt-0.5">
+                        Uploaded on May 20 2024 · 12MB
+                      </p>
+                    </div>
+                    <input
+                      type="file"
+                      name="facility_licence"
+                      class="hidden file-input-control"
+                      accept=".pdf,.png,.jpg"
+                    />
+                  </label>
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="flex items-center gap-1.5 text-[#15803D] text-xs font-semibold"
+                    >
+                      <i
+                        data-lucide="check-circle-2"
+                        class="w-4 h-4 fill-[#DCFCE7]"
+                      ></i>
+                      Verified
+                    </div>
+                    <button
+                      type="button"
+                      class="text-[#64748B] hover:text-[#1E293B]"
+                    >
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-[#CBD5E1] transition"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5text-[#64748B]">
+                    <svg
+                      width="34"
+                      height="30"
+                      viewBox="0 0 34 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.08402 28.8993C0.361339 28.1643 0 27.2812 0 26.25C0 25.2187 0.361339 24.3362 1.08402 23.6025C1.8067 22.8687 2.6744 22.5012 3.68714 22.5C4.69987 22.4987 5.56819 22.8662 6.2921 23.6025C7.01601 24.3387 7.37673 25.2212 7.37427 26.25C7.37181 27.2787 7.01109 28.1618 6.2921 28.8993C5.57311 29.6368 4.70479 30.0037 3.68714 30C2.66949 29.9962 1.80178 29.6293 1.08402 28.8993ZM1.08402 17.6494C0.361339 16.9144 0 16.0312 0 15C0 13.9687 0.361339 13.0862 1.08402 12.3525C1.8067 11.6187 2.6744 11.2512 3.68714 11.25C4.69987 11.2487 5.56819 11.6162 6.2921 12.3525C7.01601 13.0887 7.37673 13.9712 7.37427 15C7.37181 16.0287 7.01109 16.9119 6.2921 17.6494C5.57311 18.3869 4.70479 18.7537 3.68714 18.75C2.66949 18.7462 1.80178 18.3794 1.08402 17.6494ZM1.08402 6.39937C0.361339 5.66437 0 4.78125 0 3.75C0 2.71875 0.361339 1.83625 1.08402 1.1025C1.8067 0.368752 2.6744 0.00125318 3.68714 3.17797e-06C4.69987 -0.00124682 5.56819 0.366252 6.2921 1.1025C7.01601 1.83875 7.37673 2.72125 7.37427 3.75C7.37181 4.77875 7.01109 5.66187 6.2921 6.39937C5.57311 7.13687 4.70479 7.50375 3.68714 7.5C2.66949 7.49625 1.80178 7.12937 1.08402 6.39937ZM12.1454 6.39937C11.4227 5.66437 11.0614 4.78125 11.0614 3.75C11.0614 2.71875 11.4227 1.83625 12.1454 1.1025C12.8681 0.368752 13.7358 0.00125318 14.7485 3.17797e-06C15.7613 -0.00124682 16.6296 0.366252 17.3535 1.1025C18.0774 1.83875 18.4381 2.72125 18.4357 3.75C18.4332 4.77875 18.0725 5.66187 17.3535 6.39937C16.6345 7.13687 15.7662 7.50375 14.7485 7.5C13.7309 7.49625 12.8632 7.12937 12.1454 6.39937ZM23.2068 6.39937C22.4842 5.66437 22.1228 4.78125 22.1228 3.75C22.1228 2.71875 22.4842 1.83625 23.2068 1.1025C23.9295 0.368752 24.7972 0.00125318 25.81 3.17797e-06C26.8227 -0.00124682 27.691 0.366252 28.4149 1.1025C29.1388 1.83875 29.4995 2.72125 29.4971 3.75C29.4946 4.77875 29.1339 5.66187 28.4149 6.39937C27.6959 7.13687 26.8276 7.50375 25.81 7.5C24.7923 7.49625 23.9246 7.12937 23.2068 6.39937ZM12.1454 17.6494C11.4227 16.9144 11.0614 16.0312 11.0614 15C11.0614 13.9687 11.4227 13.0862 12.1454 12.3525C12.8681 11.6187 13.7358 11.2512 14.7485 11.25C15.7613 11.2487 16.6296 11.6162 17.3535 12.3525C18.0774 13.0887 18.4381 13.9712 18.4357 15C18.4332 16.0287 18.0725 16.9119 17.3535 17.6494C16.6345 18.3869 15.7662 18.7537 14.7485 18.75C13.7309 18.7462 12.8632 18.3794 12.1454 17.6494ZM16.5921 30V24.2344L26.7778 13.9219C27.0544 13.6406 27.3616 13.4375 27.6996 13.3125C28.0376 13.1875 28.3756 13.125 28.7136 13.125C29.0823 13.125 29.4356 13.1956 29.7736 13.3369C30.1116 13.4781 30.4189 13.6887 30.6954 13.9687L32.4007 15.7031C32.6465 15.9844 32.8389 16.2969 32.9777 16.6406C33.1166 16.9844 33.1855 17.3281 33.1842 17.6719C33.183 18.0156 33.1215 18.3675 32.9999 18.7275C32.8782 19.0875 32.6785 19.4075 32.4007 19.6875L22.2611 30H16.5921ZM28.7136 19.5L30.4189 17.6719L28.7136 15.9375L26.9622 17.7187L28.7136 19.5Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Business Registration
+                      </h3>
+                      <span
+                        class="bg-[#15803D] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Required</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Upload your business registration certificate
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex items-center gap-8">
+                  <label
+                    class="cursor-pointer group flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#3B82F6] px-3 py-2 rounded-lg transition"
+                  >
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6665 15.0007H30.8332L21.6665 5.83398V15.0007ZM9.99984 3.33398H23.3332L33.3332 13.334V33.334C33.3332 34.218 32.982 35.0659 32.3569 35.691C31.7317 36.3161 30.8839 36.6673 29.9998 36.6673H9.99984C9.11578 36.6673 8.26794 36.3161 7.64281 35.691C7.01769 35.0659 6.6665 34.218 6.6665 33.334V6.66732C6.6665 5.78326 7.01769 4.93542 7.64281 4.31029C8.26794 3.68517 9.11578 3.33398 9.99984 3.33398ZM18.2165 20.734C18.8998 22.234 19.7665 23.4673 20.7665 24.3173L21.4498 24.8507C19.9998 25.1173 17.9998 25.584 15.8832 26.4007L15.6998 26.4673L16.5332 24.734C17.2832 23.284 17.8332 21.9673 18.2165 20.734ZM29.0165 27.084C29.3165 26.784 29.4665 26.4007 29.4832 25.984C29.5332 25.6507 29.4498 25.334 29.2832 25.0673C28.7998 24.284 27.5498 23.9173 25.4832 23.9173L23.3332 24.034L21.8832 23.0673C20.8332 22.2007 19.8832 20.684 19.2165 18.8007L19.2832 18.5673C19.8332 16.3507 20.3498 13.6673 19.2498 12.5673C19.1153 12.4367 18.9561 12.334 18.7816 12.2654C18.6071 12.1967 18.4207 12.1634 18.2332 12.1673H17.8332C17.2165 12.1673 16.6665 12.8173 16.5165 13.4507C15.8998 15.6673 16.2665 16.884 16.8832 18.9007V18.9173C16.4665 20.384 15.9332 22.084 15.0832 23.8006L13.4832 26.8006L11.9998 27.6173C9.99984 28.8673 9.04984 30.2673 8.8665 31.1507C8.79984 31.4673 8.83317 31.7507 8.94984 32.0506L8.99984 32.134L9.79984 32.6507L10.5332 32.834C11.8832 32.834 13.4165 31.2506 15.4832 27.7173L15.7832 27.6006C17.4998 27.0506 19.6332 26.6673 22.4998 26.3507C24.2165 27.2007 26.2332 27.584 27.4998 27.584C28.2332 27.584 28.7332 27.4007 29.0165 27.084ZM28.3332 25.9007L28.4832 26.084C28.4665 26.2507 28.4165 26.2673 28.3332 26.3006H28.2665L27.9498 26.334C27.1832 26.334 25.9998 26.0173 24.7832 25.484C24.9332 25.3173 24.9998 25.3173 25.1665 25.3173C27.4998 25.3173 28.1665 25.734 28.3332 25.9007ZM13.0498 28.334C11.9665 30.3173 10.9832 31.4173 10.2332 31.6673C10.3165 31.034 11.0665 29.934 12.2498 28.8506L13.0498 28.334ZM18.0832 16.8173C17.6998 15.3173 17.6832 14.1007 17.9665 13.4007L18.0832 13.2007L18.3332 13.284C18.6165 13.684 18.6498 14.2173 18.4832 15.1173L18.4332 15.384L18.1665 16.7507L18.0832 16.8173Z" fill="#EF5350"/>
+</svg>
+
+                    <div>
+                      <p
+                        class="text-xs font-semibold text-[#1D4ED8] group-hover:underline max-w-[140px] truncate file-name-display"
+                      >
+                        Business.reg/ Pdf
+                      </p>
+                      <p class="text-[10px] text-[#94A3B8] mt-0.5">
+                        Uploaded on May 20 2024
+                      </p>
+                    </div>
+                    <input
+                      type="file"
+                      name="business_registration"
+                      class="hidden file-input-control"
+                      accept=".pdf,.png,.jpg"
+                    />
+                  </label>
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="flex items-center gap-1.5 text-[#15803D] text-xs font-semibold"
+                    >
+                      <i
+                        data-lucide="check-circle-2"
+                        class="w-4 h-4 fill-[#DCFCE7]"
+                      ></i>
+                      Verified
+                    </div>
+                    <button
+                      type="button"
+                      class="text-[#64748B] hover:text-[#1E293B]"
+                    >
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-[#CBD5E1] transition"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 text-[#64748B]">
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 3.75C3.6125 3.75 2.5 4.8625 2.5 6.25V18.75C2.5 19.413 2.76339 20.0489 3.23223 20.5178C3.70107 20.9866 4.33696 21.25 5 21.25H15V27.5L18.75 23.75L22.5 27.5V21.25H25C25.663 21.25 26.2989 20.9866 26.7678 20.5178C27.2366 20.0489 27.5 19.413 27.5 18.75V6.25C27.5 5.58696 27.2366 4.95107 26.7678 4.48223C26.2989 4.01339 25.663 3.75 25 3.75H5ZM15 6.25L18.75 8.75L22.5 6.25V10.625L26.25 12.5L22.5 14.375V18.75L18.75 16.25L15 18.75V14.375L11.25 12.5L15 10.625V6.25ZM5 6.25H11.25V8.75H5V6.25ZM5 11.25H8.75V13.75H5V11.25ZM5 16.25H11.25V18.75H5V16.25Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Accreditation Certificate
+                      </h3>
+                      <span
+                        class="bg-[#15803D] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Required</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Upload accreditation from relevant authority
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex items-center gap-8">
+                  <label
+                    class="cursor-pointer group flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#3B82F6] px-3 py-2 rounded-lg transition"
+                  >
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6665 15.0007H30.8332L21.6665 5.83398V15.0007ZM9.99984 3.33398H23.3332L33.3332 13.334V33.334C33.3332 34.218 32.982 35.0659 32.3569 35.691C31.7317 36.3161 30.8839 36.6673 29.9998 36.6673H9.99984C9.11578 36.6673 8.26794 36.3161 7.64281 35.691C7.01769 35.0659 6.6665 34.218 6.6665 33.334V6.66732C6.6665 5.78326 7.01769 4.93542 7.64281 4.31029C8.26794 3.68517 9.11578 3.33398 9.99984 3.33398ZM18.2165 20.734C18.8998 22.234 19.7665 23.4673 20.7665 24.3173L21.4498 24.8507C19.9998 25.1173 17.9998 25.584 15.8832 26.4007L15.6998 26.4673L16.5332 24.734C17.2832 23.284 17.8332 21.9673 18.2165 20.734ZM29.0165 27.084C29.3165 26.784 29.4665 26.4007 29.4832 25.984C29.5332 25.6507 29.4498 25.334 29.2832 25.0673C28.7998 24.284 27.5498 23.9173 25.4832 23.9173L23.3332 24.034L21.8832 23.0673C20.8332 22.2007 19.8832 20.684 19.2165 18.8007L19.2832 18.5673C19.8332 16.3507 20.3498 13.6673 19.2498 12.5673C19.1153 12.4367 18.9561 12.334 18.7816 12.2654C18.6071 12.1967 18.4207 12.1634 18.2332 12.1673H17.8332C17.2165 12.1673 16.6665 12.8173 16.5165 13.4507C15.8998 15.6673 16.2665 16.884 16.8832 18.9007V18.9173C16.4665 20.384 15.9332 22.084 15.0832 23.8006L13.4832 26.8006L11.9998 27.6173C9.99984 28.8673 9.04984 30.2673 8.8665 31.1507C8.79984 31.4673 8.83317 31.7507 8.94984 32.0506L8.99984 32.134L9.79984 32.6507L10.5332 32.834C11.8832 32.834 13.4165 31.2506 15.4832 27.7173L15.7832 27.6006C17.4998 27.0506 19.6332 26.6673 22.4998 26.3507C24.2165 27.2007 26.2332 27.584 27.4998 27.584C28.2332 27.584 28.7332 27.4007 29.0165 27.084ZM28.3332 25.9007L28.4832 26.084C28.4665 26.2507 28.4165 26.2673 28.3332 26.3006H28.2665L27.9498 26.334C27.1832 26.334 25.9998 26.0173 24.7832 25.484C24.9332 25.3173 24.9998 25.3173 25.1665 25.3173C27.4998 25.3173 28.1665 25.734 28.3332 25.9007ZM13.0498 28.334C11.9665 30.3173 10.9832 31.4173 10.2332 31.6673C10.3165 31.034 11.0665 29.934 12.2498 28.8506L13.0498 28.334ZM18.0832 16.8173C17.6998 15.3173 17.6832 14.1007 17.9665 13.4007L18.0832 13.2007L18.3332 13.284C18.6165 13.684 18.6498 14.2173 18.4832 15.1173L18.4332 15.384L18.1665 16.7507L18.0832 16.8173Z" fill="#EF5350"/>
+</svg>
+
+                    <div>
+                      <p
+                        class="text-xs font-semibold text-[#1D4ED8] group-hover:underline max-w-[140px] truncate file-name-display"
+                      >
+                        Accreditation Pdf
+                      </p>
+                      <p class="text-[10px] text-[#94A3B8] mt-0.5">
+                        Uploaded on May 20 2024 · 1.4MB
+                      </p>
+                    </div>
+                    <input
+                      type="file"
+                      name="accreditation_certificate"
+                      class="hidden file-input-control"
+                      accept=".pdf,.png,.jpg"
+                    />
+                  </label>
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="flex items-center gap-1.5 text-[#15803D] text-xs font-semibold"
+                    >
+                      <i
+                        data-lucide="check-circle-2"
+                        class="w-4 h-4 fill-[#DCFCE7]"
+                      ></i>
+                      Verified
+                    </div>
+                    <button
+                      type="button"
+                      class="text-[#64748B] hover:text-[#1E293B]"
+                    >
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-[#CBD5E1] transition"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 text-[#64748B]">
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="30" height="30" fill="white" />
+                      <path
+                        d="M4.0905 4.9995C2.961 4.9995 2.046 5.895 2.046 7.0005V22.9995C2.046 24.105 2.961 25.0005 4.0905 25.0005H25.9095C27.039 25.0005 27.954 24.105 27.954 22.9995V7.0005C27.954 5.895 27.039 4.9995 25.9095 4.9995H4.0905ZM25.9095 3C28.1685 3 30 4.791 30 7.0005V22.9995C30 25.209 28.1685 27 25.9095 27H4.0905C1.8315 27 0 25.209 0 22.9995V7.0005C0 4.791 1.8315 3 4.0905 3H25.9095ZM12.2505 19.6995H6C5.86711 19.6979 5.7352 19.7225 5.61184 19.772C5.48848 19.8214 5.37607 19.8947 5.28105 19.9876C5.18604 20.0806 5.11028 20.1913 5.0581 20.3135C5.00593 20.4358 4.97837 20.5671 4.977 20.7C4.977 21.252 5.4345 21.7005 6 21.7005H12.2505C12.3833 21.7019 12.515 21.6771 12.6382 21.6276C12.7614 21.578 12.8736 21.5047 12.9685 21.4118C13.0633 21.3189 13.139 21.2082 13.191 21.0861C13.2431 20.964 13.2706 20.8328 13.272 20.7C13.2706 20.5672 13.2431 20.436 13.191 20.3139C13.139 20.1918 13.0633 20.0811 12.9685 19.9882C12.8736 19.8953 12.7614 19.822 12.6382 19.7724C12.515 19.7229 12.3833 19.6981 12.2505 19.6995ZM20.625 7.9995C18.339 7.9995 16.4775 9.786 16.4775 12C16.4775 13.1595 16.9875 14.202 17.8035 14.9325C16.2585 15.8445 15.228 17.487 15.228 19.3635C15.228 19.899 15.312 20.4255 15.4755 20.928C15.648 21.453 16.224 21.744 16.761 21.576C16.8877 21.538 17.0056 21.4752 17.1078 21.3912C17.21 21.3071 17.2944 21.2036 17.3561 21.0866C17.4179 20.9695 17.4557 20.8414 17.4673 20.7096C17.479 20.5778 17.4642 20.445 17.424 20.319C17.3226 20.0107 17.272 19.688 17.274 19.3635C17.274 17.601 18.7695 16.164 20.625 16.164C22.4805 16.164 23.9775 17.601 23.9775 19.3635C23.9775 19.6235 23.946 19.8765 23.883 20.1225C23.8514 20.2511 23.8456 20.3846 23.8661 20.5154C23.8866 20.6463 23.9328 20.7717 24.0022 20.8845C24.0715 20.9972 24.1626 21.0951 24.2702 21.1724C24.3777 21.2496 24.4995 21.3047 24.6285 21.3345C24.8894 21.3999 25.1655 21.3602 25.3973 21.2238C25.6291 21.0874 25.798 20.8653 25.8675 20.6055C25.9705 20.1995 26.022 19.7855 26.022 19.3635C26.022 17.487 24.9915 15.8445 23.4465 14.9295C24.2625 14.202 24.7725 13.1595 24.7725 12C24.7725 9.786 22.9125 7.9995 20.625 7.9995ZM12.2505 14.4495H6C5.86711 14.4479 5.7352 14.4725 5.61184 14.522C5.48848 14.5714 5.37607 14.6447 5.28105 14.7376C5.18604 14.8306 5.11028 14.9413 5.0581 15.0635C5.00593 15.1858 4.97837 15.3171 4.977 15.45C4.977 16.002 5.4345 16.4505 6 16.4505H12.2505C12.3833 16.4519 12.515 16.4271 12.6382 16.3776C12.7614 16.328 12.8736 16.2547 12.9685 16.1618C13.0633 16.0689 13.139 15.9582 13.191 15.8361C13.2431 15.714 13.2706 15.5828 13.272 15.45C13.2706 15.3172 13.2431 15.186 13.191 15.0639C13.139 14.9418 13.0633 14.8311 12.9685 14.7382C12.8736 14.6453 12.7614 14.572 12.6382 14.5224C12.515 14.4729 12.3833 14.4481 12.2505 14.4495ZM20.625 10.0005C21.7905 10.0005 22.728 10.9005 22.728 12C22.728 13.101 21.7905 13.9995 20.625 13.9995C19.4595 13.9995 18.522 13.0995 18.522 12C18.522 10.899 19.4595 10.0005 20.625 10.0005ZM12.2505 9.1995H6C5.86711 9.19792 5.7352 9.22255 5.61184 9.27199C5.48848 9.32143 5.37607 9.39471 5.28105 9.48764C5.18604 9.58056 5.11028 9.69131 5.0581 9.81355C5.00593 9.93578 4.97837 10.0671 4.977 10.2C4.977 10.752 5.4345 11.2005 6 11.2005H12.2505C12.3833 11.2019 12.515 11.1771 12.6382 11.1276C12.7614 11.078 12.8736 11.0047 12.9685 10.9118C13.0633 10.8189 13.139 10.7082 13.191 10.5861C13.2431 10.464 13.2706 10.3328 13.272 10.2C13.2706 10.0672 13.2431 9.93603 13.191 9.8139C13.139 9.69176 13.0633 9.58108 12.9685 9.48817C12.8736 9.39527 12.7614 9.32196 12.6382 9.27243C12.515 9.22289 12.3833 9.19811 12.2505 9.1995Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Liability Insuarance
+                      </h3>
+                      <span
+                        class="bg-[#15803D] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Required</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Upload your current liability insuarance
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex items-center gap-8">
+                  <label
+                    class="cursor-pointer group flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#3B82F6] px-3 py-2 rounded-lg transition"
+                  >
+                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6665 15.0007H30.8332L21.6665 5.83398V15.0007ZM9.99984 3.33398H23.3332L33.3332 13.334V33.334C33.3332 34.218 32.982 35.0659 32.3569 35.691C31.7317 36.3161 30.8839 36.6673 29.9998 36.6673H9.99984C9.11578 36.6673 8.26794 36.3161 7.64281 35.691C7.01769 35.0659 6.6665 34.218 6.6665 33.334V6.66732C6.6665 5.78326 7.01769 4.93542 7.64281 4.31029C8.26794 3.68517 9.11578 3.33398 9.99984 3.33398ZM18.2165 20.734C18.8998 22.234 19.7665 23.4673 20.7665 24.3173L21.4498 24.8507C19.9998 25.1173 17.9998 25.584 15.8832 26.4007L15.6998 26.4673L16.5332 24.734C17.2832 23.284 17.8332 21.9673 18.2165 20.734ZM29.0165 27.084C29.3165 26.784 29.4665 26.4007 29.4832 25.984C29.5332 25.6507 29.4498 25.334 29.2832 25.0673C28.7998 24.284 27.5498 23.9173 25.4832 23.9173L23.3332 24.034L21.8832 23.0673C20.8332 22.2007 19.8832 20.684 19.2165 18.8007L19.2832 18.5673C19.8332 16.3507 20.3498 13.6673 19.2498 12.5673C19.1153 12.4367 18.9561 12.334 18.7816 12.2654C18.6071 12.1967 18.4207 12.1634 18.2332 12.1673H17.8332C17.2165 12.1673 16.6665 12.8173 16.5165 13.4507C15.8998 15.6673 16.2665 16.884 16.8832 18.9007V18.9173C16.4665 20.384 15.9332 22.084 15.0832 23.8006L13.4832 26.8006L11.9998 27.6173C9.99984 28.8673 9.04984 30.2673 8.8665 31.1507C8.79984 31.4673 8.83317 31.7507 8.94984 32.0506L8.99984 32.134L9.79984 32.6507L10.5332 32.834C11.8832 32.834 13.4165 31.2506 15.4832 27.7173L15.7832 27.6006C17.4998 27.0506 19.6332 26.6673 22.4998 26.3507C24.2165 27.2007 26.2332 27.584 27.4998 27.584C28.2332 27.584 28.7332 27.4007 29.0165 27.084ZM28.3332 25.9007L28.4832 26.084C28.4665 26.2507 28.4165 26.2673 28.3332 26.3006H28.2665L27.9498 26.334C27.1832 26.334 25.9998 26.0173 24.7832 25.484C24.9332 25.3173 24.9998 25.3173 25.1665 25.3173C27.4998 25.3173 28.1665 25.734 28.3332 25.9007ZM13.0498 28.334C11.9665 30.3173 10.9832 31.4173 10.2332 31.6673C10.3165 31.034 11.0665 29.934 12.2498 28.8506L13.0498 28.334ZM18.0832 16.8173C17.6998 15.3173 17.6832 14.1007 17.9665 13.4007L18.0832 13.2007L18.3332 13.284C18.6165 13.684 18.6498 14.2173 18.4832 15.1173L18.4332 15.384L18.1665 16.7507L18.0832 16.8173Z" fill="#EF5350"/>
+</svg>
+
+                    <div>
+                      <p
+                        class="text-xs font-semibold text-[#1D4ED8] group-hover:underline max-w-[140px] truncate file-name-display"
+                      >
+                        Insuarance. Pdf
+                      </p>
+                      <p class="text-[10px] text-[#94A3B8] mt-0.5">
+                        Uploaded on May 20 2024 · 1.3MB
+                      </p>
+                    </div>
+                    <input
+                      type="file"
+                      name="liability_insurance"
+                      class="hidden file-input-control"
+                      accept=".pdf,.png,.jpg"
+                    />
+                  </label>
+                  <div class="flex items-center gap-4">
+                    <span class="text-[#EF4444] text-xs font-medium"
+                      >Under review</span
+                    >
+                    <button
+                      type="button"
+                      class="text-[#64748B] hover:text-[#1E293B]"
+                    >
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-[#CBD5E1] transition"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 text-[#64748B]">
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M26.2502 7.5L18.7502 15M17.5004 21.2502H8.75M13.7504 16.2498H8.75"
+                        stroke="#344054"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M19.313 8.125H19.4378M25.5626 14.3746H25.688"
+                        stroke="#344054"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M22.5 19.9998V25.0002C22.5 25.3317 22.3683 25.6496 22.1339 25.8839C21.8996 26.1183 21.5817 26.25 21.2502 26.25H4.9998C4.66833 26.25 4.35044 26.1183 4.11606 25.8839C3.88167 25.6496 3.75 25.3317 3.75 25.0002V4.9998C3.75 4.66833 3.88167 4.35044 4.11606 4.11606C4.35044 3.88167 4.66833 3.75 4.9998 3.75H13.7502"
+                        stroke="#306CFE"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Tax Identification
+                      </h3>
+                      <span
+                        class="bg-[#1D4ED8] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Optional</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Upload your tax identification document
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex items-center gap-8">
+                  <label
+                    class="cursor-pointer group flex items-center gap-2.5 bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#3B82F6] px-3 py-2 rounded-lg transition"
+                  >
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6665 15.0007H30.8332L21.6665 5.83398V15.0007ZM9.99984 3.33398H23.3332L33.3332 13.334V33.334C33.3332 34.218 32.982 35.0659 32.3569 35.691C31.7317 36.3161 30.8839 36.6673 29.9998 36.6673H9.99984C9.11578 36.6673 8.26794 36.3161 7.64281 35.691C7.01769 35.0659 6.6665 34.218 6.6665 33.334V6.66732C6.6665 5.78326 7.01769 4.93542 7.64281 4.31029C8.26794 3.68517 9.11578 3.33398 9.99984 3.33398ZM18.2165 20.734C18.8998 22.234 19.7665 23.4673 20.7665 24.3173L21.4498 24.8507C19.9998 25.1173 17.9998 25.584 15.8832 26.4007L15.6998 26.4673L16.5332 24.734C17.2832 23.284 17.8332 21.9673 18.2165 20.734ZM29.0165 27.084C29.3165 26.784 29.4665 26.4007 29.4832 25.984C29.5332 25.6507 29.4498 25.334 29.2832 25.0673C28.7998 24.284 27.5498 23.9173 25.4832 23.9173L23.3332 24.034L21.8832 23.0673C20.8332 22.2007 19.8832 20.684 19.2165 18.8007L19.2832 18.5673C19.8332 16.3507 20.3498 13.6673 19.2498 12.5673C19.1153 12.4367 18.9561 12.334 18.7816 12.2654C18.6071 12.1967 18.4207 12.1634 18.2332 12.1673H17.8332C17.2165 12.1673 16.6665 12.8173 16.5165 13.4507C15.8998 15.6673 16.2665 16.884 16.8832 18.9007V18.9173C16.4665 20.384 15.9332 22.084 15.0832 23.8006L13.4832 26.8006L11.9998 27.6173C9.99984 28.8673 9.04984 30.2673 8.8665 31.1507C8.79984 31.4673 8.83317 31.7507 8.94984 32.0506L8.99984 32.134L9.79984 32.6507L10.5332 32.834C11.8832 32.834 13.4165 31.2506 15.4832 27.7173L15.7832 27.6006C17.4998 27.0506 19.6332 26.6673 22.4998 26.3507C24.2165 27.2007 26.2332 27.584 27.4998 27.584C28.2332 27.584 28.7332 27.4007 29.0165 27.084ZM28.3332 25.9007L28.4832 26.084C28.4665 26.2507 28.4165 26.2673 28.3332 26.3006H28.2665L27.9498 26.334C27.1832 26.334 25.9998 26.0173 24.7832 25.484C24.9332 25.3173 24.9998 25.3173 25.1665 25.3173C27.4998 25.3173 28.1665 25.734 28.3332 25.9007ZM13.0498 28.334C11.9665 30.3173 10.9832 31.4173 10.2332 31.6673C10.3165 31.034 11.0665 29.934 12.2498 28.8506L13.0498 28.334ZM18.0832 16.8173C17.6998 15.3173 17.6832 14.1007 17.9665 13.4007L18.0832 13.2007L18.3332 13.284C18.6165 13.684 18.6498 14.2173 18.4832 15.1173L18.4332 15.384L18.1665 16.7507L18.0832 16.8173Z" fill="#EF5350"/>
+</svg>
+
+                    <div>
+                      <p
+                        class="text-xs font-semibold text-[#1D4ED8] group-hover:underline max-w-[140px] truncate file-name-display"
+                      >
+                        TIN cert. Pdf
+                      </p>
+                      <p class="text-[10px] text-[#94A3B8] mt-0.5">
+                        Uploaded on May 20 2024 · 1.0MB
+                      </p>
+                    </div>
+                    <input
+                      type="file"
+                      name="tax_identification"
+                      class="hidden file-input-control"
+                      accept=".pdf,.png,.jpg"
+                    />
+                  </label>
+                  <div class="flex items-center gap-4">
+                    <span class="text-blue-500 text-xs font-medium"
+                      >Not uploaded</span
+                    >
+                    <button
+                      type="button"
+                      class="text-[#64748B] hover:text-[#1E293B]"
+                    >
+                      <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-white border border-[#E2E8F0] rounded-xl p-4 flex items-center justify-between shadow-sm"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="p-2.5 text-[#64748B]">
+                    <svg
+                      width="20"
+                      height="25"
+                      viewBox="0 0 20 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 1L18.5 8.5V23.5H1V1H11Z"
+                        stroke="black"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M10.375 1V7.875H18.5"
+                        stroke="black"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-semibold text-[#1E293B]">
+                        Additional Documents
+                      </h3>
+                      <span
+                        class="bg-[#1D4ED8] text-white text-[10px] font-bold px-2 py-0.5 rounded-md"
+                        >Optional</span
+                      >
+                    </div>
+                    <p class="text-xs text-[#64748B] mt-0.5">
+                      Any other relevant documents
+                    </p>
+                    <a
+                      href="#"
+                      class="text-xs font-semibold text-[#1D4ED8] hover:underline mt-1 inline-block"
+                      >View Sample</a
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col items-end">
+                  <label
+                    class="cursor-pointer bg-[#60A5FA] hover:bg-[#3B82F6] text-white text-xs font-bold py-2.5 px-4 rounded-lg shadow-sm flex items-center gap-2 transition duration-200"
+                  >
+                    <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                    <span id="additionalDocsLabel">Upload Document</span>
+                    <input
+                      type="file"
+                      id="additionalDocsInput"
+                      name="additional_documents"
+                      class="hidden"
+                      accept=".jpg,.png,.pdf"
+                    />
+                  </label>
+                  <p class="text-[10px] text-black font-bold mt-1">
+                    JPG, PNG or PDF (Max 10MB)
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-4">
+                <div
+                  class="bg-white border border-[#E2E8F0] px-4 py-3 rounded-xl flex items-center gap-3 shadow-sm"
+                >
+                  <svg
+                    width="50"
+                    height="50"
+                    viewBox="0 0 50 50"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M24.9998 41.666C29.4201 41.666 33.6593 39.9101 36.785 36.7845C39.9106 33.6589 41.6665 29.4196 41.6665 24.9994C41.6665 20.5791 39.9106 16.3398 36.785 13.2142C33.6593 10.0886 29.4201 8.33268 24.9998 8.33268C20.5796 8.33268 16.3403 10.0886 13.2147 13.2142C10.0891 16.3398 8.33317 20.5791 8.33317 24.9994C8.33317 29.4196 10.0891 33.6589 13.2147 36.7845C16.3403 39.9101 20.5796 41.666 24.9998 41.666ZM24.9998 4.16602C27.7357 4.16602 30.4448 4.70489 32.9724 5.75186C35.5 6.79883 37.7967 8.3334 39.7312 10.268C41.6658 12.2025 43.2004 14.4992 44.2473 17.0268C45.2943 19.5544 45.8332 22.2635 45.8332 24.9994C45.8332 30.5247 43.6382 35.8237 39.7312 39.7307C35.8242 43.6378 30.5252 45.8327 24.9998 45.8327C13.479 45.8327 4.1665 36.4577 4.1665 24.9994C4.1665 19.474 6.36144 14.175 10.2684 10.268C14.1755 6.36095 19.4745 4.16602 24.9998 4.16602ZM26.0415 14.5827V25.5202L35.4165 31.0827L33.854 33.6452L22.9165 27.0827V14.5827H26.0415Z"
+                      fill="black"
+                    />
+                  </svg>
+
+                  <div class="bg-white">
+                    <h4 class="text-xs font-bold text-[#0F172A] text-center">
+                      Estimated verification time
+                    </h4>
+                    <p
+                      class="text-sm font-black text-[#0F172A] text-center tracking-wide"
+                    >
+                      24- 48 Hrs
+                    </p>
+                    <p class="text-[10px] text-[#64748B] mt-0.5">
+                      You will receive an email once your facility is verified
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="bg-[#1D4ED8] hover:bg-[#1E40AF] text-white font-bold text-sm py-3 px-8 rounded-lg shadow-md flex items-center gap-2 transition duration-200 transform active:scale-95"
+                >
+                  <i data-lucide="send" class="w-4 h-4 fill-current"></i>
+                  Submit for Verification
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <aside class="w-80 space-y-4 shrink-0">
+          <div
+            class="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-4"
+          >
+            <h3 class="text-sm font-bold text-[#0F172A]">
+              Verification progress
+            </h3>
+            <div>
+              <div
+                class="w-full bg-[#E2E8F0] h-6 rounded-md overflow-hidden relative flex items-center"
+              >
+                <div
+                  class="bg-[#1D4ED8] h-full transition-all duration-500"
+                  style="width: 86%"
+                ></div>
+                <span
+                  class="absolute right-3 text-xs font-bold text-[#1E293B] mix-blend-multiply"
+                  >86%</span
+                >
+              </div>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-[#0F172A]">
+                4 of 5 documents verified
+              </h4>
+              <p class="text-[11px] text-[#64748B] mt-0.5 leading-relaxed">
+                Almost there! Complete the remaining step to start posting
+                shifts
+              </p>
+            </div>
+
+            <ul class="space-y-10 pt-2 border-t border-[#F1F5F9]">
+              <li class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap- font-medium text-[#475569]">
+                  <svg
+                    width="30"
+                    height="20"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_1420_1457)">
+                      <path
+                        d="M18.3332 10.666L16.6665 15.666H9.99984L11.6665 22.3327L6.6665 25.666L11.6665 28.9993L9.99984 35.666H16.6665L18.3332 40.666L23.3332 37.3327L28.3332 40.666L29.9998 35.666H36.6665L34.9998 28.9993L39.9998 25.666L34.9998 22.3327L36.6665 15.666H29.9998L28.3332 10.666L23.3332 13.9993L18.3332 10.666ZM29.9998 18.9993L31.6665 20.666L19.9998 32.3327L14.9998 27.3327L16.6665 25.666L19.9998 28.9993L29.9998 18.9993Z"
+                        fill="#8BC34A"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1420_1457">
+                        <rect width="40" height="40" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  Facility Licence
+                </div>
+                <span class="text-[#22C55E] font-semibold">Verified</span>
+              </li>
+              <li class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2 font-medium text-[#475569]">
+                  <svg
+                    width="30"
+                    height="20"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_1420_1457)">
+                      <path
+                        d="M18.3332 10.666L16.6665 15.666H9.99984L11.6665 22.3327L6.6665 25.666L11.6665 28.9993L9.99984 35.666H16.6665L18.3332 40.666L23.3332 37.3327L28.3332 40.666L29.9998 35.666H36.6665L34.9998 28.9993L39.9998 25.666L34.9998 22.3327L36.6665 15.666H29.9998L28.3332 10.666L23.3332 13.9993L18.3332 10.666ZM29.9998 18.9993L31.6665 20.666L19.9998 32.3327L14.9998 27.3327L16.6665 25.666L19.9998 28.9993L29.9998 18.9993Z"
+                        fill="#8BC34A"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1420_1457">
+                        <rect width="40" height="40" fill="white" />
+                      </clipPath>
+                    </defs></svg>Business Registration
+                </div>
+                <span class="text-[#22C55E] font-semibold">Verified</span>
+              </li>
+              <li class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2 font-medium text-[#475569]">
+                  <svg
+                    width="30"
+                    height="20"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_1420_1457)">
+                      <path
+                        d="M18.3332 10.666L16.6665 15.666H9.99984L11.6665 22.3327L6.6665 25.666L11.6665 28.9993L9.99984 35.666H16.6665L18.3332 40.666L23.3332 37.3327L28.3332 40.666L29.9998 35.666H36.6665L34.9998 28.9993L39.9998 25.666L34.9998 22.3327L36.6665 15.666H29.9998L28.3332 10.666L23.3332 13.9993L18.3332 10.666ZM29.9998 18.9993L31.6665 20.666L19.9998 32.3327L14.9998 27.3327L16.6665 25.666L19.9998 28.9993L29.9998 18.9993Z"
+                        fill="#8BC34A"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1420_1457">
+                        <rect width="40" height="40" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  Accreditation Certificate
+                </div>
+                <span class="text-[#22C55E] font-semibold">Verified</span>
+              </li>
+              <li class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2 font-medium text-[#475569]">
+                  <span
+                    class="w-4 h-4 rounded-full bg-[#1D4ED8] text-black p-3 font-bold flex items-center justify-center text-[10px]"
+                    >4</span
+                  >
+                  Liability Insurance
+                </div>
+                <span class="text-[#EF4444] font-medium">Under review</span>
+              </li>
+              <li class="flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2 font-medium text-[#475569]">
+                  <span
+                    class="w-4 h-4 rounded-full bg-blue-200 text-black p-3 font-bold flex items-center justify-center text-[10px]"
+                    >5</span
+                  >
+                  Tax Identification
+                </div>
+                <span class="text-[#64748B] font-medium">Not uploaded</span>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="bg-white border border-[#E2E8F0] space-y- rounded-2xl p-4 shadow-sm"
+          >
+            <h3 class="text-sm font-bold text-[#0F172A] mb-4">
+              Verification Timeline
+            </h3>
+            <div
+              class="relative pl-6 space-y-10 before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-[2px] before:bg-[#E2E8F0]"
+            >
+              <div class="relative">
+                <span class="absolute -left-[23px] top-0 bg-white rounded-full">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-[18px] h-[18px] text-[#22C55E] fill-[#DCFCE7]"
+                  ></i>
+                </span>
+                <h4 class="text-xs font-bold text-[#0F172A]">
+                  Documents submitted
+                </h4>
+                <p class="text-[10px] text-[#64748B] mt-0.5">
+                  May 20 2024 . 10.30 am
+                </p>
+              </div>
+              <div class="relative">
+                <span class="absolute -left-[23px] top-0 bg-white rounded-full">
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-[18px] h-[18px] text-[#22C55E] fill-[#DCFCE7]"
+                  ></i>
+                </span>
+                <h4 class="text-xs font-bold text-[#0F172A]">
+                  Initial Validation
+                </h4>
+                <p class="text-[10px] text-[#64748B] mt-0.5">
+                  May 20 2024. 11.30 am
+                </p>
+              </div>
+              <div class="relative">
+                <span
+                  class="absolute -left-[22px] top-0.5 w-[14px] h-[14px] rounded-full bg-[#3B82F6] ring-4 ring-[#EFF6FF]"
+                ></span>
+                <h4 class="text-xs font-bold text-[#0F172A]">Admin Review</h4>
+                <p class="text-[10px] text-[#3B82F6] font-medium mt-0.5">
+                  In progress
+                </p>
+              </div>
+              <div class="relative opacity-50">
+                <span
+                  class="absolute -left-[21px] top-0.5 w-[12px] h-[12px] rounded-full bg-[#CBD5E1]"
+                ></span>
+                <h4 class="text-xs font-bold text-[#0F172A]">
+                  Compliance Check
+                </h4>
+                <p class="text-[10px] text-[#64748B] mt-0.5">Pending</p>
+              </div>
+              <div class="relative opacity-50">
+                <span
+                  class="absolute -left-[21px] top-0.5 w-[12px] h-[12px] rounded-full bg-[#CBD5E1]"
+                ></span>
+                <h4 class="text-xs font-bold text-[#0F172A]">
+                  Facility Verified
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-2.5 p-1 bg-transparent">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 27.5C18.4517 27.5 21.5768 26.1009 23.8388 23.8388C26.1009 21.5768 27.5 18.4517 27.5 15C27.5 11.5483 26.1009 8.42325 23.8388 6.16116C21.5768 3.89911 18.4517 2.5 15 2.5C11.5483 2.5 8.42325 3.89911 6.16116 6.16116C3.89911 8.42325 2.5 11.5483 2.5 15C2.5 18.4517 3.89911 21.5768 6.16116 23.8388C8.42325 26.1009 11.5483 27.5 15 27.5Z"
+                fill="#2F88FF"
+                stroke="black"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15 17.8906V15.3906C17.0711 15.3906 18.75 13.7117 18.75 11.6406C18.75 9.56956 17.0711 7.89062 15 7.89062C12.9289 7.89062 11.25 9.56956 11.25 11.6406"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M15 23.5156C15.8629 23.5156 16.5625 22.8161 16.5625 21.9531C16.5625 21.0902 15.8629 20.3906 15 20.3906C14.1371 20.3906 13.4375 21.0902 13.4375 21.9531C13.4375 22.8161 14.1371 23.5156 15 23.5156Z"
+                fill="white"
+              />
+            </svg>
+
+            <div>
+              <h4 class="text-xs font-bold text-[#0F172A]">Need Help?</h4>
+              <p class="text-[10px] text-[#64748B] leading-relaxed mt-0.5">
+                Our support team is here to help you through the verification
+                process.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </main>
         
-        
-        </form>
-         
-       </div>
- <div class="flex flex-row justify-end gap-4 mt-20">
-          <button class="px-6 py-2 bg-white text-blue-600 rounded-lg border-2 border-blue-600 font-bold flex items-center hover:text-white hover:bg-red-500 hover:border-none">Cancel</button>
-          <button class="p-2 bg-[#2f7af0] font-bold text-white rounded-lg flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded hover:bg-[5b8af0]"><img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781050939/lucide_save_qbq6sz.png" alt="Save" class="mr-3" ><span>Save Facility Profile</span></button>
-        </div>
-        </div>
-        <div>
-            
-        </div>
-    </div>
+      </div>
       </div>
     </div>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
