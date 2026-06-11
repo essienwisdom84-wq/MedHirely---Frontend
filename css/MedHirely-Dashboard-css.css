@@ -388,13 +388,13 @@ hr {
 }
 
 /* ── Buttons ── */
-.buttons {
+/* .buttons {
   display: flex;
   gap: 16px;
   margin-top: 36px;
-}
+} */
 
-.flag-btn,
+/* .flag-btn,
 .complete-btn {
   flex: 1;
   height: 46px;
@@ -404,7 +404,7 @@ hr {
   cursor: pointer;
   transition: opacity 0.2s;
   font-family: "Manrope", sans-serif;
-}
+} */
 
 .flag-btn:hover,
 .complete-btn:hover {

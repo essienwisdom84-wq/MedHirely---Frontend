@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sideLogoutBtn = document.getElementById("logout-trigger-btn");
 
   cancelBtn.addEventListener("click", () => {
-    window.location.href = "/dashboard";
+    window.location.href = "./post-a-new-shift.html";
   });
 
   logoutBtn.addEventListener("click", () => {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
   });
 
   sideLogoutBtn.addEventListener("click", () => {
@@ -22,6 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
   });
 });
