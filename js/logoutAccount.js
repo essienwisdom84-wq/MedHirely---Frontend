@@ -1,27 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const cancelBtn = document.getElementById("cancelBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const sideLogoutBtn = document.getElementById("logout-trigger-btn");
 
-  cancelBtn.addEventListener("click", () => {
-    window.location.href = "./post-a-new-shift.html";
-  });
 
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("authToken");
-    sessionStorage.clear();
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('confirm-logout-btn');
 
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (logoutBtn) {
+        console.log("Logout page confirmation script loaded and armed!");
 
-    window.location.href = "./login.html";
-  });
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
 
-  sideLogoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("authToken");
-    sessionStorage.clear();
+            // 1. Clear out the security handshake tokens from browser memory
+            localStorage.removeItem('authToken');
+            
+            // Optional: Clears everything else stored if you want a complete blank slate
+            // localStorage.clear(); 
 
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            console.log("🧹 Session token wiped successfully.");
 
-    window.location.href = "./login.html";
-  });
+            // 2. Alert the user and bounce them straight back to the login screen
+            alert('Logged out successfully. Secure session terminated.');
+            
+            // Since login.html sits right next to logout-account.html in facility_pages:
+            window.location.href = "login.html";
+        });
+    }
 });
