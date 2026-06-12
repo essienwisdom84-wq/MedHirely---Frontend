@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(
             " Facility registered successfully! Moving on to verification.",
           );
-          window.location.href = "verification_page.html";
+          window.location.href = "email_verification.html";
         } else {
           // This catches any remaining server validation messages
           alert(
