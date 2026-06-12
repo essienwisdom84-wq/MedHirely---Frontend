@@ -73,8 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json().catch(() => ({}));
 
         if (response.ok) {
-          alert(" Facility registered successfully! Moving on to login.");
-          window.location.href = "login.html";
+          alert(
+            " Facility registered successfully! Moving on to verification.",
+          );
+          window.location.href = "verification-page.html";
         } else {
           // This catches any remaining server validation messages
           alert(
