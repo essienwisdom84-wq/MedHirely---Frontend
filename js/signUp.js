@@ -32,12 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 3. FIX: Split the facility name into firstName and lastName to bypass server schema requirements
+      // 3. Saved the email in Local Storage for the Email Verification screen
+       localStorage.setItem("userEmail", email);
+
+
+      // 4. FIX: Split the facility name into firstName and lastName to bypass server schema requirements
       const names = facilityName.split(" ");
       const fName = names[0] || "Facility";
       const lName = names.slice(1).join(" ") || "Admin";
 
-      // 4. Construct the payload package using the new required properties
+      // 5. Construct the payload package using the new required properties
       const signupPayload = {
         firstName: fName, // Satisfies backend requirements
         lastName: lName, // Satisfies backend requirements
@@ -52,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         signupPayload,
       );
 
-      // 5. Pull your target URL from config.js
+      // 6. Pull your target URL from config.js
       const signupUrl =
         window.APP_CONFIG?.AUTH?.SIGNUP ||
         "https://medhirely-backend.onrender.com/api/auth/signup";
@@ -61,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         signupBtn.innerText = "Registering Account...";
         signupBtn.disabled = true;
 
-        // 6. Fire off the live network request to the Render server
+        // 7. Fire off the live network request to the Render server
         const response = await fetch(signupUrl, {
           method: "POST",
           headers: {
@@ -74,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (response.ok) {
           alert(" Facility registered successfully! Moving on to login.");
-          window.location.href = "login.html";
+          window.location.href = "email_verification.html";
         } else {
           // This catches any remaining server validation messages
           alert(

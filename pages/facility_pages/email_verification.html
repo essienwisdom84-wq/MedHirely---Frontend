@@ -28,8 +28,8 @@
       We sent a 6-digit code to activate your account
     </p>
 
-    <p class="text-center text-blue-600 font-semibold mt-2">
-      de***********@gmail.com
+    <p id="email" class="text-center text-blue-600 font-semibold mt-2">
+      
     </p>
 
     <!-- OTP Inputs -->
@@ -77,56 +77,12 @@
 
     <!-- Wrong Email -->
     <p class="text-center mt-5">
-      <a href="#" class="text-gray-500 underline">
+      <a href="signup.html" class="text-gray-500 underline">
         Wrong email? Go back
       </a>
     </p>
 
   </div>
-
-  <script>
-
-    const inputs = document.querySelectorAll(".otp");
-
-    inputs.forEach((input, index) => {
-
-      input.addEventListener("input", () => {
-
-        if (input.value.length === 1 &&
-            index < inputs.length - 1) {
-
-          inputs[index + 1].focus();
-        }
-      });
-
-      input.addEventListener("keydown", (e) => {
-
-        if (
-          e.key === "Backspace" &&
-          input.value === "" &&
-          index > 0
-        ) {
-          inputs[index - 1].focus();
-        }
-      });
-    });
-
-    document
-      .getElementById("verifyBtn")
-      .addEventListener("click", () => {
-
-        let otp = "";
-
-        inputs.forEach(input => {
-          otp += input.value;
-        });
-
-        console.log("OTP:", otp);
-
-        // Send OTP to backend here
-      });
-
-  </script>
 
 </body>
 </html>

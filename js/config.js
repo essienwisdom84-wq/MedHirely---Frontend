@@ -9,6 +9,8 @@ window.APP_CONFIG = {
     LOGIN: `${BASE_URL}/auth/login`,
     LOGOUT: `${BASE_URL}/auth/logout`,
     SIGNUP: `${BASE_URL}/auth/register`,
+    OTP: `${BASE_URL}/auth/verify-email`,
+    RESEND_OTP: `${BASE_URL}/auth/resend-email-otp`,
   },
 
   // 2. Shift Management Endpoints (Used by newShift.js, shift-progress.html)
