@@ -1,22 +1,86 @@
-// Adjust values within the Staff count control element
-      function adjustCount(val) {
-        const el = document.getElementById("staff-count");
-        let num = parseInt(el.value) || 1;
-        num += val;
-        if (num < 1) num = 1;
-        el.value = num;
+// js/newShift.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  const postShiftBtn = document.getElementById("post-shift-btn");
+
+  if (postShiftBtn) {
+    postShiftBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      // 1. Gather inputs - checking multiple possible IDs for each
+      const title =
+        document.getElementById("shift-title")?.value || "General Shift";
+
+      // Getting dates (Checking for both 'start-date' and 'shift-date')
+      const date =
+        document.getElementById("start-date")?.value ||
+        document.getElementById("shift-date")?.value ||
+        "";
+      const endDate = document.getElementById("end-date")?.value || "";
+
+      // Getting times
+      const startTime = document.getElementById("start-time")?.value || "08:00";
+      const endTime = document.getElementById("end-time")?.value || "17:00";
+
+      const role = document.getElementById("shift-role")?.value || "RN";
+      const staff =
+        parseInt(document.getElementById("staff-count")?.value) || 1;
+      const salary =
+        parseFloat(document.getElementById("pay-rate")?.value) || 0;
+      const location =
+        document.getElementById("shift-location")?.value || "Main Facility";
+
+      // 2. Validate essential data
+      if (!date) {
+        alert("Please select a date in the Start Date field!");
+        return;
       }
 
-      // Toggle focus state of shift configuration selections
-      function toggleShiftBtn(activeBtn) {
-        const btns = document
-          .getElementById("shift-type-group")
-          .querySelectorAll(".shift-btn");
-        btns.forEach((b) => {
-          b.className =
-            "shift-btn flex items-center justify-between gap-3 px-5 py-2.5 bg-slate-200/70 text-slate-700 text-xs font-bold rounded-full transition min-w-[90px] hover:bg-slate-200";
+      // 3. Package payload
+      const payload = {
+        title: title,
+        shiftType:
+          document.getElementById("shift-type")?.value.toLowerCase() ||
+          "morning",
+        workersNeeded: staff,
+        salary: salary,
+        location: location,
+        shiftDate: date,
+        endDate: endDate,
+        startTime: startTime,
+        endTime: endTime,
+        status: "open",
+        facilityId:
+          localStorage.getItem("facilityId") || "650c1a2b3c4d5e6f7a8b9c0d",
+      };
+
+      console.log("🚀 Sending this to server:", payload);
+
+      // 4. Send
+      const endpoint =
+        window.APP_CONFIG?.SHIFTS?.CREATE ||
+        "https://medhirely-backend.onrender.com/api/shifts/createShift";
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+          body: JSON.stringify(payload),
         });
-        activeBtn.className =
-          "shift-btn flex items-center justify-between gap-3 px-5 py-2.5 bg-brand-600 text-white text-xs font-bold rounded-full shadow-sm transition min-w-[90px]";
+
+        if (response.ok) {
+          alert("Shift posted successfully!");
+          window.location.href = "shift-progress.html";
+        } else {
+          const errorData = await response.json();
+          alert("Error: " + JSON.stringify(errorData));
+        }
+      } catch (err) {
+        alert("Network error: " + err.message);
       }
-    
+    });
+  }
+});
