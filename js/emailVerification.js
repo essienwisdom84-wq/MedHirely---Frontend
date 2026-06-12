@@ -29,6 +29,9 @@ const resendOtpUrl = window.APP_CONFIG?.AUTH?.RESEND_OTP || "https://medhirely-b
       });
     });
 
+    const email = localStorage.getItem("userEmail");
+    user_email.innerText = `${email}`;
+
     verifyBtn.addEventListener("click", async () => {
   const otp = [...document.querySelectorAll(".otp")]
     .map(input => input.value)
