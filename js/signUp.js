@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 6. Pull your target URL from config.js
       const signupUrl =
         window.APP_CONFIG?.AUTH?.SIGNUP ||
-        "https://medhirely-backend.onrender.com/api/auth/signup";
+        "https://medhirely-backend.onrender.com/api/auth/register";
 
       try {
         signupBtn.innerText = "Registering Account...";
@@ -73,14 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(signupPayload),
         });
 
-        const data = await response.json().catch(() => ({}));
+        const data = await response.json();
 
         if (response.ok) {
-          HEAD;
           alert(
             " Facility registered successfully! Moving on to verification.",
           );
-          window.location.href = "verification-page.html";
+          window.location.href = "verification_page.html";
         } else {
           // This catches any remaining server validation messages
           alert(
