@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Direct user straight to profile creation workspace
-                    window.location.href = "create_facility_profile.html";
+                    window.location.href = "login.html";
                 } else {
                     alert("Verification failed: " + (result.message || "Invalid OTP code."));
                     verifyBtn.textContent = "Verify Email";

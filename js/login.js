@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Login successful! Redirecting...");
 
           // 5. Safe side-by-side redirect since new-shift.html sits right next to it!
-          window.location.href = "deploy-shift.html";
+          window.location.href = "create_facility_profile.html";
         } else {
           alert(
             `Login Refused: ${data.message || "The email or password typed is invalid."}`,

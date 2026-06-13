@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Cache structural session values safely in your browser storage layers
                     if (result.token) {
-                        localStorage.setItem("userToken", result.token);
+                        localStorage.setItem("authToken", result.token);
                     }
 
                     if (signupEmail) {

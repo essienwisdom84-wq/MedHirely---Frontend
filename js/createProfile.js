@@ -53,7 +53,7 @@ async function fetchCurrentData() {
           profile.facilityType || "Hospital";
       if (document.getElementById("input-licenseNumber"))
         document.getElementById("input-licenseNumber").value =
-          profile.input-licenseNumber || "";
+          profile.input - licenseNumber || "";
       if (document.getElementById("input-TaxId"))
         document.getElementById("input-TaxId").value = profile.taxId || "";
       if (document.getElementById("input-email"))
@@ -97,8 +97,7 @@ async function submitProfileForm(event) {
     facilityName: document.getElementById("input-facilityName")?.value || "",
     facilityType:
       document.getElementById("input-FacilityType")?.value || "Hospital",
-    licenseNumber:
-      document.getElementById("input-licenseNumber")?.value || "",
+    licenseNumber: document.getElementById("input-licenseNumber")?.value || "",
     taxId: document.getElementById("input-TaxId")?.value || "",
     email: document.getElementById("input-email")?.value || "",
     phoneNumber: document.getElementById("input-phoneNumber")?.value || "",
@@ -111,14 +110,17 @@ async function submitProfileForm(event) {
   };
 
   try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Clears 401 Unauthorized
+    const response = await fetch(
+      "https://medhirely-backend.onrender.com/api/facilities",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Clears 401 Unauthorized
+        },
+        body: JSON.stringify(payload),
       },
-      body: JSON.stringify(payload),
-    });
+    );
 
     if (response.status === 401) {
       throw new Error(
@@ -129,7 +131,7 @@ async function submitProfileForm(event) {
     if (!response.ok)
       throw new Error(`Server returned error status: ${response.status}`);
 
-    window.location.href = "view_facility_profile.html";
+    window.location.href = "document-verification.html";
   } catch (error) {
     console.error(error);
     alert(
