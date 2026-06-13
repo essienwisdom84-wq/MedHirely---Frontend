@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedHirely</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/globalProfile.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -140,17 +141,17 @@ Shifts History
 Staff's Ratings
           </a>
 
-          <a href="create_facility_profile.html" class="group nav-item active w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded- transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
-            <svg  class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+           <nav class="space-y-1">
+    <a href="create_facility_profile.html" class="group nav-item active w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded- transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
+         <svg  class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path stroke="currentColor" opacity="0.16" d="M5.3335 23.9998C5.3335 22.5853 5.8954 21.2288 6.89559 20.2286C7.89579 19.2284 9.25234 18.6665 10.6668 18.6665H21.3335C22.748 18.6665 24.1045 19.2284 25.1047 20.2286C26.1049 21.2288 26.6668 22.5853 26.6668 23.9998C26.6668 24.7071 26.3859 25.3854 25.8858 25.8855C25.3857 26.3856 24.7074 26.6665 24.0002 26.6665H8.00016C7.29292 26.6665 6.61464 26.3856 6.11454 25.8855C5.61445 25.3854 5.3335 24.7071 5.3335 23.9998Z" fill="white"/>
 <path stroke="currentColor" d="M5.3335 23.9998C5.3335 22.5853 5.8954 21.2288 6.89559 20.2286C7.89579 19.2284 9.25234 18.6665 10.6668 18.6665H21.3335C22.748 18.6665 24.1045 19.2284 25.1047 20.2286C26.1049 21.2288 26.6668 22.5853 26.6668 23.9998C26.6668 24.7071 26.3859 25.3854 25.8858 25.8855C25.3857 26.3856 24.7074 26.6665 24.0002 26.6665H8.00016C7.29292 26.6665 6.61464 26.3856 6.11454 25.8855C5.61445 25.3854 5.3335 24.7071 5.3335 23.9998Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
 <path stroke="currentColor" d="M16 13.3333C18.2091 13.3333 20 11.5424 20 9.33325C20 7.12411 18.2091 5.33325 16 5.33325C13.7909 5.33325 12 7.12411 12 9.33325C12 11.5424 13.7909 13.3333 16 13.3333Z" stroke="white" stroke-width="2"/>
-</svg>
-Facility Profile
-          </a>
-
-          <a href="view_facility_profile.html" class="group nav-item w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
-            <svg class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+</svg> Facility Profile
+    </a>
+    
+    <a href="create_facility_profile.html?view=true" class="group nav-item w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
+         <svg class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1451_1206)">
 <path stroke="currentColor" d="M28.9284 22.5001V26.7858C28.9284 27.3541 28.7027 27.8992 28.3008 28.301C27.8989 28.7029 27.3539 28.9287 26.7856 28.9287H22.4999M22.4999 1.07153H26.7856C27.3539 1.07153 27.8989 1.2973 28.3008 1.69916C28.7027 2.10103 28.9284 2.64607 28.9284 3.21439V7.5001M1.07129 7.5001V3.21439C1.07129 2.64607 1.29705 2.10103 1.69892 1.69916C2.10078 1.2973 2.64583 1.07153 3.21415 1.07153H7.49986M7.49986 28.9287H3.21415C2.64583 28.9287 2.10078 28.7029 1.69892 28.301C1.29705 27.8992 1.07129 27.3541 1.07129 26.7858V22.5001" stroke="#2F7AF0" stroke-linecap="round" stroke-linejoin="round"/>
 <path stroke="currentColor" d="M14.9999 13.9286C16.1365 13.9286 17.2266 13.4771 18.0303 12.6733C18.8341 11.8696 19.2856 10.7795 19.2856 9.64289C19.2856 8.50625 18.8341 7.41616 18.0303 6.61243C17.2266 5.80871 16.1365 5.35718 14.9999 5.35718C13.8632 5.35718 12.7731 5.80871 11.9694 6.61243C11.1657 7.41616 10.7142 8.50625 10.7142 9.64289C10.7142 10.7795 11.1657 11.8696 11.9694 12.6733C12.7731 13.4771 13.8632 13.9286 14.9999 13.9286ZM23.1492 23.5715C22.5953 21.8454 21.5077 20.3398 20.0431 19.2716C18.5785 18.2035 16.8126 17.6279 14.9999 17.6279C13.1871 17.6279 11.4212 18.2035 9.95664 19.2716C8.49206 20.3398 7.40445 21.8454 6.85059 23.5715H23.1492Z" fill="#2F7AF0"/>
@@ -162,9 +163,9 @@ Facility Profile
 <rect width="30" height="30" fill="white"/>
 </clipPath>
 </defs>
-</svg>
-View Facility Profile
-          </a>
+</svg> View Facility Profile
+    </a>
+</nav>
     </nav>
       </div>
 
@@ -198,43 +199,24 @@ View Facility Profile
       
       <div class="flex-1">
 
-        <header class="h-20 bg-white px-10 flex items-center justify-between sticky top-0 z-20"
+       <header class="h-20 bg-white px-10 flex items-center justify-between sticky top-0 z-20"
         >
-        
-          <div class="relative w-80">
-            <input
-              type="text"
-              placeholder="Search..."
-              class="w-full bg-white border border-black rounded-full pl-5 pr-10 py-2 text-xs focus:outline-none focus:border-brand-500 transition shadow-sm"
-            />
-            <i
-              class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-700 text-sm"
-            ></i>
-          </div>
-
-          
-          <div class="flex items-center gap-20">
-            <div class="relative cursor-pointer">
-              <i class="fa-regular fa-bell text-2xl text-slate-800"></i>
-              <span
-                class="absolute -top-1.5 -right-1.5 bg-brand-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center"
-                >4</span
-              >
-            </div>
-            <div class="flex items-center gap-3 cursor-pointer group">
-              <div class="w-10 h-10 rounded-full bg-slate-300 transition"></div>
-              <div class="text-left">
-                <div class="text-xs font-bold text-slate-900 leading-tight">
-                  St Luke's Hospital
+                <div class="relative w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" placeholder="Search..." class="w-full pl-9 pr-4 py-1.5 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-cyan-500 transition">
                 </div>
-                <div class="text-[11px] text-slate-500">Facility Profile</div>
-              </div>
-              <i
-                class="fa-solid fa-chevron-down text-xs text-slate-600 ml-1"
-              ></i>
-            </div>
-          </div>
-        </header>
+              <div class="flex items-center gap-2">
+    <div id="top-bar-avatar" class="w-8 h-8 rounded-full bg-cyan-600 text-white flex items-center justify-center font-bold text-xs overflow-hidden border border-slate-200">
+        <img id="top-bar-img" class="w-full h-full object-cover hidden" alt="Logo">
+        <span id="top-bar-initials">MH</span>
+    </div>
+    
+    <div class="text-left hidden sm:block">
+        <p id="top-bar-name" class="text-xs font-semibold text-slate-800">MedHirely Facility</p>
+        <p class="text-[10px] text-slate-400">Facility Profile</p>
+    </div>
+</div>
+            </header>
 
 
         <main class="flex-1 flex items-center justify-center p-6">
@@ -261,7 +243,7 @@ View Facility Profile
                 </p>
 
                 <div class="w-full mt-8 space-y-3 px-6">
-                    <a href="preferred-pool.html"><button class="w-full bg-[#047A15] text-white font-semibold py-2.5 px-4 rounded-md shadow-sm hover:bg-emerald-700 transition-colors">
+                    <a href="preferred-pool.html"><button class="w-full bg-[#047A15] text-white font-semibold py-2.5 px-4 rounded-md mb-5 shadow-sm hover:bg-emerald-700 transition-colors">
                         Yes, Rehire
                     </button></a>
                     <a href="not-preferred-pool.html"><button class="w-full bg-transparent border border-red-400 text-red-600 font-semibold py-2.5 px-4 rounded-md hover:bg-red-50 transition-colors">

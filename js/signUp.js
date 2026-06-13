@@ -1,71 +1,134 @@
-// js/signup.js
+/**
+ * MedHirely - Facility Signup Controller
+ * Frontend integration script to connect with the backend group's API.
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const signupBtn = document.getElementById("signup-submit-btn");
+  // ==========================================
+  // 1. DOM ELEMENT SELECTION HOOKS
+  // ==========================================
+  const signupForm = document.getElementById("signup-form");
+  const emailInput = document.getElementById("email-address");
+  const roleInput = document.getElementById("role");
+  const passwordInput = document.getElementById("password");
+  const confirmPasswordInput = document.getElementById("confirm-password");
+  const termsCheckbox = document.getElementById("terms-checkbox");
+  const submitBtn = document.getElementById("create-account-btn");
+  const togglePasswordIcons = document.querySelectorAll(
+    ".toggle-password-visibility",
+  );
 
-  if (signupBtn) {
-    console.log(
-      "🚀 Custom Sign-Up script linked and listening for form submission!",
-    );
+  // ==========================================
+  // 2. BACKEND GROUP COUPLING URL
+  // ==========================================
+  // 🌟 ASK THE BACKEND TEAM FOR THEIR LOCAL URL.
+  // Replace 'http://localhost:5000' with whatever port or IP address they are running.
+  const BACKEND_SIGNUP_URL =
+    "https://medhirely-backend.onrender.com/api/auth/register";
 
-    signupBtn.addEventListener("click", async (e) => {
-      e.preventDefault(); // Keeps the page from refreshing layout assets
+  // ==========================================
+  // 3. PASSWORD VISIBILITY TOGGLE ENGINE
+  // ==========================================
+  togglePasswordIcons.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      const targetInput = icon.closest(".relative").querySelector("input");
+      if (targetInput) {
+        if (targetInput.type === "password") {
+          targetInput.type = "text";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        } else {
+          targetInput.type = "password";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        }
+      }
+    });
+  });
 
-      // 1. Collect values from your HTML using your exact pre-existing IDs
-      const facilityName =
-        document.getElementById("regFacilityName")?.value.trim() || "";
-      const email = document.getElementById("regEmail")?.value.trim() || "";
-      const countryCode = document.getElementById("countryCode")?.value || "";
-      const phone = document.getElementById("regContact")?.value.trim() || "";
-      const password = document.getElementById("regPassword")?.value || "";
-      const confirmPassword =
-        document.getElementById("confirmPassword")?.value || "";
+  // ==========================================
+  // 4. FRONTEND FORM VALIDATION
+  // ==========================================
+  function validateFormInputs() {
+    const email = emailInput ? emailInput.value.trim() : "";
+    const role = roleInput ? roleInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value : "";
+    const confirmPassword = confirmPasswordInput
+      ? confirmPasswordInput.value
+      : "";
+    const isTermsAgreed = termsCheckbox ? termsCheckbox.checked : false;
 
-      // 2. Client-side validation checks
-      if (!facilityName || !email || !password) {
-        alert("Please fill out all required fields.");
+    if (!email || !role || !password || !confirmPassword) {
+      return { valid: false, message: "Please fill in all fields." };
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return { valid: false, message: "Please enter a valid email address." };
+    }
+
+    if (password.length < 6) {
+      return {
+        valid: false,
+        message: "Password must be at least 6 characters long.",
+      };
+    }
+
+    if (password !== confirmPassword) {
+      return { valid: false, message: "Passwords do not match." };
+    }
+
+    if (!isTermsAgreed) {
+      return {
+        valid: false,
+        message: "You must agree to the Terms of Service.",
+      };
+    }
+
+    return { valid: true };
+  }
+
+  // Real-time button activation
+  if (signupForm && submitBtn) {
+    signupForm.addEventListener("input", () => {
+      const validation = validateFormInputs();
+      if (validation.valid) {
+        submitBtn.removeAttribute("disabled");
+        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      } else {
+        submitBtn.setAttribute("disabled", "true");
+        submitBtn.classList.add("opacity-50", "cursor-not-allowed");
+      }
+    });
+  }
+
+  // ==========================================
+  // 5. DATA TRANSMISSION TO BACKEND GROUP
+  // ==========================================
+  if (signupForm) {
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevents page reload/clear issues!
+
+      const validation = validateFormInputs();
+      if (!validation.valid) {
+        alert(validation.message);
         return;
       }
 
-      if (password !== confirmPassword) {
-        alert("Validation Error: Passwords do not match!");
-        return;
-      }
-
-      // 3. Saved the email in Local Storage for the Email Verification screen
-      localStorage.setItem("userEmail", email);
-
-      // 4. FIX: Split the facility name into firstName and lastName to bypass server schema requirements
-      const names = facilityName.split(" ");
-      const fName = names[0] || "Facility";
-      const lName = names.slice(1).join(" ") || "Admin";
-
-      // 5. Construct the payload package using the new required properties
+      // Payloads built matching the team's router expectation request headers
       const signupPayload = {
-        firstName: fName, // Satisfies backend requirements
-        lastName: lName, // Satisfies backend requirements
-        facilityName: facilityName, // Keeps your business info intact
-        email: email,
-        phoneNumber: `${countryCode}${phone}`,
-        password: password,
+        email: emailInput.value.trim().toLowerCase(),
+        role: roleInput.value.trim(),
+        password: passwordInput.value,
       };
 
-      console.log(
-        "📦 Transmitting updated registration packet:",
-        signupPayload,
-      );
-
-      // 6. Pull your target URL from config.js
-      const signupUrl =
-        window.APP_CONFIG?.AUTH?.SIGNUP ||
-        "https://medhirely-backend.onrender.com/api/auth/register";
+      if (submitBtn) {
+        submitBtn.textContent = "Creating Account...";
+        submitBtn.setAttribute("disabled", "true");
+      }
 
       try {
-        signupBtn.innerText = "Registering Account...";
-        signupBtn.disabled = true;
-
-        // 7. Fire off the live network request to the Render server
-        const response = await fetch(signupUrl, {
+        const response = await fetch(BACKEND_SIGNUP_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -73,26 +136,38 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(signupPayload),
         });
 
-        const data = await response.json();
+        const result = await response.json();
 
         if (response.ok) {
-          alert(
-            " Facility registered successfully! Moving on to verification.",
-          );
-          window.location.href = "email_verification.html";
+          alert("Registration successful!");
+
+          if (result.token) {
+            localStorage.setItem("userToken", result.token);
+          }
+
+          // Move forward to dashboard/profile onboarding page view
+          window.location.href = "email_verification.html"; // Matches your active dashboard file string name
         } else {
-          // This catches any remaining server validation messages
           alert(
-            `Registration Rejected: ${data.message || "Check form parameters."}`,
+            "Registration failed: " +
+              (result.message || "Validation error from backend group."),
           );
+          resetSubmitButton();
         }
-      } catch (err) {
-        console.error("❌ Communication failed:", err);
-        alert("Could not reach the database. Server might be spinning up.");
-      } finally {
-        signupBtn.innerText = "Create Account";
-        signupBtn.disabled = false;
+      } catch (error) {
+        console.error("API connection failure:", error);
+        alert(
+          "Could not establish a connection to the backend group local server. Make sure they have started their app and CORS is enabled for your origin!",
+        );
+        resetSubmitButton();
       }
     });
+  }
+
+  function resetSubmitButton() {
+    if (submitBtn) {
+      submitBtn.textContent = "Create an Account";
+      submitBtn.removeAttribute("disabled");
+    }
   }
 });

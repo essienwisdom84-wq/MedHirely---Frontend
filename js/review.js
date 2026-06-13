@@ -65,4 +65,6 @@
         submitBtn.innerText = "Submit Review";
         submitBtn.className = "w-full bg-[#2f74fa] text-white font-bold text-sm py-2.5 rounded-lg border border-transparent shadow-md hover:bg-blue-600 transition active:scale-[0.99] focus:outline-none";
       }, 3000);
+
+      
     });
