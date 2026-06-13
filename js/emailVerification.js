@@ -1,142 +1,82 @@
-const resendBtn = document.getElementById("resendBtn");
-const resendText = document.getElementById("resendText");
-const verifyBtn = document.getElementById("verifyBtn")
-const inputs = document.querySelectorAll(".otp");
-const user_email = document.getElementById("email")
-const resendOtpUrl = window.APP_CONFIG?.AUTH?.RESEND_OTP || "https://medhirely-backend.onrender.com/api/auth/resend-email-otp"
- const verifyEmailUrl = window.APP_CONFIG?.AUTH?.OTP || "https://medhirely-backend.onrender.com/api/auth/verify-email";
+document.addEventListener("DOMContentLoaded", () => {
+    const emailDisplay = document.getElementById("email");
+    const verifyBtn = document.querySelector("button") || document.getElementById("verifyBtn");
+    const otpInputs = document.querySelectorAll("input[type='text']");
 
-    inputs.forEach((input, index) => {
+    // 📧 Pull the email address that was saved during signup
+    const savedEmail = localStorage.getItem('medhirely_signup_email') || "jonesprincealexzander@gmail.com";
+    if (emailDisplay) {
+        emailDisplay.textContent = savedEmail;
+    }
 
-      input.addEventListener("input", () => {
-
-        if (input.value.length === 1 &&
-            index < inputs.length - 1) {
-
-          inputs[index + 1].focus();
-        }
-      });
-
-      input.addEventListener("keydown", (e) => {
-
-        if (
-          e.key === "Backspace" &&
-          input.value === "" &&
-          index > 0
-        ) {
-          inputs[index - 1].focus();
-        }
-      });
+    // Automatically shift cursor focus to the next box as you type
+    otpInputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+        });
+        
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
     });
 
-    const email = localStorage.getItem("userEmail");
-    user_email.innerText = `${email}`;
+    // Handle form submission when clicking the blue button
+    if (verifyBtn) {
+        verifyBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
 
-    verifyBtn.addEventListener("click", async () => {
-  const otp = [...document.querySelectorAll(".otp")]
-    .map(input => input.value)
-    .join("");
+            // Assemble the 6 digits from the input fields
+            let enteredOtp = "";
+            otpInputs.forEach(input => enteredOtp += input.value.trim());
 
-    const email = localStorage.getItem("userEmail");
-    user_email.innerText = `${email}`;
+            if (enteredOtp.length < 6) {
+                alert("Please enter the complete 6-digit verification code.");
+                return;
+            }
 
+            verifyBtn.textContent = "Verifying Code...";
+            verifyBtn.disabled = true;
 
-    try {
-        verifyBtn.innerText = "Verifing Email...";
-        verifyBtn.disabled = true;
+            // 🎯 NATIVE API CALL: Deliver code straight to your backend auth validator
+            try {
+                const response = await fetch('https://medhirely-backend.onrender.com/api/auth/verify-email', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: savedEmail,
+                        otp: enteredOtp
+                    }),
+                });
 
-        // Send OTP to backend here
-        const response = await fetch(verifyEmailUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email : `${email}`,
-      otp : `${otp}`
-    })
-  }
-);
+                const result = await response.json();
 
-const data = await response.json();
+                if (response.ok) {
+                    alert("Email verified successfully!");
 
-    if (response.ok) {
-      alert(data.message || "🎉Email verified successfully!");
+                    // 🔑 Crucial: Save the final signed session token to access protected routes later
+                    if (result.token) {
+                        localStorage.setItem("userToken", result.token);
+                    }
 
-    
-      window.location.href = "login.html";
-    } else {
-      alert(data.message);
-    }
-
-      } catch (error) {
-        alert("Unable to connect to the server. Please try again.")
+                    // Direct user straight to profile creation workspace
+                    window.location.href = "create_facility_profile.html";
+                } else {
+                    alert("Verification failed: " + (result.message || "Invalid OTP code."));
+                    verifyBtn.textContent = "Verify Email";
+                    verifyBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error("OTP network validation crash:", error);
+                alert("A network connection error occurred while validating code.");
+                verifyBtn.textContent = "Verify Email";
+                verifyBtn.disabled = false;
+            }
+        });
     }
 });
-
-      
-        
-
-
-resendBtn.addEventListener("click", async () => {
-
-  try {
-
-    const response = await fetch(resendOtpUrl,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: `${email}`
-        })
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        data.message || "Failed to resend OTP"
-      );
-    } else{
-         alert(data.message || "OTP sent successfully")
-    }
-    startCountdown();
-
-  } catch (error) {
-
-
-    alert(error.message);
-  }
-
-});
-
-function startCountdown() {
-
-  let seconds = 30;
-
-  resendBtn.disabled = true;
-
-  resendBtn.textContent = `Resend in ${seconds}s`;
- resendBtn.classList.add("text-gray-400", "cursor-not-allowed");
-  const timer = setInterval(() => {
-
-    seconds--;
-
-    resendBtn.textContent =
-      `Resend in ${seconds}s`;
-
-    if (seconds <= 0) {
-
-      clearInterval(timer);
-
-      resendBtn.disabled = false;
-
-      resendBtn.textContent = "Resend";
-    }
-
-  }, 1000);
-}
-

@@ -207,7 +207,7 @@ Staff's Ratings
 </svg>
 Facility Profile
           </a>
-
+<a href="view_facility_profile.html">
           <button id="tab-view-btn" onclick="switchTab('view')" class="w-full flex items-center font-bold gap-3 px-3 py-2.5 rounded-lg text-black transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
     <svg class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1451_1206)">
@@ -222,7 +222,7 @@ Facility Profile
 </clipPath>
 </defs>
 </svg> View Facility Profile
-</button>
+</button></a>
     </nav>
       </div>
 
@@ -277,125 +277,80 @@ Facility Profile
 </div>
             </header>
 
-            <section id="edit-profile-section" class="bg-[#e0ecfb] rounded-2xl border border-slate-200 shadow-sm p-8 max-w-5xl">
-                <h2 class="text-xl font-bold text-slate-800 mb-6">Update Facility Profile</h2>
+             <div class="p-6 md:p-8 max-w-5xl">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Update Facility Profile</h2>
+
+            <form id="facility-update-form" onsubmit="submitProfileForm(event)" class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 
-                <form id="facilityForm" class="grid grid-cols-1 md:grid-cols-3 gap-8" onsubmit="saveProfile(event)">
-                    
-                    <div class="flex flex-col items-center md:items-start space-y-4">
-                        <label class="block text-sm font-semibold text-slate-700">Facility Logo</label>
-                        <div class="relative group w-full max-w-[240px] aspect-[4/3] bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center overflow-hidden cursor-pointer hover:border-cyan-400 transition" onclick="document.getElementById('logoInput').click()">
-                            <img id="logoPreview" class="hidden w-full h-full object-cover" alt="Logo preview">
-                            <div id="uploadPlaceholder" class="text-center p-4">
-                                <i class="fa-regular fa-image text-3xl text-slate-300 mb-2"></i>
-                                <p class="text-xs font-medium text-slate-500">Click to upload logo</p>
-                                <p class="text-[10px] text-slate-400 mt-1">PNG, JPG up to 2MB</p>
-                            </div>
-                            <div class="absolute bottom-2 right-2 w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-cyan-600 shadow-sm">
-                                <i class="fa-solid fa-camera text-xs"></i>
+                <div class="space-y-4">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Facility Logo</p>
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                        <div class="aspect-video w-full rounded-xl bg-slate-100 overflow-hidden relative group border border-slate-200 cursor-pointer">
+                            <img id="logo-preview" src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=600&q=80" class="object-cover h-full w-full">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span class="text-white text-xs font-semibold">📷 Change Logo</span>
                             </div>
                         </div>
-                        <input type="file" id="logoInput" accept="image/*" class="hidden" onchange="previewImage(event)">
+                        <input type="file" id="logo-file-input" class="hidden" accept="image/*">
+
+                        <div class="bg-slate-50 p-3 rounded-xl border border-dashed border-slate-200 text-center">
+                            <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wide">Logged In As</p>
+                            <p class="text-xs font-semibold text-slate-600 truncate mt-0.5" id="logged-in-user">admin@stlukeshospital.org</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         
-                        <div class="w-full max-w-[240px] bg-slate-50 border border-slate-200 rounded-lg p-3 text-center md:text-left mt-2">
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Logged in as</p>
-                            <p id="loggedInEmail" class="text-xs font-medium text-slate-700 truncate mt-0.5">facility@stlukes.com</p>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Facility Name *</label>
+                            <input type="text" id="input-facilityName" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Contact Email Address *</label>
+                            <input type="email" id="input-email" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">License Number *</label>
+                            <input type="text" id="input-licenseNumber" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Years of Experience *</label>
+                            <input type="number" id="input-experienceYears" min="0" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Phone Number *</label>
+                            <input type="tel" id="input-phoneNumber" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Street Address *</label>
+                            <input type="text" id="input-address" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all text-slate-700">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Facility Biography / About *</label>
+                            <textarea id="input-bio" rows="4" required class="w-full text-sm px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-sky-500/20 focus:border-[#0284C7] outline-none transition-all resize-none text-slate-700"></textarea>
                         </div>
                     </div>
 
-                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Facility Name <span class="text-rose-500">*</span></label>
-                            <input type="text" id="facilityName" required placeholder="Enter facility name" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Facility Type <span class="text-rose-500">*</span></label>
-                            <select id="facilityType" required class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:border-cyan-500 transition">
-                                <option value="">Select facility type</option>
-                                <option value="Hospital">Hospital</option>
-                                <option value="Clinic">Clinic</option>
-                                <option value="Nursing Home">Nursing Home</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Registration Number <span class="text-rose-500">*</span></label>
-                            <input type="text" id="regNumber" required placeholder="Enter registration number" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Tax ID <span class="text-slate-400">(Optional)</span></label>
-                            <input type="text" id="taxId" placeholder="Enter tax ID" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Contact Email Address <span class="text-rose-500">*</span></label>
-                            <input type="email" id="contactEmail" required placeholder="Enter email address" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Phone Number <span class="text-rose-500">*</span></label>
-                            <input type="tel" id="phoneNumber" required placeholder="Enter phone number" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Secondary Phone Number <span class="text-slate-400">(Optional)</span></label>
-                            <input type="tel" id="secondaryPhone" placeholder="Enter secondary phone number" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Country <span class="text-rose-500">*</span></label>
-                            <input type="text" id="country" required placeholder="Enter country" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">City <span class="text-rose-500">*</span></label>
-                            <input type="text" id="city" required placeholder="Enter city" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Postal Code <span class="text-rose-500">*</span></label>
-                            <input type="text" id="postalCode" required placeholder="Enter postal code" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Street Address <span class="text-rose-500">*</span></label>
-                            <input type="text" id="address" required placeholder="Enter address" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 transition">
-                        </div>
-
-                        <div class="sm:col-span-2 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-2">
-                            <button type="button" class="px-5 py-2 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition">Cancel</button>
-                            <button type="submit" class="px-5 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-700 shadow-sm flex items-center gap-2 transition">
-                                <i class="fa-regular fa-floppy-disk"></i> Save Facility Profile
-                            </button>
-                        </div>
+                    <div class="flex items-center justify-end space-x-4 pt-4 border-t border-slate-50">
+                        <button type="button" onclick="window.location.href='view_facility_profile.html'" class="px-5 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors">Cancel</button>
+                        <button type="submit" id="save-btn" class="px-6 py-2.5 bg-[#0284C7] hover:bg-[#0369a1] text-white text-sm font-semibold rounded-xl shadow-sm transition-all flex items-center gap-2">
+                            <span id="btn-text">Save Facility Profile</span>
+                            <div id="btn-spinner" class="animate-spin rounded-full h-4 w-4 border-b-2 border-white hidden"></div>
+                        </button>
                     </div>
-                </form>
-            </section>
-
-            <section id="view-profile-section" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-8 max-w-5xl">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-6 mb-6 gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-20 h-20 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center">
-                            <img id="view-logo" class="w-full h-full object-cover hidden" alt="Facility Logo">
-                            <i id="view-logo-placeholder" class="fa-solid fa-building text-3xl text-slate-300"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-2xl font-bold text-slate-800" id="view-title">Facility Profile Name</h2>
-                            <p class="text-sm text-cyan-600 font-medium" id="view-badge">Hospital</p>
-                        </div>
-                    </div>
-                    <button onclick="switchTab('edit')" class="px-4 py-2 border border-slate-200 text-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50 flex items-center gap-2 self-start sm:self-auto shadow-sm transition">
-                        <i class="fa-solid fa-pen"></i> Edit Profile
-                    </button>
                 </div>
+            </form>
+        </div>
+    </main>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Registration No:</span> <span class="text-slate-800 font-medium" id="view-reg">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Tax ID:</span> <span class="text-slate-800 font-medium" id="view-tax">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Contact Email:</span> <span class="text-slate-800 font-medium" id="view-email">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Primary Phone:</span> <span class="text-slate-800 font-medium" id="view-phone">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Secondary Phone:</span> <span class="text-slate-800 font-medium" id="view-sec-phone">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Country:</span> <span class="text-slate-800 font-medium" id="view-country">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">City:</span> <span class="text-slate-800 font-medium" id="view-city">--</span></div>
-                    <div class="py-2 border-b border-slate-50"><span class="text-slate-400 inline-block w-40 font-medium">Postal Code:</span> <span class="text-slate-800 font-medium" id="view-postal">--</span></div>
-                    <div class="py-2 border-b border-slate-50 md:col-span-2"><span class="text-slate-400 inline-block w-40 font-medium">Street Address:</span> <span class="text-slate-800 font-medium" id="view-address">--</span></div>
-                </div>
-            </section>
-
-        </main>
-    </div>
 
 </body>
 </html>

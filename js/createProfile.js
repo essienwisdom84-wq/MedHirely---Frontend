@@ -1,215 +1,146 @@
-// Setup initial user state simulator
-const loggedInUserEmail = "admin@stlukeshospital.org";
-let profileLogoBase64 = "";
+const API_URL = "https://medhirely-backend.onrender.com/api/facilities";
 
-// Inside createProfile.js
+const logoPreview = document.getElementById("logo-preview");
+const fileInput = document.getElementById("logo-file-input");
+const headerAvatar = document.getElementById("header-avatar");
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Put current logged in user email under image box
-  if (document.getElementById("loggedInEmail")) {
-    document.getElementById("loggedInEmail").textContent = loggedInUserEmail;
-  }
+// Profile Photo Persistence Handler
+if (logoPreview && fileInput) {
+  logoPreview.parentElement.addEventListener("click", () => fileInput.click());
 
-  // 1. Hydrate existing profile data from localStorage if saved before
-  loadProfileData();
-
-  // 2. NEW MAGIC: Check if the user came from another page via "View Facility Profile"
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get("view") === "true") {
-    switchTab("view"); // Instantly flips over to the view panel layout!
-  }
-});
-
-// 1. Image Preview Engine
-function previewImage(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      profileLogoBase64 = e.target.result;
-      displayLogo(profileLogoBase64);
-    };
-    reader.readAsDataURL(file);
-  }
-}
-
-function displayLogo(base64Uri) {
-  const preview = document.getElementById("logoPreview");
-  const placeholder = document.getElementById("uploadPlaceholder");
-  preview.src = base64Uri;
-  preview.classList.remove("hidden");
-  placeholder.classList.add("hidden");
-}
-
-// 2. Tab Navigation System
-function switchTab(tab) {
-  const editSection = document.getElementById("edit-profile-section");
-  const viewSection = document.getElementById("view-profile-section");
-  const editBtn = document.getElementById("tab-edit-btn");
-  const viewBtn = document.getElementById("tab-view-btn");
-
-  if (!editSection || !viewSection) {
-    console.error("Profile sections are missing from this page layout.");
-    return;
-  }
-
-  if (tab === "edit") {
-    // Toggle Visibility Panels
-    editSection.classList.remove("hidden");
-    viewSection.classList.add("hidden");
-
-    // 🌟 SAFETY CHECK: Only update sidebar buttons if they actually exist on this page
-    if (editBtn && viewBtn) {
-      editBtn.className =
-        "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg bg-cyan-50 text-cyan-600 font-medium transition";
-      viewBtn.className =
-        "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-50 transition";
+  fileInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const base64Image = e.target.result;
+        logoPreview.src = base64Image;
+        if (headerAvatar) headerAvatar.src = base64Image;
+        localStorage.setItem("medhirely_facility_logo", base64Image);
+      };
+      reader.readAsDataURL(file);
     }
-  } else {
-    // Toggle Visibility Panels
-    editSection.classList.add("hidden");
-    viewSection.classList.remove("hidden");
+  });
+}
 
-    // 🌟 SAFETY CHECK: Only update sidebar buttons if they actually exist on this page
-    if (editBtn && viewBtn) {
-      viewBtn.className =
-        "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg bg-cyan-50 text-cyan-600 font-medium transition";
-      editBtn.className =
-        "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:bg-slate-50 transition";
+// Fetch and pre-populate your specific layout inputs
+async function fetchCurrentData() {
+  const savedLogo = localStorage.getItem("medhirely_facility_logo");
+  if (savedLogo) {
+    if (logoPreview) logoPreview.src = savedLogo;
+    if (headerAvatar) headerAvatar.src = savedLogo;
+  }
+
+  try {
+    const res = await fetch(
+      "https://medhirely-backend.onrender.com/api/facilities",
+    );
+    if (!res.ok) throw new Error("Backend failed to respond");
+    const data = await res.json();
+
+    const profile = Array.isArray(data) ? data[0] : data;
+    if (profile) {
+      if (document.getElementById("top-bar-name"))
+        document.getElementById("top-bar-name").textContent =
+          profile.FacilityName || "Petros";
+
+      // Map strictly to your UI fields from image 1000496678.jpg
+      if (document.getElementById("input-FacilityName"))
+        document.getElementById("input-facilityName").value =
+          profile.facilityName || "";
+      if (document.getElementById("input-FacilityType"))
+        document.getElementById("input-FacilityType").value =
+          profile.facilityType || "Hospital";
+      if (document.getElementById("input-licenseNumber"))
+        document.getElementById("input-licenseNumber").value =
+          profile.input-licenseNumber || "";
+      if (document.getElementById("input-TaxId"))
+        document.getElementById("input-TaxId").value = profile.taxId || "";
+      if (document.getElementById("input-email"))
+        document.getElementById("input-email").value = profile.email || "";
+      if (document.getElementById("input-phoneNumber"))
+        document.getElementById("input-phoneNumber").value =
+          profile.phoneNumber || "";
+      if (document.getElementById("input-SecondaryPhone"))
+        document.getElementById("input-SecondaryPhone").value =
+          profile.secondaryPhoneNumber || "";
+      if (document.getElementById("input-Country"))
+        document.getElementById("input-Country").value =
+          profile.country || "Nigeria";
+      if (document.getElementById("input-City"))
+        document.getElementById("input-City").value = profile.city || "Lagos";
+      if (document.getElementById("input-PostalCode"))
+        document.getElementById("input-PostalCode").value =
+          profile.postalCode || "";
+      if (document.getElementById("input-address"))
+        document.getElementById("input-address").value = profile.address || "";
     }
-
-    // Refresh the text readout values from memory storage
-    populateViewProfile();
+  } catch (err) {
+    console.warn("Could not retrieve profile fields. Server spinning up.", err);
   }
 }
 
-// 3. Save Form Logic
-function saveProfile(event) {
+// Full form submission matching your exact layout payload properties
+async function submitProfileForm(event) {
   event.preventDefault();
 
-  const profileData = {
-    logo: profileLogoBase64,
-    name: document.getElementById("facilityName").value,
-    type: document.getElementById("facilityType").value,
-    regNumber: document.getElementById("regNumber").value,
-    taxId: document.getElementById("taxId").value,
-    email: document.getElementById("contactEmail").value,
-    phone: document.getElementById("phoneNumber").value,
-    secPhone: document.getElementById("secondaryPhone").value,
-    country: document.getElementById("country").value,
-    city: document.getElementById("city").value,
-    postalCode: document.getElementById("postalCode").value,
-    address: document.getElementById("address").value,
+  const saveBtn = document.getElementById("save-btn");
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Connecting to Render...";
+  }
+
+  const token = localStorage.getItem("authToken");
+
+  // Build payload matching image 1000496678.jpg properties
+  const payload = {
+    facilityName: document.getElementById("input-facilityName")?.value || "",
+    facilityType:
+      document.getElementById("input-FacilityType")?.value || "Hospital",
+    licenseNumber:
+      document.getElementById("input-licenseNumber")?.value || "",
+    taxId: document.getElementById("input-TaxId")?.value || "",
+    email: document.getElementById("input-email")?.value || "",
+    phoneNumber: document.getElementById("input-phoneNumber")?.value || "",
+    secondaryPhoneNumber:
+      document.getElementById("input-SecondaryPhone")?.value || "",
+    country: document.getElementById("input-Country")?.value || "Nigeria",
+    city: document.getElementById("input-City")?.value || "Lagos",
+    postalCode: document.getElementById("input-PostalCode")?.value || "",
+    address: document.getElementById("input-address")?.value || "",
   };
 
-  // Save to LocalStorage browser cache
-  localStorage.setItem("facilityProfile", JSON.stringify(profileData));
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Clears 401 Unauthorized
+      },
+      body: JSON.stringify(payload),
+    });
 
-  // Sync Top Bar Profile UI info
-  updateTopBar(profileData);
-
-  // Pop Alert & Auto route to View profile
-  alert("Facility Profile Saved Successfully!");
-  switchTab("view");
-}
-
-// 4. Load & Populate Layer
-function loadProfileData() {
-  const stored = localStorage.getItem("facilityProfile");
-  if (stored) {
-    const data = JSON.parse(stored);
-
-    if (data.logo) {
-      profileLogoBase64 = data.logo;
-      displayLogo(data.logo);
-    }
-    document.getElementById("facilityName").value = data.name || "";
-    document.getElementById("facilityType").value = data.type || "";
-    document.getElementById("regNumber").value = data.regNumber || "";
-    document.getElementById("taxId").value = data.taxId || "";
-    document.getElementById("contactEmail").value = data.email || "";
-    document.getElementById("phoneNumber").value = data.phone || "";
-    document.getElementById("secondaryPhone").value = data.secPhone || "";
-    document.getElementById("country").value = data.country || "";
-    document.getElementById("city").value = data.city || "";
-    document.getElementById("postalCode").value = data.postalCode || "";
-    document.getElementById("address").value = data.address || "";
-
-    updateTopBar(data);
-  }
-}
-
-function populateViewProfile() {
-  const stored = localStorage.getItem("facilityProfile");
-
-  const imgEl = document.getElementById("view-logo");
-  const placeholderEl = document.getElementById("view-logo-placeholder");
-
-  if (stored) {
-    const data = JSON.parse(stored);
-
-    if (data.logo) {
-      imgEl.src = data.logo;
-      imgEl.classList.remove("hidden");
-      placeholderEl.classList.add("hidden");
-    } else {
-      imgEl.classList.add("hidden");
-      placeholderEl.classList.remove("hidden");
+    if (response.status === 401) {
+      throw new Error(
+        "Your session is unauthorized. Please sign up or log in again.",
+      );
     }
 
-    document.getElementById("view-title").textContent =
-      data.name || "Unnamed Facility";
-    document.getElementById("view-badge").textContent =
-      data.type || "Not Specified";
-    document.getElementById("view-reg").textContent = data.regNumber || "--";
-    document.getElementById("view-tax").textContent = data.taxId || "--";
-    document.getElementById("view-email").textContent = data.email || "--";
-    document.getElementById("view-phone").textContent = data.phone || "--";
-    document.getElementById("view-sec-phone").textContent =
-      data.secPhone || "--";
-    document.getElementById("view-country").textContent = data.country || "--";
-    document.getElementById("view-city").textContent = data.city || "--";
-    document.getElementById("view-postal").textContent =
-      data.postalCode || "--";
-    document.getElementById("view-address").textContent = data.address || "--";
+    if (!response.ok)
+      throw new Error(`Server returned error status: ${response.status}`);
+
+    window.location.href = "view_facility_profile.html";
+  } catch (error) {
+    console.error(error);
+    alert(
+      error.message ||
+        "Failed to save profile. Please wait a moment and try clicking Save again.",
+    );
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save Facility Profile";
+    }
   }
 }
 
-function updateTopBar(profileData) {
-  if (!profileData) return;
-
-  const topBarName = document.getElementById("top-bar-name");
-  const topBarImg = document.getElementById("top-bar-img");
-  const topBarInitials = document.getElementById("top-bar-initials");
-
-  // 1. Sync Text Display Name String
-  if (topBarName && profileData.name) {
-    topBarName.textContent = profileData.name;
-  }
-
-  // 2. Check if a Base64 logo data string exists in storage
-  if (
-    profileData.logo &&
-    profileData.logo.trim() !== "" &&
-    topBarImg &&
-    topBarInitials
-  ) {
-    topBarImg.src = profileData.logo;
-    topBarImg.classList.remove("hidden"); // Show the uploaded image
-    topBarInitials.classList.add("hidden"); // Hide the hardcoded initials text
-  } else if (profileData.name && topBarInitials && topBarImg) {
-    // Fallback: Use name text initials if no picture is uploaded
-    const initials = profileData.name.substring(0, 2).toUpperCase();
-    topBarInitials.textContent = initials;
-    topBarImg.classList.add("hidden");
-    topBarInitials.remove("hidden");
-  }
-}
-
-// Keep it exposed to global scope at the absolute bottom of the file
-window.updateTopBar = updateTopBar;
-
-// Add this at the very end of createProfile.js
-window.saveProfile = saveProfile;
-window.switchTab = switchTab;
-window.populateViewProfile = populateViewProfile;
+document.addEventListener("DOMContentLoaded", fetchCurrentData);

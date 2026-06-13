@@ -6,6 +6,7 @@
     <title>MedHirely - View Facility Profile</title>
    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/viewProfile.js"></script>
     <script src="../../js/globalProfile.js"></script>
     <script src="" defer></script>
     <style>
@@ -208,7 +209,7 @@ Staff's Ratings
 </svg> Facility Profile
     </a>
     
-    <a href="create_facility_profile.html?view=true" class="group nav-item w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
+    <a href="view_facility_profile.html" class="group nav-item w-full flex items-center gap-3 px-4 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ease-in-out transform hover:translate-x-2 hover:bg-[#5b8af0] hover:text-black text-black cursor-pointer">
          <svg class="text-[#2f74fa] group-hover:text-white transition-colors duration-200" width="25" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1451_1206)">
 <path stroke="currentColor" d="M28.9284 22.5001V26.7858C28.9284 27.3541 28.7027 27.8992 28.3008 28.301C27.8989 28.7029 27.3539 28.9287 26.7856 28.9287H22.4999M22.4999 1.07153H26.7856C27.3539 1.07153 27.8989 1.2973 28.3008 1.69916C28.7027 2.10103 28.9284 2.64607 28.9284 3.21439V7.5001M1.07129 7.5001V3.21439C1.07129 2.64607 1.29705 2.10103 1.69892 1.69916C2.10078 1.2973 2.64583 1.07153 3.21415 1.07153H7.49986M7.49986 28.9287H3.21415C2.64583 28.9287 2.10078 28.7029 1.69892 28.301C1.29705 27.8992 1.07129 27.3541 1.07129 26.7858V22.5001" stroke="#2F7AF0" stroke-linecap="round" stroke-linejoin="round"/>
@@ -276,147 +277,57 @@ Staff's Ratings
 </div>
             </header>
 
-         <main>
-            <div class="flex-1 bg-white m-3 rounded-lg shadow-md overflow-y-auto p-4">
-                <h1 class="text-2xl font-bold text-black mb-2">View Facility Profile</h1>
-        <form action="">
-          <div class="grid md:grid-cols-4 gap-4">
-          <div class="md:col-span-1 mt-10">
-            <div class="drop-shadow-lg mt-6">
-              <div id="previewContainer" class="bg-[#d8e8ff] py-2 border border-[#757575]  rounded-lg flex items-center justify-center relative">
-              <img 
-              id="facilityLogo" 
-              src="https://res.cloudinary.com/dej529fhw/image/upload/v1781009710/mdi_farm-house-outline_kcc4q0.png" 
-              alt="Facility Logo"
-              class="max-w-full max-h-full object-contain">
-              <label for="image_input" class="absolute bg-white rounded-full p-2 border border-[#757575] -bottom-2.5 -right-1.5 cursor-pointer">
-                <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781011032/Vector_yef7bt.png"
-                 alt="camara_icon" 
-                 class="p-2">
-              </label>
-            </div>
-            <input type="file" id="image_input" name="image_input" class="hidden" accept=".png,.jpg">
-            </div>
-            <div class="flex flex-col justify-center items-center m-1">
-              <p class="text-black text-lg font-bold">Click to upload logo</p>
-              
-            </div>
-          </div>
-          <div class="md:col-span-3 p-10">
-            <h1 class="font-bold text-black flex items-center gap-2 text-2xl p-1">St Luke's Hospital<span class="rounded-lg bg-[#9fff9a] text-[#185d03] text-xs px-1">Active</span></h1>
-             <p class="text-[#33363f] p-2">Healthcare Services</p>
-             <div>
-              <div class="mt-5 grid grid-cols-[50px_250px_1fr] gap-y-6">
-                <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125390/Vector_3_i8i3gh.png" class="w-5 h-5">
+         <div class="p-6 md:p-8 max-w-4xl">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                <div class="h-32 bg-gradient-to-r from-sky-500 to-[#0284C7] p-6 flex items-end">
+                    <h2 class="text-2xl font-bold text-white tracking-wide" id="view-FacilityName">...</h2>
                 </div>
-                <div class="flex justify-center text-black font-bold">
-                  <p>Registration Number</p>
-                </div>
-                <div>
-                  <p>HSH/REG/2026/0012</p>
-                </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125371/Vector_4_abhvvb.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Email Address</p>
-                 </div>
-                 <div class="lowercase">
-                  <p>stlukeshospital@gmail.com</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125275/Vector_5_clk9sw.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Country</p>
-                 </div>
-                 <div>
-                  <p>Nigeria</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125258/Vector_6_hoipnd.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Postal Code</p>
-                 </div>
-                 <div>
-                  <p>100001</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125258/Vector_6_hoipnd.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Facility Type</p>
-                 </div>
-                 <div>
-                  <p>Private Hospital</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125235/Group_zndkcw.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Tax ID</p>
-                 </div>
-                 <div class="uppercase">
-                  <p>TA098004</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125230/Vector_7_mjkjpu.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Phone Number</p>
-                 </div>
-                 <div>
-                  <p>+234 9019 333 1211</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125230/Vector_7_mjkjpu.png" class="w-5 h-5">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Secondary Phone Number</p>
-                 </div>
-                 <div>
-                  <p>+234 9019 222 5511</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125193/Group_1_lq2axy.png" class="w-6 h-6">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>City</p>
-                 </div>
-                 <div>
-                  <p>Lekki, Lagos</p>
-                 </div>
-                 <div>
-                  <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781125193/Group_1_lq2axy.png" class="w-6 h-6">
-                 </div>
-                 <div class="flex justify-center text-black font-bold">
-                  <p>Address</p>
-                 </div>
-                  <div>
-                    <p>99  Millenium Estate, Lekki Phase 1, Lagos State</p>
-                  </div>
-              </div>
-              
-           </div>
-           
-          </div>
-           
-           
-        </form>
-       
+                
+                <div class="p-6 md:p-8 space-y-6">
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-[#0284C7] border border-sky-100">
+                            <span id="view-experienceYears">0</span> Years Experience
+                        </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                            License: <span id="view-licenseNumber">...</span>
+                        </span>
+                    </div>
 
+                    <div>
+                        <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">About the Facility</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed whitespace-pre-line" id="view-bio">...</p>
+                    </div>
+
+                    <hr class="border-slate-100" />
+
+                    <div>
+                        <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-3">Contact Details</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl">
+                                <p class="text-[10px] uppercase font-bold text-slate-400">Email Address</p>
+                                <p class="text-sm font-semibold text-slate-700 mt-0.5" id="emailAddress">...</p>
+                            </div>
+                            <div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl">
+                                <p class="text-[10px] uppercase font-bold text-slate-400">Phone Number</p>
+                                <p class="text-sm font-semibold text-slate-700 mt-0.5" id="phoneNumber">...</p>
+                            </div>
+                            <div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl md:col-span-2">
+                                <p class="text-[10px] uppercase font-bold text-slate-400">Physical Location Address</p>
+                                <p class="text-sm font-semibold text-slate-700 mt-0.5" id="physicalAddress">...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-4 border-t border-slate-50">
+                        <button onclick="window.location.href='create_facility_profile.html'" class="px-5 py-2.5 bg-[#0284C7] hover:bg-[#0369a1] text-white text-sm font-semibold rounded-xl shadow-sm transition-all">
+                            Edit Profile Details
+                        </button>
+                    </div>
+                </div>
             </div>
-             <div class="flex justify-end mt-10">
-                <a href="post-a-new-shift.html"><button class="bg-blue-600 text-white rounded-xl px-4 py-2 flex items-center gap-2">
-                   <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781129007/Vector_8_xbigtw.png" class="w-5 h-5">
-                   <span>Back to Dashboard</span>
-                </button></a>
-              </div>
-         </main>
-    </div>
-      </div>
-    </div>
-  </body>
+        </div>
+    </main>
+
+   
+</body>
 </html>

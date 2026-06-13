@@ -1,173 +1,117 @@
-/**
- * MedHirely - Facility Signup Controller
- * Frontend integration script to connect with the backend group's API.
- */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // 1. DOM ELEMENT SELECTION HOOKS
-  // ==========================================
-  const signupForm = document.getElementById("signup-form");
-  const emailInput = document.getElementById("email-address");
-  const roleInput = document.getElementById("role");
-  const passwordInput = document.getElementById("password");
-  const confirmPasswordInput = document.getElementById("confirm-password");
-  const termsCheckbox = document.getElementById("terms-checkbox");
-  const submitBtn = document.getElementById("create-account-btn");
-  const togglePasswordIcons = document.querySelectorAll(
-    ".toggle-password-visibility",
-  );
+    // Select the form element matching your exact HTML id attribute value
+    const signupForm = document.getElementById("signup-form");
+    const submitBtn = document.getElementById("submitBtn"); 
 
-  // ==========================================
-  // 2. BACKEND GROUP COUPLING URL
-  // ==========================================
-  // 🌟 ASK THE BACKEND TEAM FOR THEIR LOCAL URL.
-  // Replace 'http://localhost:5000' with whatever port or IP address they are running.
-  const BACKEND_SIGNUP_URL =
-    "https://medhirely-backend.onrender.com/api/auth/register";
+    // Field selectors mapped to your HTML structure
+    const emailInput = document.getElementById("email") || document.querySelector("input[type='email']");
+    const passwordInputs = document.querySelectorAll("input[type='password']");
+    const passwordInput = document.getElementById("password") || passwordInputs[0];
+    const confirmPasswordInput = document.getElementById("confirmPassword") || passwordInputs[1];
+    const termsCheckbox = document.getElementById("termsCheckbox") || document.querySelector("input[type='checkbox']");
 
-  // ==========================================
-  // 3. PASSWORD VISIBILITY TOGGLE ENGINE
-  // ==========================================
-  togglePasswordIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      const targetInput = icon.closest(".relative").querySelector("input");
-      if (targetInput) {
-        if (targetInput.type === "password") {
-          targetInput.type = "text";
-          icon.classList.remove("fa-eye-slash");
-          icon.classList.add("fa-eye");
+    // Real-time listener function to track validation states
+    function validateForm() {
+        const emailValue = emailInput?.value.trim() || "";
+        const passwordValue = passwordInput?.value || "";
+        const confirmValue = confirmPasswordInput?.value || "";
+        const isChecked = termsCheckbox ? termsCheckbox.checked : false;
+
+        // Front-end formatting conditions
+        const isEmailValid = emailValue.includes("@") && emailValue.includes(".");
+        const isPasswordValid = passwordValue.length >= 6; 
+        const passwordsMatch = passwordValue === confirmValue;
+
+        // Visual highlight toggling framework
+        if (isEmailValid && isPasswordValid && passwordsMatch && isChecked) {
+            if (submitBtn) {
+                submitBtn.removeAttribute("disabled");
+                submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
+                // Applying active design colors dynamically
+                submitBtn.style.backgroundColor = "#0284C7"; 
+                submitBtn.style.opacity = "1";
+                submitBtn.style.cursor = "pointer";
+            }
         } else {
-          targetInput.type = "password";
-          icon.classList.remove("fa-eye");
-          icon.classList.add("fa-eye-slash");
+            if (submitBtn) {
+                submitBtn.setAttribute("disabled", "true");
+                submitBtn.style.opacity = "0.5";
+                submitBtn.style.cursor = "not-allowed";
+                submitBtn.style.backgroundColor = ""; // Resets back to your stylesheet fallback
+            }
         }
-      }
-    });
-  });
-
-  // ==========================================
-  // 4. FRONTEND FORM VALIDATION
-  // ==========================================
-  function validateFormInputs() {
-    const email = emailInput ? emailInput.value.trim() : "";
-    const role = roleInput ? roleInput.value.trim() : "";
-    const password = passwordInput ? passwordInput.value : "";
-    const confirmPassword = confirmPasswordInput
-      ? confirmPasswordInput.value
-      : "";
-    const isTermsAgreed = termsCheckbox ? termsCheckbox.checked : false;
-
-    if (!email || !role || !password || !confirmPassword) {
-      return { valid: false, message: "Please fill in all fields." };
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return { valid: false, message: "Please enter a valid email address." };
-    }
+    // Attach event listeners to input fields
+    if (emailInput) emailInput.addEventListener("input", validateForm);
+    if (passwordInput) passwordInput.addEventListener("input", validateForm);
+    if (confirmPasswordInput) confirmPasswordInput.addEventListener("input", validateForm);
+    if (termsCheckbox) termsCheckbox.addEventListener("change", validateForm);
 
-    if (password.length < 6) {
-      return {
-        valid: false,
-        message: "Password must be at least 6 characters long.",
-      };
-    }
+    // Initial validation check invocation on file mount
+    validateForm();
 
-    if (password !== confirmPassword) {
-      return { valid: false, message: "Passwords do not match." };
-    }
+    // Form submission processing
+    if (signupForm) {
+        signupForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-    if (!isTermsAgreed) {
-      return {
-        valid: false,
-        message: "You must agree to the Terms of Service.",
-      };
-    }
+            if (submitBtn) {
+                submitBtn.textContent = "Creating Account...";
+                submitBtn.setAttribute("disabled", "true");
+            }
 
-    return { valid: true };
-  }
+            const signupEmail = emailInput?.value.trim() || "";
 
-  // Real-time button activation
-  if (signupForm && submitBtn) {
-    signupForm.addEventListener("input", () => {
-      const validation = validateFormInputs();
-      if (validation.valid) {
-        submitBtn.removeAttribute("disabled");
-        submitBtn.classList.remove("opacity-50", "cursor-not-allowed");
-      } else {
-        submitBtn.setAttribute("disabled", "true");
-        submitBtn.classList.add("opacity-50", "cursor-not-allowed");
-      }
-    });
-  }
+            // 🎯 THE SCHEMATIC PAYLOAD: Strictly passing the exact three properties
+            const signupPayload = {
+                email: signupEmail,
+                role: "facility", 
+                password: passwordInput?.value || ""
+            };
 
-  // ==========================================
-  // 5. DATA TRANSMISSION TO BACKEND GROUP
-  // ==========================================
-  if (signupForm) {
-    signupForm.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Prevents page reload/clear issues!
+            try {
+                const response = await fetch('https://medhirely-backend.onrender.com/api/auth/register', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(signupPayload),
+                });
 
-      const validation = validateFormInputs();
-      if (!validation.valid) {
-        alert(validation.message);
-        return;
-      }
+                const result = await response.json();
 
-      // Payloads built matching the team's router expectation request headers
-      const signupPayload = {
-        email: emailInput.value.trim().toLowerCase(),
-        role: roleInput.value.trim(),
-        password: passwordInput.value,
-      };
+                if (response.ok) {
+                    alert("Registration successful!");
 
-      if (submitBtn) {
-        submitBtn.textContent = "Creating Account...";
-        submitBtn.setAttribute("disabled", "true");
-      }
+                    // Cache structural session values safely in your browser storage layers
+                    if (result.token) {
+                        localStorage.setItem("userToken", result.token);
+                    }
 
-      try {
-        const response = await fetch(BACKEND_SIGNUP_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(signupPayload),
+                    if (signupEmail) {
+                        localStorage.setItem('medhirely_signup_email', signupEmail);
+                    }
+
+                    // Route navigation frame forward smoothly onto your verification layout screen
+                    window.location.href = "email_verification.html";
+
+                } else {
+                    // Alert the explicit error string coming from your backend validators if it rejects
+                    alert("Registration failed: " + (result.message || "Error during schema validation parsing."));
+                    if (submitBtn) {
+                        submitBtn.textContent = "Create an Account";
+                        validateForm();
+                    }
+                }
+            } catch (error) {
+                console.error("Signup network execution crash:", error);
+                alert("A network connectivity error occurred. Please try again.");
+                if (submitBtn) {
+                    submitBtn.textContent = "Create an Account";
+                    validateForm();
+                }
+            }
         });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert("Registration successful!");
-
-          if (result.token) {
-            localStorage.setItem("userToken", result.token);
-          }
-
-          // Move forward to dashboard/profile onboarding page view
-          window.location.href = "email_verification.html"; // Matches your active dashboard file string name
-        } else {
-          alert(
-            "Registration failed: " +
-              (result.message || "Validation error from backend group."),
-          );
-          resetSubmitButton();
-        }
-      } catch (error) {
-        console.error("API connection failure:", error);
-        alert(
-          "Could not establish a connection to the backend group local server. Make sure they have started their app and CORS is enabled for your origin!",
-        );
-        resetSubmitButton();
-      }
-    });
-  }
-
-  function resetSubmitButton() {
-    if (submitBtn) {
-      submitBtn.textContent = "Create an Account";
-      submitBtn.removeAttribute("disabled");
     }
-  }
 });
