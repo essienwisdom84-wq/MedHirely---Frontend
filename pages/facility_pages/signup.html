@@ -1,112 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedHirely - Facility Sign Up</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for eye icons and social logos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-[#e0ecfb] font-sans antialiased text-slate-700 min-h-screen flex items-center justify-center p-4">
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-[#e0ecfb] font-sans antialiased text-slate-700 min-h-screen flex items-center justify-center p-4"
+  >
     <!-- Card Container -->
-    <div class="w-full max-w-2xl bg-[#f8fafc] rounded-3xl border border-slate-100 p-8 md:p-12 shadow-sm">
-        
-        <!-- Header Title -->
-        <h1 class="text-3xl font-semibold text-slate-800 text-center mb-8">Facility Sign up</h1>
+    <div
+      class="w-full max-w-2xl bg-[#f8fafc] rounded-3xl border border-slate-100 p-8 md:p-12 shadow-sm"
+    >
+      <!-- Header Title -->
+      <h1 class="text-3xl font-semibold text-slate-800 text-center mb-8">
+        Facility Sign up
+      </h1>
 
-        <!-- OAuth Social Buttons Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-            <!-- Microsoft SSO Button -->
-            <button type="button" class="flex items-center justify-center gap-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 py-3 px-4 rounded-xl hover:bg-slate-50 transition duration-150">
-                <!-- Inline SVG representation of Microsoft Logo -->
-                <svg class="w-4 h-4" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="10.5" height="10.5" fill="#F25022"/>
-                    <rect x="12" width="10.5" height="10.5" fill="#7FBA00"/>
-                    <rect y="12" width="10.5" height="10.5" fill="#00A1F1"/>
-                    <rect x="12" y="12" width="10.5" height="10.5" fill="#FFB900"/>
-                </svg>
-                <span>Continue with Microsoft</span>
-            </button>
+      <!-- OAuth Social Buttons Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <!-- Microsoft SSO Button -->
+        <button
+          type="button"
+          class="flex items-center justify-center gap-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 py-3 px-4 rounded-xl hover:bg-slate-50 transition duration-150"
+        >
+          <!-- Inline SVG representation of Microsoft Logo -->
+          <svg
+            class="w-4 h-4"
+            viewBox="0 0 23 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="10.5" height="10.5" fill="#F25022" />
+            <rect x="12" width="10.5" height="10.5" fill="#7FBA00" />
+            <rect y="12" width="10.5" height="10.5" fill="#00A1F1" />
+            <rect x="12" y="12" width="10.5" height="10.5" fill="#FFB900" />
+          </svg>
+          <span>Continue with Microsoft</span>
+        </button>
 
-            <!-- Google SSO Button -->
-            <button type="button" class="flex items-center justify-center gap-2 bg-[#1d8cf8] text-white text-sm font-medium py-3 px-4 rounded-xl hover:bg-blue-600 transition duration-150 shadow-sm">
-                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center text-xs">
-                    <i class="fa-brands fa-google text-[#1d8cf8]"></i>
-                </div>
-                <span>Continue with Google</span>
-            </button>
+        <!-- Google SSO Button -->
+        <button
+          type="button"
+          class="flex items-center justify-center gap-2 bg-[#1d8cf8] text-white text-sm font-medium py-3 px-4 rounded-xl hover:bg-blue-600 transition duration-150 shadow-sm"
+        >
+          <div
+            class="w-5 h-5 bg-white rounded-full flex items-center justify-center text-xs"
+          >
+            <i class="fa-brands fa-google text-[#1d8cf8]"></i>
+          </div>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <!-- Section Divider Line -->
+      <div class="relative flex py-2 items-center mb-6">
+        <div class="flex-grow border-t border-slate-200"></div>
+        <span
+          class="flex-shrink mx-4 text-xs text-slate-400 font-medium lowercase"
+          >or</span
+        >
+        <div class="flex-grow border-t border-slate-200"></div>
+      </div>
+
+      <!-- Core Sign Up Interaction Form -->
+      <form id="signup-form" class="space-y-6" novalidate>
+        <!-- Email Address Input Field -->
+        <div class="space-y-2">
+          <label
+            for="email-address"
+            class="block text-sm font-semibold text-slate-700"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="e.g. admin@facility.com"
+            class="w-full bg-white border border-slate-200 rounded-xl p-3.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150"
+          />
         </div>
 
-        <!-- Section Divider Line -->
-        <div class="relative flex py-2 items-center mb-6">
-            <div class="flex-grow border-t border-slate-200"></div>
-            <span class="flex-shrink mx-4 text-xs text-slate-400 font-medium lowercase">or</span>
-            <div class="flex-grow border-t border-slate-200"></div>
+        <!-- Operational User Role Dropdown/Input Field -->
+        <div class="space-y-2">
+          <label for="role" class="block text-sm font-semibold text-slate-700"
+            >Role</label
+          >
+          <input
+            type="text"
+            id="role"
+            name="role"
+            placeholder="e.g. Facility Manager, Admin"
+            class="w-full bg-white border border-slate-200 rounded-xl p-3.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150"
+          />
         </div>
 
-        <!-- Core Sign Up Interaction Form -->
-        <form id="signup-form" class="space-y-6" novalidate>
-            
-            <!-- Email Address Input Field -->
-            <div class="space-y-2">
-                <label for="email-address" class="block text-sm font-semibold text-slate-700">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="e.g. admin@facility.com"
-                    class="w-full bg-white border border-slate-200 rounded-xl p-3.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150">
-            </div>
+        <!-- Primary Password Input Field -->
+        <div class="space-y-2">
+          <label
+            for="password"
+            class="block text-sm font-semibold text-slate-700"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              class="w-full bg-white border border-slate-200 rounded-xl p-3.5 pr-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150"
+            />
+            <!-- Toggle Visibility Eye Icon Target Hook -->
+            <i
+              class="toggle-password-visibility fa-regular fa-eye-slash absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer text-sm p-1"
+            ></i>
+          </div>
+        </div>
 
-            <!-- Operational User Role Dropdown/Input Field -->
-            <div class="space-y-2">
-                <label for="role" class="block text-sm font-semibold text-slate-700">Role</label>
-                <input type="text" id="role" name="role" placeholder="e.g. Facility Manager, Admin"
-                    class="w-full bg-white border border-slate-200 rounded-xl p-3.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150">
-            </div>
+        <!-- Secondary Password Confirmation Field -->
+        <div class="space-y-2">
+          <label
+            for="confirm-password"
+            class="block text-sm font-semibold text-slate-700"
+            >Confirm Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="••••••••"
+              class="w-full bg-white border border-slate-200 rounded-xl p-3.5 pr-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150"
+            />
+            <!-- Toggle Visibility Eye Icon Target Hook -->
+            <i
+              class="toggle-password-visibility fa-regular fa-eye-slash absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer text-sm p-1"
+            ></i>
+          </div>
+        </div>
 
-            <!-- Primary Password Input Field -->
-            <div class="space-y-2">
-                <label for="password" class="block text-sm font-semibold text-slate-700">Password</label>
-                <div class="relative">
-                    <input type="password" id="password" name="password" placeholder="••••••••"
-                        class="w-full bg-white border border-slate-200 rounded-xl p-3.5 pr-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150">
-                    <!-- Toggle Visibility Eye Icon Target Hook -->
-                    <i class="toggle-password-visibility fa-regular fa-eye-slash absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer text-sm p-1"></i>
-                </div>
-            </div>
+        <!-- Compliance Policy Terms Checkbox Row -->
+        <div class="flex items-start gap-3 pt-2">
+          <input
+            type="checkbox"
+            id="termsCheckbox"
+            name="terms"
+            class="w-4 h-4 mt-0.5 rounded border-slate-300 text-[#1d8cf8] focus:ring-[#1d8cf8] cursor-pointer"
+          />
+          <label
+            for="terms-checkbox"
+            class="text-xs text-slate-500 leading-relaxed cursor-pointer select-none"
+          >
+            Yes, I understand and agree to MedHire
+            <a href="#" class="text-blue-500 hover:underline"
+              >Terms of service</a
+            >, including the
+            <a href="#" class="text-blue-500 hover:underline">User Agreement</a>
+            and
+            <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a
+            >.
+          </label>
+        </div>
 
-            <!-- Secondary Password Confirmation Field -->
-            <div class="space-y-2">
-                <label for="confirm-password" class="block text-sm font-semibold text-slate-700">Confirm Password</label>
-                <div class="relative">
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••"
-                        class="w-full bg-white border border-slate-200 rounded-xl p-3.5 pr-10 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-300 transition duration-150">
-                    <!-- Toggle Visibility Eye Icon Target Hook -->
-                    <i class="toggle-password-visibility fa-regular fa-eye-slash absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer text-sm p-1"></i>
-                </div>
-            </div>
-
-            <!-- Compliance Policy Terms Checkbox Row -->
-            <div class="flex items-start gap-3 pt-2">
-                <input type="checkbox" id="termsCheckbox" name="terms"
-                    class="w-4 h-4 mt-0.5 rounded border-slate-300 text-[#1d8cf8] focus:ring-[#1d8cf8] cursor-pointer">
-                <label for="terms-checkbox" class="text-xs text-slate-500 leading-relaxed cursor-pointer select-none">
-                    Yes, I understand and agree to MedHire <a href="#" class="text-blue-500 hover:underline">Terms of service</a>, including the <a href="#" class="text-blue-500 hover:underline">User Agreement</a> and <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>.
-                </label>
-            </div>
-
-            <!-- Submission Trigger Button Row -->
-            <div class="pt-4">
-                <button type="submit" id="submitBtn" 
-                    class="w-44 bg-[#1d8cf8] text-white font-medium text-sm py-3 px-4 rounded-lg shadow-sm hover:bg-blue-600 opacity-50 cursor-not-allowed transition-all duration-200 text-center">
-                    Create an Account
-                </button>
-            </div>
-
-        </form>
+        <!-- Submission Trigger Button Row -->
+        <div class="pt-4">
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-44 bg-[#1d8cf8] text-white font-medium text-sm py-3 px-4 rounded-lg shadow-sm hover:bg-blue-600 opacity-50 cursor-not-allowed transition-all duration-200 text-center"
+          >
+            Create an Account
+          </button>
+        </div>
+      </form>
     </div>
 
     <!-- Script Injection Link File (Ensure relative paths align) -->
-    <script src="../../js/signup.js"></script>
-</body>
+    <script src="../../js/signUp.js"></script>
+  </body>
 </html>
