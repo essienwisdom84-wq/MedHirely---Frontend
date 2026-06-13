@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="../../js/emailVerification.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>Verify Email</title>
+</head>
+<body class="bg-[#e0ecfb] min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-3xl w-full max-w-lg my-10 p-10">
+
+    <!-- Icon -->
+    <div class="flex justify-center">
+      <div class="w-30 h-30 flex items-center justify-center">
+       <img src="https://res.cloudinary.com/dej529fhw/image/upload/v1781215188/Vector_9_mb5gsg.png" alt="Logo">
+      </div>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="text-4xl font-bold text-center mt-8">
+      Check your email
+    </h1>
+
+    <p class="text-center text-gray-500 mt-3">
+      We sent a 6-digit code to activate your account
+    </p>
+
+    <p id="email" class="text-center text-blue-600 font-semibold mt-2">
+      
+    </p>
+
+    <!-- OTP Inputs -->
+    <div class="flex justify-center gap-4 mt-10">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+      <input type="text" maxlength="1"
+        class="otp w-14 h-14 text-center text-2xl border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+    </div>
+
+    <!-- Button -->
+    <button
+      id="verifyBtn"
+      class="w-full mt-10 bg-blue-600 text-white py-4 rounded-xl font-semibold hover:bg-blue-700 transition">
+      Verify Email
+    </button>
+
+    <!-- Resend -->
+    <p class="text-center text-gray-500 mt-6">
+  <span id="resendText">
+    Didn't receive the code?
+  </span>
+
+  <button
+    id="resendBtn"
+    class="text-blue-600 font-semibold ml-1">
+    Resend
+</button>
+</p>
+
+    <!-- Wrong Email -->
+    <p class="text-center mt-5">
+      <a href="signup.html" class="text-gray-500 underline">
+        Wrong email? Go back
+      </a>
+    </p>
+
+  </div>
+
+</body>
+</html>
